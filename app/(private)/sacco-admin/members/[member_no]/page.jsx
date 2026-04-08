@@ -190,7 +190,7 @@ function MemberDetail() {
 
   const getInitials = (firstName, lastName) => {
     return `${firstName?.charAt(0) || ""}${lastName?.charAt(0) || ""
-      }`.to();
+      }`.toUpperCase();
   };
 
   const InfoField = ({ icon: Icon, label, value }) => (
