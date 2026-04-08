@@ -11,6 +11,7 @@ import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
+import Link from "next/link";
 
 function AccountActivation() {
   const { uid, token } = useParams();
