@@ -70,17 +70,17 @@ function SaccoAdminNavbar() {
           </div>
           <nav className="flex flex-col p-6 gap-1 overflow-y-auto">
             {[
-              { label: "Executive Summary", href: "/sacco-admin/dashboard" },
-              { label: "System Setup", href: "/sacco-admin/setup" },
-              { label: "Institutional Ledger", href: "/sacco-admin/accounting" },
-              { label: "Governance Reports", href: "/sacco-admin/reports" },
-              { label: "Credit Facilities", href: "/sacco-admin/loan-applications" },
-              { label: "Registry", href: "/sacco-admin/members" },
-              { label: "Personal Profile", href: "/sacco-admin/personal" },
+              { label: "Dashboard", href: "/sacco-admin/dashboard" },
+              { label: "Setup", href: "/sacco-admin/setup" },
+              { label: "Accounting", href: "/sacco-admin/accounting" },
+              { label: "Reports", href: "/sacco-admin/reports" },
+              { label: "Loan Applications", href: "/sacco-admin/loan-applications" },
+              { label: "Members", href: "/sacco-admin/members" },
+              { label: "Personal Portfolio", href: "/sacco-admin/personal" },
               { label: "Guarantor Profile", href: "/sacco-admin/personal/guarantorprofile" },
-              { label: "Terminal Transact", href: "/sacco-admin/transact" },
-              { label: "Capital Outflow", href: "/sacco-admin/withdrawals" },
-              { label: "Global Settings", href: "/sacco-admin/settings" },
+              { label: "Transact", href: "/sacco-admin/transact" },
+              { label: "Withdrawals", href: "/sacco-admin/withdrawals" },
+              { label: "Settings", href: "/sacco-admin/settings" },
             ].map((link) => (
               <Link
                 key={link.href}

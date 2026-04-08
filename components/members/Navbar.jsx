@@ -70,10 +70,10 @@ function MemberNavbar() {
           <nav className="flex flex-col p-6 gap-2">
             {[
               { label: "Dashboard", href: "/member/dashboard" },
-              { label: "Capital Infrastructure", href: "/member/loan-applications" },
-              { label: "Guarantor Governance", href: "/member/guarantorprofile" },
-              { label: "Fiscal Reports", href: "/member/reports" },
-              { label: "Account Protocols", href: "/member/settings" },
+              { label: "Loan Applications", href: "/member/loan-applications" },
+              { label: "Guarantor Profile", href: "/member/guarantorprofile" },
+              { label: "Reports", href: "/member/reports" },
+              { label: "Settings", href: "/member/settings" },
             ].map((link) => (
               <Link
                 key={link.href}
