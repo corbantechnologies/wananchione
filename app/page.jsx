@@ -140,7 +140,7 @@ function LandingPage() {
             <span>Institutional-Grade Financial Ecosystem</span>
           </div>
 
-          <h1 className="text-lg md:text-lg font-bold mb-10 text-black ">
+          <h1 className="text-2xl md:text-3xl font-bold mb-10 text-black ">
             Precision <br className="hidden lg:block" />
             <span className="text-[#D4AF37]">Infrastructure</span>
           </h1>
