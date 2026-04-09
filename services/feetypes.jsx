@@ -1,6 +1,6 @@
 "use client";
 
-import { apiActions } from "@/tools/axios";
+import { apiActions, apiMultipartActions } from "@/tools/axios";
 
 // SACCO ADMINS
 // create fee type
@@ -30,5 +30,30 @@ export const updateFeeType = async (reference, formData, token) => {
         formData,
         token
     );
+    return response?.data;
+};
+
+// Bulk Functions
+export const bulkCreateFeeTypes = async (values, token) => {
+    await apiActions?.post("/api/v1/feetypes/bulk/create/", values, token);
+};
+
+export const bulkUploadFeeTypes = async (values, token) => {
+    await apiMultipartActions?.post("/api/v1/feetypes/bulk/upload/", values, token);
+};
+
+export const downloadFeeTypesTemplate = async (token) => {
+    const config = { ...token, responseType: "blob" };
+    const response = await apiActions?.get("/api/v1/feetypes/bulk/template/", config);
+
+    // Create blob link to download
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "fee_types_bulk_template.csv");
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
     return response?.data;
 };
