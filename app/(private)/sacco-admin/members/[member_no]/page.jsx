@@ -43,6 +43,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { apiActions } from "@/tools/axios";
+import CreateDepositAdmin from "@/forms/savingsdeposits/CreateDepositAdmin";
 import CreateLoanAccountAdmin from "@/forms/loans/CreateLoanAdmin";
 import CreateVentureDeposits from "@/forms/venturedeposits/CreateVentureDeposits";
 import CreateVenturePayment from "@/forms/venturepayments/CreateVenturePayment";
@@ -53,7 +54,6 @@ import MemberFinancialSummary from "@/components/members/dashboard/MemberFinanci
 import { downloadMemberSummary } from "@/services/membersummary";
 import { Download, Loader2 } from "lucide-react";
 import EmptyState from "@/components/general/EmptyState";
-import CreateDepositAdmin from "@/forms/savingsdeposits/CreateDepositAdmin";
 
 function MemberDetail() {
   const { member_no } = useParams();
@@ -245,18 +245,18 @@ function MemberDetail() {
         </Breadcrumb>
 
         {/* Header Card */}
-        <Card className="overflow-hidden border-0 shadow bg-gradient-to-br from-primary/5 to-primary/10">
+        <Card className="overflow-hidden border-0 shadow-lg bg-gradient-to-br from-primary/5 to-primary/10">
           <CardContent className="p-4 md:p-8">
             <div className="flex flex-col lg:flex-row items-center lg:items-center gap-6 text-center lg:text-left">
               <Avatar className="h-20 w-20 md:h-24 md:w-24 border-4 border-primary/20">
-                <AvatarFallback className="bg-primary text-white text-lg md:text-lg font-bold">
+                <AvatarFallback className="bg-primary text-white text-xl md:text-2xl font-bold">
                   {getInitials(member?.first_name, member?.last_name)}
                 </AvatarFallback>
               </Avatar>
 
               <div className="flex-1 space-y-4">
                 <div>
-                  <h1 className="text-lg font-bold text-foreground mb-2">
+                  <h1 className="text-2xl md:text-4xl font-bold text-foreground mb-2">
                     {member?.first_name}{" "}
                     {member?.middle_name && member.middle_name + " "}
                     {member?.last_name}
@@ -278,8 +278,8 @@ function MemberDetail() {
                     variant={member?.is_approved ? "default" : "secondary"}
                     className={
                       member?.is_approved
-                        ? "bg-[#D4AF37] text-white"
-                        : "bg-[#D4AF37]/10/10 text-[#D4AF37]"
+                        ? "bg-green-600 text-white"
+                        : "bg-yellow-600 text-white"
                     }
                   >
                     {member?.is_approved ? (
@@ -338,7 +338,7 @@ function MemberDetail() {
           <Card className="shadow-md border-l-4 border-l-blue-500">
             <CardHeader>
               <div className="flex justify-between items-center">
-                <CardTitle className="flex items-center gap-2 text-lg">
+                <CardTitle className="flex items-center gap-2 text-xl">
                   <Wallet className="h-6 w-6 text-primary" />
                   Savings Accounts
                 </CardTitle>
@@ -387,7 +387,7 @@ function MemberDetail() {
           <Card className="shadow-md border-l-4 border-l-amber-500">
             <CardHeader>
               <div className="flex justify-between items-center">
-                <CardTitle className="flex items-center gap-2 text-lg">
+                <CardTitle className="flex items-center gap-2 text-xl">
                   <Shield className="h-6 w-6 text-primary" />
                   Fee Accounts
                 </CardTitle>
@@ -395,7 +395,7 @@ function MemberDetail() {
                   <Button
                     onClick={() => setFeePaymentModal(true)}
                     size="sm"
-                    className="h-8 bg-[#D4AF37]/10/10 hover:bg-[#D4AF37]/10/10 text-[#D4AF37] disabled:bg-slate-300 disabled:text-black"
+                    className="h-8 bg-amber-600 hover:bg-amber-700 text-white disabled:bg-slate-300 disabled:text-slate-500"
                   >
                     Pay Fee
                   </Button>
@@ -436,7 +436,7 @@ function MemberDetail() {
           {/* <Card className="shadow-md border-l-4 border-l-emerald-500">
             <CardHeader>
               <div className="flex justify-between items-center">
-                <CardTitle className="flex items-center gap-2 text-lg">
+                <CardTitle className="flex items-center gap-2 text-xl">
                   <Wallet className="h-6 w-6 text-primary" />
                   Venture Accounts
                 </CardTitle>
@@ -505,7 +505,7 @@ function MemberDetail() {
           <Card className="shadow-md border-l-4 border-l-rose-500">
             <CardHeader>
               <div className="flex justify-between items-center">
-                <CardTitle className="flex items-center gap-2 text-lg">
+                <CardTitle className="flex items-center gap-2 text-xl">
                   <CreditCard className="h-6 w-6 text-primary" />
                   Loan Accounts
                 </CardTitle>
@@ -561,7 +561,7 @@ function MemberDetail() {
           <div className="lg:col-span-2 space-y-8">
             <Card className="shadow-md">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg">
+                <CardTitle className="flex items-center gap-2 text-2xl">
                   <User className="h-6 w-6 text-primary" />
                   Personal Information
                 </CardTitle>
@@ -599,7 +599,7 @@ function MemberDetail() {
             {hasEmploymentData && (
               <Card className="shadow-md">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-lg">
+                  <CardTitle className="flex items-center gap-2 text-2xl">
                     <Building className="h-6 w-6 text-primary" />
                     Employment Details
                   </CardTitle>
@@ -628,14 +628,14 @@ function MemberDetail() {
               <Card className="shadow-md border-l-4 border-l-indigo-500">
                 <CardHeader>
                   <div className="flex justify-between items-center">
-                    <CardTitle className="flex items-center gap-2 text-lg">
+                    <CardTitle className="flex items-center gap-2 text-2xl">
                       <Shield className="h-6 w-6 text-primary" />
                       Guarantor Profile
                     </CardTitle>
                     <Badge
                       className={
                         member.guarantor_profile.is_eligible
-                          ? "bg-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37]"
+                          ? "bg-green-100 text-green-700 hover:bg-green-100"
                           : "bg-red-100 text-red-700 hover:bg-red-100"
                       }
                     >
@@ -669,7 +669,7 @@ function MemberDetail() {
 
                   {member.guarantor_profile.guarantees?.length > 0 && (
                     <div className="mt-6">
-                      <h4 className="text-sm font-bold   text-black mb-3 ml-1">
+                      <h4 className="text-sm font-bold uppercase tracking-wider text-slate-500 mb-3 ml-1">
                         Active Guarantees
                       </h4>
                       <div className="overflow-x-auto rounded border border-secondary">
@@ -695,8 +695,8 @@ function MemberDetail() {
                                     variant="outline"
                                     className={
                                       guarantee.status === "Accepted"
-                                        ? "text-[#D4AF37] border-[#D4AF37]"
-                                        : "text-[#D4AF37] border-[#D4AF37]"
+                                        ? "text-green-600 border-green-200"
+                                        : "text-amber-600 border-amber-200"
                                     }
                                   >
                                     {guarantee.status}
@@ -717,7 +717,7 @@ function MemberDetail() {
           <div className="space-y-8">
             <Card className="shadow-md border-l-4 border-l-slate-400">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg">
+                <CardTitle className="flex items-center gap-2 text-xl">
                   <Shield className="h-5 w-5 text-primary" />
                   Identification
                 </CardTitle>
@@ -743,7 +743,7 @@ function MemberDetail() {
 
             <Card className="shadow-md">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg">
+                <CardTitle className="flex items-center gap-2 text-xl">
                   <Settings className="h-5 w-5 text-primary" />
                   Roles & Permissions
                 </CardTitle>
@@ -781,14 +781,14 @@ function MemberDetail() {
 
             <Card className="shadow-md">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg">
+                <CardTitle className="flex items-center gap-2 text-xl">
                   <Clock className="h-5 w-5 text-primary" />
                   Account Timeline
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center gap-3 p-3 rounded bg-secondary/50">
-                  <div className="h-3 w-3 rounded-full bg-[#D4AF37]"></div>
+                  <div className="h-3 w-3 rounded bg-green-600"></div>
                   <div>
                     <p className="text-sm font-medium">Account Created</p>
                     <p className="text-xs text-muted-foreground">
@@ -797,7 +797,7 @@ function MemberDetail() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-3 rounded bg-secondary/50">
-                  <div className="h-3 w-3 rounded-full bg-primary"></div>
+                  <div className="h-3 w-3 rounded bg-primary"></div>
                   <div>
                     <p className="text-sm font-medium">Last Updated</p>
                     <p className="text-xs text-muted-foreground">

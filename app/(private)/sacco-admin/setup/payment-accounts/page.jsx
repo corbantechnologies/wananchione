@@ -63,7 +63,7 @@ export default function PaymentAccountsSetupPage() {
                             <Wallet className="w-6 h-6 text-[#174271]" /> Payment Accounts Setup
                         </h1>
                         <p className="text-slate-500 text-sm">
-                            Configure bank, cash, and mobile money accounts for Wananchi One Sacco transactions.
+                            Configure bank, cash, and mobile money accounts for SACCO transactions.
                         </p>
                     </div>
                 </div>

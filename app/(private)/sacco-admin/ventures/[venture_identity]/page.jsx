@@ -51,7 +51,7 @@ function VentureDetail() {
         {/* Venture Details */}
         <Card className="border-l-4 border-l-primary shadow-md">
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-lg font-bold text-primary">
+            <CardTitle className="text-2xl font-bold text-primary">
               {venture?.venture_type}
             </CardTitle>
           </CardHeader>
@@ -70,7 +70,7 @@ function VentureDetail() {
               Status:{" "}
               <span
                 className={`font-normal ${
-                  venture?.is_active ? "text-[#D4AF37]" : "text-red-600"
+                  venture?.is_active ? "text-green-600" : "text-red-600"
                 }`}
               >
                 {venture?.is_active ? "Active" : "Inactive"}
@@ -92,7 +92,7 @@ function VentureDetail() {
         {/* Deposits Table */}
         <Card className="shadow-md">
           <CardHeader>
-            <CardTitle className="text-lg font-bold text-primary">
+            <CardTitle className="text-xl font-bold text-primary">
               Deposits
             </CardTitle>
           </CardHeader>
@@ -104,7 +104,7 @@ function VentureDetail() {
         {/* Payments Table */}
         <Card className="shadow-md">
           <CardHeader>
-            <CardTitle className="text-lg font-bold text-primary">
+            <CardTitle className="text-xl font-bold text-primary">
               Payments
             </CardTitle>
           </CardHeader>
@@ -116,7 +116,7 @@ function VentureDetail() {
         {/* Transactions Table */}
         <Card className="shadow-md">
           <CardHeader>
-            <CardTitle className="text-lg font-bold text-primary">
+            <CardTitle className="text-xl font-bold text-primary">
               All Transactions
             </CardTitle>
           </CardHeader>

@@ -106,7 +106,7 @@ export default function DepositProcessing() {
 
   return (
     <div className="min-h-screen bg-gray-50/50 p-4 sm:p-8 flex items-center justify-center">
-      <Card className="w-full max-w-md shadow">
+      <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="space-y-1">
           <div className="flex items-center space-x-2 mb-2">
             <Button
@@ -118,7 +118,7 @@ export default function DepositProcessing() {
             >
               <ArrowLeft className="h-4 w-4" />
             </Button>
-            <CardTitle className="text-lg font-bold text-[#174271]">
+            <CardTitle className="text-2xl font-bold text-[#045e32]">
               Complete Deposit
             </CardTitle>
           </div>
@@ -148,10 +148,10 @@ export default function DepositProcessing() {
               <span
                 className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium 
                 ${deposit.payment_status === "COMPLETED"
-                    ? "bg-[#D4AF37] text-[#D4AF37]"
+                    ? "bg-green-100 text-green-800"
                     : deposit.payment_status === "FAILED"
                       ? "bg-red-100 text-red-800"
-                      : "bg-[#D4AF37]/10/10 text-[#D4AF37]"
+                      : "bg-yellow-100 text-yellow-800"
                   }`}
               >
                 {deposit.payment_status || "PENDING"}
@@ -162,7 +162,7 @@ export default function DepositProcessing() {
           {paymentMessage && (
             <div
               className={`p-3 rounded text-sm text-center ${paymentMessage.includes("Successful")
-                ? "bg-[#D4AF37] text-[#D4AF37]"
+                ? "bg-green-50 text-green-700"
                 : paymentMessage.includes("failed") ||
                   paymentMessage.includes("timed out")
                   ? "bg-red-50 text-red-700"
@@ -235,7 +235,7 @@ export default function DepositProcessing() {
                   <Button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-[#174271] hover:bg-[#034625] h-12 text-lg"
+                    className="w-full bg-[#045e32] hover:bg-[#034625] h-12 text-lg"
                   >
                     {loading ? (
                       <>
@@ -253,7 +253,7 @@ export default function DepositProcessing() {
 
           {isPolling && (
             <div className="flex flex-col items-center justify-center py-6 space-y-4">
-              <Loader2 className="h-12 w-12 text-[#174271] animate-spin" />
+              <Loader2 className="h-12 w-12 text-[#045e32] animate-spin" />
               <p className="text-sm text-gray-500 text-center px-4">
                 Waiting for M-Pesa confirmation. This usually takes 10-20
                 seconds after you enter your PIN.

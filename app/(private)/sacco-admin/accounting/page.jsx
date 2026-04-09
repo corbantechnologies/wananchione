@@ -82,11 +82,11 @@ export default function AccountingPage() {
         <div className="min-h-screen bg-gray-50/50 p-4 md:p-6 space-y-6">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-lg font-bold  text-black flex items-center gap-2">
+                    <h1 className="text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
                         <BookOpen className="w-6 h-6 text-[#ea1315]" />
                         Accounting Dashboard
                     </h1>
-                    <p className="text-black text-sm">
+                    <p className="text-slate-500 text-sm">
                         Manage General Ledger, Journal Batches and Entries
                     </p>
                 </div>
@@ -145,14 +145,14 @@ export default function AccountingPage() {
                                     <TableBody>
                                         {glAccounts.map((acc) => (
                                             <TableRow key={acc.id || acc.reference} className="hover:bg-slate-50/50 transition-colors">
-                                                <TableCell className="text-sm font-medium text-black">{acc.name}</TableCell>
-                                                <TableCell className="text-sm text-black font-mono">{acc.code}</TableCell>
+                                                <TableCell className="text-sm font-medium text-slate-700">{acc.name}</TableCell>
+                                                <TableCell className="text-sm text-slate-500 font-mono">{acc.code}</TableCell>
                                                 <TableCell>
                                                     <Badge variant="outline" className="capitalize text-[10px] font-bold">
                                                         {acc.category?.toLowerCase()}
                                                     </Badge>
                                                 </TableCell>
-                                                <TableCell className="text-sm text-right font-bold text-black font-mono">
+                                                <TableCell className="text-sm text-right font-bold text-slate-900 font-mono">
                                                     KES {Number(acc.balance).toLocaleString(undefined, { minimumFractionDigits: 2 })}
                                                 </TableCell>
                                                 <TableCell className="text-right">
@@ -164,7 +164,7 @@ export default function AccountingPage() {
                                 </Table>
                             ) : (
                                 <div className="p-12 text-center">
-                                    <p className="text-black italic">No GL accounts found.</p>
+                                    <p className="text-slate-500 italic">No GL accounts found.</p>
                                 </div>
                             )}
                         </CardContent>
@@ -194,9 +194,9 @@ export default function AccountingPage() {
                                     <TableBody>
                                         {journalBatches.map((batch) => (
                                             <TableRow key={batch.id || batch.reference} className="hover:bg-slate-50/50 transition-colors">
-                                                <TableCell className="text-sm font-bold text-black">{batch.code}</TableCell>
-                                                <TableCell className="text-sm text-black max-w-xs truncate">{batch.description}</TableCell>
-                                                <TableCell className="text-sm text-black">
+                                                <TableCell className="text-sm font-bold text-slate-700">{batch.code}</TableCell>
+                                                <TableCell className="text-sm text-slate-500 max-w-xs truncate">{batch.description}</TableCell>
+                                                <TableCell className="text-sm text-slate-500">
                                                     {batch.created_at ? format(new Date(batch.created_at), "MMM d, yyyy") : "-"}
                                                 </TableCell>
                                                 <TableCell>
@@ -223,7 +223,7 @@ export default function AccountingPage() {
                                     </TableBody>
                                 </Table>
                             ) : (
-                                <div className="p-12 text-center text-black italic">No journal batches available.</div>
+                                <div className="p-12 text-center text-slate-500 italic">No journal batches available.</div>
                             )}
                         </CardContent>
                     </Card>
@@ -240,7 +240,7 @@ export default function AccountingPage() {
                                 </div>
                                 <div className="flex flex-wrap items-center gap-2">
                                     <div className="relative">
-                                        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-black" />
+                                        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-500" />
                                         <Input
                                             placeholder="Search code or account..."
                                             className="pl-9 w-[200px] h-9 text-xs"
@@ -250,7 +250,7 @@ export default function AccountingPage() {
                                     </div>
                                     <Select value={selectedGL} onValueChange={setSelectedGL}>
                                         <SelectTrigger className="w-[160px] h-9 text-xs">
-                                            <Filter className="w-3 h-3 mr-2 text-black" />
+                                            <Filter className="w-3 h-3 mr-2 text-slate-500" />
                                             <SelectValue placeholder="GL Account" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -262,7 +262,7 @@ export default function AccountingPage() {
                                     </Select>
                                     <Select value={selectedBatchFilter} onValueChange={setSelectedBatchFilter}>
                                         <SelectTrigger className="w-[160px] h-9 text-xs">
-                                            <Receipt className="w-3 h-3 mr-2 text-black" />
+                                            <Receipt className="w-3 h-3 mr-2 text-slate-500" />
                                             <SelectValue placeholder="Batch" />
                                         </SelectTrigger>
                                         <SelectContent>
@@ -292,16 +292,16 @@ export default function AccountingPage() {
                                         <TableBody>
                                             {entries.map((entry) => (
                                                 <TableRow key={entry.id || entry.reference} className="hover:bg-slate-50/50 transition-colors">
-                                                    <TableCell className="text-sm font-medium text-black">{entry.code}</TableCell>
-                                                    <TableCell className="text-sm font-semibold text-black">{entry.account}</TableCell>
-                                                    <TableCell className="text-sm text-right font-mono text-black font-bold">
+                                                    <TableCell className="text-sm font-medium text-slate-600">{entry.code}</TableCell>
+                                                    <TableCell className="text-sm font-semibold text-slate-800">{entry.account}</TableCell>
+                                                    <TableCell className="text-sm text-right font-mono text-slate-900 font-bold">
                                                         {Number(entry.debit) > 0 ? Number(entry.debit).toLocaleString(undefined, { minimumFractionDigits: 2 }) : "-"}
                                                     </TableCell>
-                                                    <TableCell className="text-sm text-right font-mono text-black font-bold">
+                                                    <TableCell className="text-sm text-right font-mono text-slate-900 font-bold">
                                                         {Number(entry.credit) > 0 ? Number(entry.credit).toLocaleString(undefined, { minimumFractionDigits: 2 }) : "-"}
                                                     </TableCell>
-                                                    <TableCell className="text-sm text-black font-mono text-xs">{entry.batch}</TableCell>
-                                                    <TableCell className="text-sm text-black">
+                                                    <TableCell className="text-sm text-slate-500 font-mono text-xs">{entry.batch}</TableCell>
+                                                    <TableCell className="text-sm text-slate-500">
                                                         {entry.created_at ? format(new Date(entry.created_at), "MMM d, HH:mm") : "-"}
                                                     </TableCell>
                                                 </TableRow>
@@ -311,8 +311,8 @@ export default function AccountingPage() {
 
                                     {/* Pagination */}
                                     <div className="flex flex-col sm:flex-row items-center justify-between px-6 py-4 border-t bg-slate-50/30 gap-4">
-                                        <p className="text-xs text-black font-medium order-2 sm:order-1">
-                                            Showing <span className="text-black">{entries.length}</span> of <span className="text-black">{totalEntries}</span> entries
+                                        <p className="text-xs text-slate-500 font-medium order-2 sm:order-1">
+                                            Showing <span className="text-slate-900">{entries.length}</span> of <span className="text-slate-900">{totalEntries}</span> entries
                                         </p>
                                         <div className="flex items-center gap-2 order-1 sm:order-2">
                                             <Button
@@ -325,7 +325,7 @@ export default function AccountingPage() {
                                                 <ChevronLeft className="w-4 h-4 mr-1" />
                                                 Prev
                                             </Button>
-                                            <div className="flex items-center px-4 text-xs font-bold text-black bg-white border rounded h-8">
+                                            <div className="flex items-center px-4 text-xs font-bold text-slate-700 bg-white border rounded h-8">
                                                 Page {page} of {totalPages || 1}
                                             </div>
                                             <Button
@@ -342,7 +342,7 @@ export default function AccountingPage() {
                                     </div>
                                 </>
                             ) : (
-                                <div className="p-12 text-center text-black italic">No journal entries found matching filters.</div>
+                                <div className="p-12 text-center text-slate-500 italic">No journal entries found matching filters.</div>
                             )}
                         </CardContent>
                     </Card>

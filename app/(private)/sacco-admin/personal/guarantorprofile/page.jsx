@@ -113,7 +113,7 @@ export default function GuarantorProfilePage() {
     {
       label: "Available Limit",
       value: formatCurrency(profile.available_amount),
-      color: "text-[#D4AF37]",
+      color: "text-green-600",
     },
     {
       label: "Committed Amount",
@@ -130,12 +130,12 @@ export default function GuarantorProfilePage() {
   const getStatusColor = (status) => {
     switch (status) {
       case "Accepted":
-        return "bg-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] border-[#D4AF37]";
+        return "bg-green-100 text-green-700 hover:bg-green-200 border-green-200";
       case "Declined":
       case "Rejected":
         return "bg-red-100 text-red-700 hover:bg-red-200 border-red-200";
       case "Pending":
-        return "bg-[#D4AF37]/10/10 text-[#D4AF37] hover:bg-[#D4AF37]/10/10 border-[#D4AF37]";
+        return "bg-amber-100 text-amber-700 hover:bg-amber-200 border-amber-200";
       default:
         return "bg-gray-100 text-gray-700 hover:bg-gray-200 border-gray-200";
     }
@@ -144,7 +144,7 @@ export default function GuarantorProfilePage() {
   return (
     <div className="space-y-6 mx-auto px-4 py-4">
       <div>
-        <h1 className="text-lg font-bold  text-gray-900">
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900">
           Guarantor Profile
         </h1>
         <p className="text-muted-foreground">
@@ -162,7 +162,7 @@ export default function GuarantorProfilePage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className={`text-lg font-bold ${stat.color}`}>
+              <div className={`text-2xl font-bold ${stat.color}`}>
                 {stat.value}
               </div>
             </CardContent>
@@ -243,7 +243,7 @@ export default function GuarantorProfilePage() {
                         <Button
                           size="sm"
                           onClick={() => handleReviewClick(request)}
-                          className="bg-[#174271] hover:bg-[#034625]"
+                          className="bg-[#045e32] hover:bg-[#034625]"
                         >
                           Review
                         </Button>
@@ -309,7 +309,7 @@ export default function GuarantorProfilePage() {
                         <span className="text-muted-foreground">
                           Remaining to Cover:
                         </span>
-                        <span className="font-bold text-[#D4AF37]">
+                        <span className="font-bold text-amber-600">
                           {formatCurrency(selectedRequest.remaining_to_cover)}
                         </span>
                       </div>
@@ -407,7 +407,7 @@ export default function GuarantorProfilePage() {
                                     <TableCell className="text-xs">
                                       {formatCurrency(row.interest_due)}
                                     </TableCell>
-                                    <TableCell className="text-xs font-semibold text-[#174271]">
+                                    <TableCell className="text-xs font-semibold text-[#045e32]">
                                       {formatCurrency(row.total_due)}
                                     </TableCell>
                                     <TableCell className="text-xs text-right text-muted-foreground">
@@ -437,10 +437,10 @@ export default function GuarantorProfilePage() {
                   </Button>
                   <Button
                     variant="outline"
-                    className="h-24 flex flex-col gap-2 border-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#D4AF37] hover:border-[#D4AF37]"
+                    className="h-24 flex flex-col gap-2 border-green-200 hover:bg-green-50 hover:text-green-700 hover:border-green-300"
                     onClick={() => setActionType("accept")}
                   >
-                    <Check className="h-8 w-8 text-[#D4AF37]" />
+                    <Check className="h-8 w-8 text-green-500" />
                     <span className="font-semibold">Accept Request</span>
                   </Button>
                 </div>
@@ -504,7 +504,7 @@ export default function GuarantorProfilePage() {
                       }
                       className={
                         actionType === "accept"
-                          ? "bg-[#174271] hover:bg-[#034625]"
+                          ? "bg-[#045e32] hover:bg-[#034625]"
                           : ""
                       }
                       onClick={handleSubmit}

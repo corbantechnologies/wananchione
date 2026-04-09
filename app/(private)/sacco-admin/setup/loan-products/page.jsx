@@ -64,7 +64,7 @@ export default function LoanProductsSetupPage() {
                             <HandCoins className="w-6 h-6 text-[#174271]" /> Loan Product Configuration
                         </h1>
                         <p className="text-slate-500 text-sm italic">
-                            Establish loan types, interest computation methods, and risk fees for Wananchi One Sacco.
+                            Establish loan types, interest computation methods, and risk fees.
                         </p>
                     </div>
                 </div>

@@ -90,14 +90,14 @@ export default function SaccoAdminDashboard() {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-lg font-bold  text-black">
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900">
             Admin Dashboard
           </h1>
-          <p className="text-black mt-1 text-lg">
+          <p className="text-slate-500 mt-1 text-lg">
             Manage members, products, and configurations.
           </p>
         </div>
-        <div className="bg-white px-4 py-2 rounded-full border shadow-sm">
+        <div className="bg-white px-4 py-2 rounded border shadow-sm">
           <p className="text-sm font-medium text-gray-900">
             {myself?.salutation} {myself?.last_name} (Admin)
           </p>
@@ -108,13 +108,13 @@ export default function SaccoAdminDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <Card className="border-l-4 border-l-[#174271]">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-xs font-bold   text-black">
+            <CardTitle className="text-xs font-bold uppercase tracking-wider text-slate-500">
               Total Members
             </CardTitle>
             <Users className="h-4 w-4 text-[#174271]" />
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-bold text-black">
+            <div className="text-2xl font-bold text-slate-900">
               {members?.length || 0}
             </div>
           </CardContent>
@@ -124,10 +124,10 @@ export default function SaccoAdminDashboard() {
             <CardTitle className="text-sm font-medium text-muted-foreground">
               Saving Types
             </CardTitle>
-            <Wallet className="h-4 w-4 text-[#174271]" />
+            <Wallet className="h-4 w-4 text-green-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-bold">{savingTypes?.length || 0}</div>
+            <div className="text-2xl font-bold">{savingTypes?.length || 0}</div>
           </CardContent>
         </Card>
         <Card>
@@ -135,10 +135,10 @@ export default function SaccoAdminDashboard() {
             <CardTitle className="text-sm font-medium text-muted-foreground">
               Loan Products
             </CardTitle>
-            <CreditCard className="h-4 w-4 text-[#174271]" />
+            <CreditCard className="h-4 w-4 text-blue-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-bold">
+            <div className="text-2xl font-bold">
               {loanProducts?.length || 0}
             </div>
           </CardContent>
@@ -148,10 +148,10 @@ export default function SaccoAdminDashboard() {
             <CardTitle className="text-sm font-medium text-muted-foreground">
               Venture Types
             </CardTitle>
-            <TrendingUp className="h-4 w-4 text-[#174271]" />
+            <TrendingUp className="h-4 w-4 text-purple-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-bold">
+            <div className="text-2xl font-bold">
               {ventureTypes?.length || 0}
             </div>
           </CardContent>
@@ -172,7 +172,7 @@ export default function SaccoAdminDashboard() {
           <div className="flex justify-end mb-4">
             <Popover open={memberPopoverOpen} onOpenChange={setMemberPopoverOpen}>
               <PopoverTrigger asChild>
-                <Button className="bg-[#174271] hover:bg-[#0f2c4d]">
+                <Button className="bg-primary hover:bg-primary/90">
                   <Plus className="mr-2 h-4 w-4" /> Add Member <ChevronDown className="ml-2 h-4 w-4" />
                 </Button>
               </PopoverTrigger>
@@ -180,7 +180,7 @@ export default function SaccoAdminDashboard() {
                 <div className="flex flex-col space-y-1">
                   <Button
                     variant="ghost"
-                    className="justify-start font-normal hover:text-[#174271] hover:bg-[#174271]/5"
+                    className="justify-start font-normal"
                     onClick={() => {
                       setCreateMemberOpen(true);
                       setMemberPopoverOpen(false);
@@ -190,7 +190,7 @@ export default function SaccoAdminDashboard() {
                   </Button>
                   <Button
                     variant="ghost"
-                    className="justify-start font-normal hover:text-[#174271] hover:bg-[#174271]/5"
+                    className="justify-start font-normal"
                     onClick={() => {
                       setBulkMemberCreateOpen(true);
                       setMemberPopoverOpen(false);
@@ -200,7 +200,7 @@ export default function SaccoAdminDashboard() {
                   </Button>
                   <Button
                     variant="ghost"
-                    className="justify-start font-normal hover:text-[#174271] hover:bg-[#174271]/5"
+                    className="justify-start font-normal"
                     onClick={() => {
                       setBulkMemberUploadOpen(true);
                       setMemberPopoverOpen(false);
@@ -263,7 +263,7 @@ export default function SaccoAdminDashboard() {
               <Button
                 size="sm"
                 onClick={() => setCreateSavingTypeOpen(true)}
-                className="bg-[#D4AF37] hover:bg-[#D4AF37] text-white"
+                className="bg-green-600 hover:bg-green-700 text-white"
               >
                 <Plus className="mr-2 h-4 w-4" /> Create Type
               </Button>

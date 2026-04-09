@@ -52,17 +52,17 @@ export default function LoanApplications() {
     switch (status) {
       case "Approved":
       case "Disbursed":
-        return "bg-primary/10 text-primary border-primary/20";
+        return "bg-emerald-50 text-emerald-700 border-emerald-100";
       case "Rejected":
       case "Declined":
-        return "bg-slate-50 text-black border-slate-200";
+        return "bg-slate-50 text-slate-700 border-slate-200";
       case "In Progress":
       case "Amended":
         return "bg-blue-50 text-blue-700 border-blue-100";
       case "Ready for Submission":
         return "bg-indigo-50 text-indigo-700 border-indigo-100";
       default:
-        return "bg-slate-50 text-black border-slate-100";
+        return "bg-slate-50 text-slate-600 border-slate-100";
     }
   };
 
@@ -83,16 +83,16 @@ export default function LoanApplications() {
 
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-lg font-bold text-black ">
+            <h1 className="text-3xl font-bold text-slate-900 tracking-tight">
               Loan Applications
             </h1>
-            <p className="text-black mt-1">
+            <p className="text-slate-500 mt-1">
               Manage and track your loan requests
             </p>
           </div>
           <Button
             onClick={() => setIsCreateModalOpen(true)}
-            className="bg-primary hover:bg-[#b8962d] shadow-sm"
+            className="bg-[#236c2e] hover:bg-[#1a5222] shadow-sm"
           >
             <Plus className="mr-2 h-4 w-4" />
             New Application
@@ -117,7 +117,7 @@ export default function LoanApplications() {
                 <Button
                   variant="link"
                   onClick={() => setIsCreateModalOpen(true)}
-                  className="text-primary mt-2"
+                  className="text-[#045e32] mt-2"
                 >
                   Start your first application
                 </Button>
@@ -163,7 +163,7 @@ export default function LoanApplications() {
                             asChild
                             variant="ghost"
                             size="sm"
-                            className="text-primary hover:text-primary hover:bg-primary/10"
+                            className="text-[#045e32] hover:text-[#045e32] hover:bg-green-50"
                           >
                             <Link
                               href={`/member/loan-applications/${app.reference}`}
@@ -185,16 +185,16 @@ export default function LoanApplications() {
       {/* Custom Modal for Loan Application */}
       {isCreateModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-          <div className="bg-white rounded shadow w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between p-6 border-b sticky top-0 bg-white z-10">
-              <h2 className="text-lg font-bold text-gray-900">
+              <h2 className="text-xl font-bold text-gray-900">
                 New Loan Application
               </h2>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsCreateModalOpen(false)}
-                className="h-8 w-8 rounded-full"
+                className="h-8 w-8 rounded"
               >
                 <X className="h-4 w-4" />
               </Button>
