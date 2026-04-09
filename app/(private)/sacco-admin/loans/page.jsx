@@ -211,32 +211,36 @@ export default function LoansManagementPage() {
 
             {/* Bulk Disbursement Modal */}
             <Dialog open={isBulkDisburseOpen} onOpenChange={setIsBulkDisburseOpen}>
-                <DialogContent className="max-w-[1200px] bg-slate-50 border-none rounded p-0 overflow-hidden shadow-2xl">
-                    <DialogHeader className="bg-white px-10 py-8 border-b border-slate-100">
-                        <DialogTitle className="text-2xl font-semibold text-[#174271] tracking-tighter flex items-center gap-2">
-                            <ArrowUpRight className="w-6 h-6" /> Bulk Loan Funding
-                        </DialogTitle>
+                <DialogContent className="max-w-[1100px] w-full max-h-[90vh] bg-white border-none rounded shadow-2xl p-0 flex flex-col overflow-hidden">
+                    <DialogHeader className="px-8 py-6 border-b bg-white shrink-0">
+                        <div className="flex items-center justify-between w-full">
+                            <DialogTitle className="text-2xl font-bold text-[#174271] tracking-tighter flex items-center gap-3">
+                                <div className="bg-[#174271] p-1.5 rounded text-white mr-1">
+                                    <ArrowUpRight className="w-5 h-5" />
+                                </div>
+                                Bulk Loan Funding
+                            </DialogTitle>
+                        </div>
                     </DialogHeader>
 
-                    <div className="p-8">
+                    <div className="flex-1 overflow-y-auto p-8 bg-slate-50/30">
                         <Tabs defaultValue="form" className="w-full">
                             <TabsList className="bg-white border p-1 rounded h-14 mb-8 max-w-md shadow-sm">
-                                <TabsTrigger value="form" className="flex-1 rounded data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 font-semibold text-[10px] uppercase tracking-widest">
+                                <TabsTrigger value="form" className="flex-1 rounded data-[state=active]:bg-[#174271] data-[state=active]:text-white font-semibold text-[10px] uppercase tracking-widest transition-all">
                                     <Plus className="w-4 h-4 mr-2" /> Manual Batch
                                 </TabsTrigger>
-                                <TabsTrigger value="upload" className="flex-1 rounded data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700 font-semibold text-[10px] uppercase tracking-widest">
+                                <TabsTrigger value="upload" className="flex-1 rounded data-[state=active]:bg-[#174271] data-[state=active]:text-white font-semibold text-[10px] uppercase tracking-widest transition-all">
                                     <FileUp className="w-4 h-4 mr-2" /> CSV Upload
                                 </TabsTrigger>
                             </TabsList>
 
-                            <TabsContent value="form">
+                            <TabsContent value="form" className="mt-0">
                                 <BulkLoanDisbursementCreate onBatchSuccess={() => {
                                     refetch();
-                                    // Optionally stay open or close? I'll let the nested component handle stay/go
                                 }} />
                             </TabsContent>
 
-                            <TabsContent value="upload">
+                            <TabsContent value="upload" className="mt-0">
                                 <BulkLoanDisbursementUploadCreate onBatchSuccess={() => {
                                     refetch();
                                 }} />
