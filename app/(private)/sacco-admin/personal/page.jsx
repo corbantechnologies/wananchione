@@ -60,7 +60,7 @@ function MemberDashboard() {
       {/* Header Section */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-lg font-bold  text-gray-900">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
             Dashboard
           </h1>
           <p className="text-muted-foreground mt-1 text-lg">
@@ -71,7 +71,7 @@ function MemberDashboard() {
             .
           </p>
         </div>
-        <div className="flex items-center gap-2 text-sm text-muted-foreground bg-white px-4 py-2 rounded-full border shadow-sm">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground bg-white px-4 py-2 rounded border shadow-sm">
           <span>Member No:</span>
           <span className="font-mono font-bold text-gray-900">
             {member?.member_no}
@@ -89,7 +89,7 @@ function MemberDashboard() {
             <PiggyBank className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-bold">
+            <div className="text-2xl font-bold">
               {formatCurrency(totalSavings)}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
@@ -106,7 +106,7 @@ function MemberDashboard() {
             <CreditCard className="h-4 w-4 text-orange-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-bold">
+            <div className="text-2xl font-bold">
               {formatCurrency(totalOutstandingLoan)}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
@@ -123,7 +123,7 @@ function MemberDashboard() {
             <ShieldCheck className="h-4 w-4 text-blue-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-bold">
+            <div className="text-2xl font-bold">
               {formatCurrency(availableGuarantorAmount)}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
@@ -140,7 +140,7 @@ function MemberDashboard() {
             <TrendingUp className="h-4 w-4 text-purple-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-lg font-bold">
+            <div className="text-2xl font-bold">
               {member?.venture_accounts?.length || 0}
             </div>
             <p className="text-xs text-muted-foreground mt-1">
@@ -201,15 +201,15 @@ function MemberDashboard() {
                 member.loan_accounts.filter(
                   (l) => l.status === "Active" || l.status === "Funded"
                 ).length === 0) && (
-                <div className="flex flex-col items-center justify-center py-8 text-center h-full">
-                  <div className="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center mb-3">
-                    <CreditCard className="h-6 w-6 text-gray-400" />
+                  <div className="flex flex-col items-center justify-center py-8 text-center h-full">
+                    <div className="h-12 w-12 rounded bg-gray-100 flex items-center justify-center mb-3">
+                      <CreditCard className="h-6 w-6 text-gray-400" />
+                    </div>
+                    <p className="text-muted-foreground text-sm">
+                      No active loans
+                    </p>
                   </div>
-                  <p className="text-muted-foreground text-sm">
-                    No active loans
-                  </p>
-                </div>
-              )}
+                )}
             </div>
           </CardContent>
         </Card>
@@ -233,15 +233,15 @@ function MemberDashboard() {
               ))}
               {(!member?.venture_accounts ||
                 member.venture_accounts.length === 0) && (
-                <div className="flex flex-col items-center justify-center py-8 text-center h-full">
-                  <div className="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center mb-3">
-                    <TrendingUp className="h-6 w-6 text-gray-400" />
+                  <div className="flex flex-col items-center justify-center py-8 text-center h-full">
+                    <div className="h-12 w-12 rounded bg-gray-100 flex items-center justify-center mb-3">
+                      <TrendingUp className="h-6 w-6 text-gray-400" />
+                    </div>
+                    <p className="text-muted-foreground text-sm">
+                      No active ventures
+                    </p>
                   </div>
-                  <p className="text-muted-foreground text-sm">
-                    No active ventures
-                  </p>
-                </div>
-              )}
+                )}
             </div>
           </CardContent>
         </Card>

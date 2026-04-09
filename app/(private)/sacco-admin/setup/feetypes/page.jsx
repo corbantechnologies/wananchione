@@ -64,7 +64,7 @@ export default function FeeTypesSetupPage() {
                             <BadgePercent className="w-6 h-6 text-[#174271]" /> Fee Management Setup
                         </h1>
                         <p className="text-slate-500 text-sm">
-                            Define registration, insurance, and other Wananchi One Sacco service fees.
+                            Define registration, insurance, and other SACCO service fees.
                         </p>
                     </div>
                 </div>

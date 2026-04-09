@@ -158,7 +158,7 @@ export default function AdminLoanApplicationDetail({ params }) {
             </Button>
             <Button
               size="sm"
-              className="h-8 bg-[#174271] hover:bg-[#034625]"
+              className="h-8 bg-[#045e32] hover:bg-[#034625]"
               onClick={async () => {
                 toast.dismiss(t.id);
                 setIsSubmitting(true);
@@ -201,7 +201,7 @@ export default function AdminLoanApplicationDetail({ params }) {
             </Button>
             <Button
               size="sm"
-              className="h-8 bg-[#174271] hover:bg-[#034625]"
+              className="h-8 bg-[#045e32] hover:bg-[#034625]"
               onClick={async () => {
                 toast.dismiss(t.id);
                 setIsSubmitting(true);
@@ -294,14 +294,14 @@ export default function AdminLoanApplicationDetail({ params }) {
     switch (status) {
       case "Approved":
       case "Disbursed":
-        return "bg-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] border-[#D4AF37]";
+        return "bg-green-100 text-green-700 hover:bg-green-200 border-green-200";
       case "Rejected":
       case "Declined":
         return "bg-red-100 text-red-700 hover:bg-red-200 border-red-200";
       case "In Progress":
         return "bg-blue-100 text-blue-700 hover:bg-blue-200 border-blue-200";
       case "Amended":
-        return "bg-[#D4AF37]/10/10 text-[#D4AF37] hover:bg-[#D4AF37]/10/10 border-[#D4AF37]";
+        return "bg-amber-100 text-amber-700 hover:bg-amber-200 border-amber-200";
       case "Ready for Submission":
       case "Submitted":
         return "bg-purple-100 text-purple-700 hover:bg-purple-200 border-purple-200";
@@ -336,7 +336,7 @@ export default function AdminLoanApplicationDetail({ params }) {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <div className="flex items-center gap-3">
-              <h1 className="text-lg font-bold text-gray-900">
+              <h1 className="text-3xl font-bold text-gray-900">
                 {application.product} Application
               </h1>
             </div>
@@ -363,7 +363,7 @@ export default function AdminLoanApplicationDetail({ params }) {
                     <Button
                       variant="outline"
                       onClick={() => setIsUpdateModalOpen(true)}
-                      className="border-[#174271] text-[#174271] hover:bg-[#174271]/10 w-full sm:w-auto"
+                      className="border-[#045e32] text-[#045e32] hover:bg-[#045e32]/10 w-full sm:w-auto"
                     >
                       <Pencil className="mr-2 h-4 w-4" />
                       Update
@@ -371,7 +371,7 @@ export default function AdminLoanApplicationDetail({ params }) {
                     <Button
                       onClick={handleSubmitForAmendment}
                       disabled={isSubmitting}
-                      className="bg-[#174271] hover:bg-[#034625] w-full sm:w-auto"
+                      className="bg-[#045e32] hover:bg-[#034625] w-full sm:w-auto"
                     >
                       {isSubmitting ? (
                         <Loader2 className="h-4 w-4 mr-2 animate-spin" />
@@ -395,7 +395,7 @@ export default function AdminLoanApplicationDetail({ params }) {
                     <Button
                       onClick={handleAcceptAmendment}
                       disabled={isSubmitting}
-                      className="bg-[#174271] hover:bg-[#034625] w-full sm:w-auto"
+                      className="bg-[#045e32] hover:bg-[#034625] w-full sm:w-auto"
                     >
                       Accept Amendment
                     </Button>
@@ -405,7 +405,7 @@ export default function AdminLoanApplicationDetail({ params }) {
                   <Button
                     onClick={handleSubmitLoanApplication}
                     disabled={isSubmitting}
-                    className="bg-[#174271] hover:bg-[#034625] w-full sm:w-auto"
+                    className="bg-[#045e32] hover:bg-[#034625] w-full sm:w-auto"
                   >
                     {isSubmitting ? (
                       <Loader2 className="h-4 w-4 mr-2 animate-spin" />
@@ -444,7 +444,7 @@ export default function AdminLoanApplicationDetail({ params }) {
                     <Button
                       onClick={handleApprove}
                       disabled={isSubmitting}
-                      className="bg-[#174271] hover:bg-[#034625] w-full sm:w-auto"
+                      className="bg-[#045e32] hover:bg-[#034625] w-full sm:w-auto"
                     >
                       <ThumbsUp className="mr-2 h-4 w-4" />
                       Approve
@@ -465,14 +465,14 @@ export default function AdminLoanApplicationDetail({ params }) {
                     <Button
                       onClick={() => setIsUpdateAdminModalOpen(true)}
                       variant="outline"
-                      className="border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37]/10/10 w-full sm:w-auto"
+                      className="border-amber-600 text-amber-600 hover:bg-amber-50 w-full sm:w-auto"
                     >
                       <Pencil className="mr-2 h-4 w-4" />
                       Update Application
                     </Button>
                     <Button
                       onClick={() => setIsAmendModalOpen(true)}
-                      className="bg-[#D4AF37]/10/10 hover:bg-[#D4AF37]/10/10 w-full sm:w-auto"
+                      className="bg-amber-600 hover:bg-amber-700 w-full sm:w-auto"
                     >
                       <CheckCircle2 className="mr-2 h-4 w-4" />
                       Finalize Amendment
@@ -490,7 +490,7 @@ export default function AdminLoanApplicationDetail({ params }) {
             {/* Financial Overview */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-[#174271]">
+                <CardTitle className="text-[#045e32]">
                   Application Summary
                 </CardTitle>
               </CardHeader>
@@ -499,7 +499,7 @@ export default function AdminLoanApplicationDetail({ params }) {
                   <p className="text-sm text-muted-foreground">
                     Requested Amount
                   </p>
-                  <p className="text-lg font-bold text-gray-900">
+                  <p className="text-2xl font-bold text-gray-900">
                     {formatCurrency(application.requested_amount)}
                   </p>
                 </div>
@@ -596,7 +596,7 @@ export default function AdminLoanApplicationDetail({ params }) {
                           <TableCell>
                             {formatCurrency(row.fee_due)}
                           </TableCell>
-                          <TableCell className="font-semibold text-[#174271]">
+                          <TableCell className="font-semibold text-[#045e32]">
                             {formatCurrency(row.total_due)}
                           </TableCell>
                           <TableCell>
@@ -604,7 +604,7 @@ export default function AdminLoanApplicationDetail({ params }) {
                               variant="outline"
                               className={
                                 row.is_paid
-                                  ? "bg-[#D4AF37] text-[#D4AF37] border-[#D4AF37]"
+                                  ? "bg-green-100 text-green-700 border-green-200"
                                   : "bg-gray-100 text-gray-700 border-gray-200"
                               }
                             >
@@ -641,7 +641,7 @@ export default function AdminLoanApplicationDetail({ params }) {
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-[#174271]" />
+                  <CheckCircle2 className="h-5 w-5 text-[#045e32]" />
                   Coverage Status
                 </CardTitle>
               </CardHeader>
@@ -658,7 +658,7 @@ export default function AdminLoanApplicationDetail({ params }) {
                   <Separator />
                   <div className="flex justify-between text-sm">
                     <span>Self Guaranteed</span>
-                    <span className="font-medium text-[#D4AF37]">
+                    <span className="font-medium text-green-700">
                       {formatCurrency(application.self_guaranteed_amount)}
                     </span>
                   </div>
@@ -677,12 +677,12 @@ export default function AdminLoanApplicationDetail({ params }) {
                 </div>
 
                 {application.is_fully_covered ? (
-                  <div className="rounded bg-[#D4AF37] p-3 text-sm text-[#D4AF37] flex items-start gap-2">
+                  <div className="rounded bg-green-50 p-3 text-sm text-green-700 flex items-start gap-2">
                     <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0" />
                     Loan is fully covered and ready for review.
                   </div>
                 ) : (
-                  <div className="rounded bg-[#D4AF37]/10/10 p-3 text-sm text-[#D4AF37] flex items-start gap-2">
+                  <div className="rounded bg-amber-50 p-3 text-sm text-amber-700 flex items-start gap-2">
                     <AlertCircle className="h-4 w-4 mt-0.5 shrink-0" />
                     Remaining coverage needed:{" "}
                     {formatCurrency(application.remaining_to_cover)}
@@ -721,7 +721,7 @@ export default function AdminLoanApplicationDetail({ params }) {
                         <Badge
                           variant="outline"
                           className={`text-xs mt-1 ${g.status === "Accepted"
-                            ? "bg-[#D4AF37] text-[#D4AF37] border-[#D4AF37]"
+                            ? "bg-green-50 text-green-700 border-green-200"
                             : g.status === "Declined" ||
                               g.status === "Cancelled"
                               ? "bg-red-50 text-red-700 border-red-200"
@@ -761,16 +761,16 @@ export default function AdminLoanApplicationDetail({ params }) {
         {/* Edit Modal (reused from member for now if Own Application) */}
         {isUpdateModalOpen && isOwnApplication && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-            <div className="bg-white rounded shadow w-full max-w-md">
+            <div className="bg-white rounded shadow-xl w-full max-w-md">
               <div className="flex items-center justify-between p-6 border-b">
-                <h2 className="text-lg font-bold text-gray-900">
+                <h2 className="text-xl font-bold text-gray-900">
                   Update Application
                 </h2>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsUpdateModalOpen(false)}
-                  className="h-8 w-8 rounded-full"
+                  className="h-8 w-8 rounded"
                 >
                   <X className="h-4 w-4" />
                 </Button>
@@ -790,16 +790,16 @@ export default function AdminLoanApplicationDetail({ params }) {
         {/* Admin Update Draft Modal */}
         {isUpdateAdminModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-            <div className="bg-white rounded shadow w-full max-w-md">
+            <div className="bg-white rounded shadow-xl w-full max-w-md">
               <div className="flex items-center justify-between p-6 border-b">
-                <h2 className="text-lg font-bold text-gray-900">
+                <h2 className="text-xl font-bold text-gray-900">
                   Update Draft
                 </h2>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsUpdateAdminModalOpen(false)}
-                  className="h-8 w-8 rounded-full"
+                  className="h-8 w-8 rounded"
                 >
                   <X className="h-4 w-4" />
                 </Button>
@@ -819,16 +819,16 @@ export default function AdminLoanApplicationDetail({ params }) {
         {/* Admin Finalize Amendment Modal */}
         {isAmendModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-            <div className="bg-white rounded shadow w-full max-w-md">
+            <div className="bg-white rounded shadow-xl w-full max-w-md">
               <div className="flex items-center justify-between p-6 border-b">
-                <h2 className="text-lg font-bold text-gray-900">
+                <h2 className="text-xl font-bold text-gray-900">
                   Finalize Amendment
                 </h2>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsAmendModalOpen(false)}
-                  className="h-8 w-8 rounded-full"
+                  className="h-8 w-8 rounded"
                 >
                   <X className="h-4 w-4" />
                 </Button>

@@ -65,7 +65,7 @@ export default function SavingTypesSetupPage() {
                             <PiggyBank className="w-6 h-6 text-[#174271]" /> Savings Product Setup
                         </h1>
                         <p className="text-black text-sm italic">
-                            Configure deposit types, interest yields, and guarantee permissions for Wananchi One Sacco.
+                            Configure deposit types, interest yields, and guarantee permissions.
                         </p>
                     </div>
                 </div>

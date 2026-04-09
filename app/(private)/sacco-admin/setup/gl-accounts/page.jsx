@@ -79,7 +79,7 @@ export default function GLAccountsSetupPage() {
 
             {/* Main Content Tabs */}
             <Tabs defaultValue="list" className="w-full">
-                <TabsList className="bg-white border p-1 h-12 shadow-sm mb-6 rounded">
+                <TabsList className="bg-white border p-1 h-12 shadow-sm mb-6">
                     <TabsTrigger value="list" className="px-6 data-[state=active]:bg-slate-50 data-[state=active]:text-[#174271] font-bold text-xs uppercase tracking-wider">
                         <ListFilter className="w-4 h-4 mr-2" /> List View
                     </TabsTrigger>
@@ -94,7 +94,7 @@ export default function GLAccountsSetupPage() {
                 {/* List Tab */}
                 <TabsContent value="list" className="animate-in fade-in slide-in-from-bottom-2 duration-300">
                     <Card className="shadow-sm border-none">
-                        <CardHeader className="bg-white border-b px-6 py-4">
+                        <CardHeader className="bg-white border-b rounded-t-xl px-6 py-4">
                             <CardTitle className="text-lg font-bold">Configured GL Accounts</CardTitle>
                             <CardDescription className="text-xs">A comprehensive list of all your current ledger accounts.</CardDescription>
                         </CardHeader>

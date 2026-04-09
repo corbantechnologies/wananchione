@@ -35,7 +35,7 @@ function VenturesPage() {
                 </Breadcrumb>
 
                 <div className="flex items-center justify-between">
-                    <h1 className="text-lg font-bold text-gray-900">My Ventures</h1>
+                    <h1 className="text-3xl font-bold text-gray-900">My Ventures</h1>
                 </div>
 
                 {ventureList.length === 0 ? (

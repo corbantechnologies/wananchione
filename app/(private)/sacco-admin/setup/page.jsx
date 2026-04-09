@@ -127,8 +127,8 @@ export default function SetupPage() {
             {/* Header */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold tracking-tight text-slate-900 uppercase">
-                        WANANCHI ONE Configuration Hub
+                    <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+                        SACCO Configuration Hub
                     </h1>
                     <p className="text-black text-sm">
                         Centralize management of your financial foundation and products.
