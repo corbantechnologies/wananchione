@@ -71,7 +71,7 @@ function BulkLoanProductUpload({ onBatchSuccess }) {
             <div className="text-center space-y-2">
                 <h2 className="text-2xl font-semibold text-[#174271] uppercase tracking-tighter">Loan Product Ingestion</h2>
                 <p className="text-slate-500 text-sm max-w-lg mx-auto font-medium">
-                    Automate the creation of complex loan schemes using our standardized CSV matrix.
+                    Automate the creation of complex loan schemes using our standardized CSV Template.
                 </p>
             </div>
 
@@ -91,7 +91,7 @@ function BulkLoanProductUpload({ onBatchSuccess }) {
                     onClick={handleDownloadTemplate}
                     className="border-2 border-[#174271] text-[#174271] hover:bg-[#174271] hover:text-white font-semibold px-8 rounded transition-all shadow-md group h-12"
                 >
-                    Download Matrix
+                    Download Template
                 </Button>
             </div>
 
@@ -142,7 +142,7 @@ function BulkLoanProductUpload({ onBatchSuccess }) {
                             </div>
                             <div className="space-y-2">
                                 <p className="font-semibold text-2xl text-slate-800 tracking-tight">
-                                    Drop Your Loan Matrix
+                                    Drop Your Loan Template
                                 </p>
                                 <p className="text-sm text-slate-400 font-bold uppercase tracking-widest">
                                     Tap to select from files
