@@ -89,13 +89,13 @@ export default function LoansManagementPage() {
 
             {/* Stats Overview (Optional Placeholder) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Card className="border-none shadow-sm bg-[#174271] text-white rounded-[2rem] p-6">
+                <Card className="border-none shadow-sm bg-[#174271] text-white rounded p-6">
                     <CardHeader className="p-0 pb-2">
                         <CardDescription className="text-white/60 font-bold uppercase tracking-widest text-[10px]">Active Accounts</CardDescription>
                         <CardTitle className="text-3xl font-semibold">{loans?.length || 0}</CardTitle>
                     </CardHeader>
                 </Card>
-                <Card className="border-none shadow-sm bg-white rounded-[2rem] p-6">
+                <Card className="border-none shadow-sm bg-white rounded p-6">
                     <CardHeader className="p-0 pb-2">
                         <CardDescription className="text-slate-400 font-bold uppercase tracking-widest text-[10px]">Pending Approval</CardDescription>
                         <CardTitle className="text-3xl font-semibold text-slate-800">
@@ -103,7 +103,7 @@ export default function LoansManagementPage() {
                         </CardTitle>
                     </CardHeader>
                 </Card>
-                <Card className="border-none shadow-sm bg-white rounded-[2rem] p-6">
+                <Card className="border-none shadow-sm bg-white rounded p-6">
                     <CardHeader className="p-0 pb-2">
                         <CardDescription className="text-slate-400 font-bold uppercase tracking-widest text-[10px]">Approved (Awaiting Funding)</CardDescription>
                         <CardTitle className="text-3xl font-semibold text-emerald-600">
@@ -114,7 +114,7 @@ export default function LoansManagementPage() {
             </div>
 
             {/* Filter Bar */}
-            <div className="bg-white rounded-[2rem] p-4 shadow-sm border border-slate-100 flex flex-col md:flex-row gap-4">
+            <div className="bg-white rounded p-4 shadow-sm border border-slate-100 flex flex-col md:flex-row gap-4">
                 <div className="flex-1 relative group">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 group-focus-within:text-[#174271] transition-colors" />
                     <Input
@@ -143,7 +143,7 @@ export default function LoansManagementPage() {
             </div>
 
             {/* Loans Table */}
-            <Card className="border-none shadow-2xl shadow-slate-200/50 rounded-[2.5rem] overflow-hidden">
+            <Card className="border-none shadow-2xl shadow-slate-200/50 rounded overflow-hidden">
                 <CardContent className="p-0">
                     <Table>
                         <TableHeader>
@@ -211,7 +211,7 @@ export default function LoansManagementPage() {
 
             {/* Bulk Disbursement Modal */}
             <Dialog open={isBulkDisburseOpen} onOpenChange={setIsBulkDisburseOpen}>
-                <DialogContent className="max-w-[1200px] bg-slate-50 border-none rounded-[3rem] p-0 overflow-hidden shadow-2xl">
+                <DialogContent className="max-w-[1200px] bg-slate-50 border-none rounded p-0 overflow-hidden shadow-2xl">
                     <DialogHeader className="bg-white px-10 py-8 border-b border-slate-100">
                         <DialogTitle className="text-2xl font-semibold text-[#174271] tracking-tighter flex items-center gap-2">
                             <ArrowUpRight className="w-6 h-6" /> Bulk Loan Funding
