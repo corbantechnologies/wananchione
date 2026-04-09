@@ -37,3 +37,4 @@ export const getLoanPenalty = async (reference, token) => {
     );
     return response?.data;
 };
+

@@ -1,6 +1,6 @@
 "use client";
 
-import { apiActions, apiMultipartActions } from "@/tools/axios";
+import { apiActions } from "@/tools/axios";
 
 // SACCO ADMINS
 // create fee type
