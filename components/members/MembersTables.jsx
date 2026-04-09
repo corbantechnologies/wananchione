@@ -17,7 +17,7 @@ import { Button } from "../ui/button";
 const MembersTable = ({ members, refetchMembers, router }) => (
   <Card>
     <CardHeader>
-      <CardTitle className="text-lg">Members List</CardTitle>
+      <CardTitle className="text-xl">Members List</CardTitle>
     </CardHeader>
     <CardContent>
       {members?.length > 0 ? (

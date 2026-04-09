@@ -61,7 +61,7 @@ function VenturesTable({ ventures, isLoading, route }) {
     return (
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg text-[#174271]">
+          <CardTitle className="text-xl text-[#067a46]">
             Venture Accounts
           </CardTitle>
         </CardHeader>
@@ -75,7 +75,7 @@ function VenturesTable({ ventures, isLoading, route }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg text-[#174271]">
+        <CardTitle className="text-xl text-[#067a46]">
           Venture Accounts
         </CardTitle>
       </CardHeader>
@@ -98,7 +98,7 @@ function VenturesTable({ ventures, isLoading, route }) {
             >
               <SelectTrigger
                 id="venture-type-filter"
-                className="w-[200px] border-gray-300 focus:ring-[#174271] focus:border-[#174271]"
+                className="w-[200px] border-gray-300 focus:ring-[#067a46] focus:border-[#067a46]"
                 aria-label="Filter by venture type"
               >
                 <SelectValue placeholder="Select venture type" />
@@ -117,7 +117,7 @@ function VenturesTable({ ventures, isLoading, route }) {
           <div className="bg-white shadow-sm border border-slate-100 rounded overflow-hidden">
             <Table>
               <TableHeader>
-                <TableRow className="bg-[#174271] hover:bg-[#123556]">
+                <TableRow className="bg-[#236c2e] hover:bg-[#1a5222]">
                   <TableHead className="text-white font-bold text-sm h-12">
                     Venture Type
                   </TableHead>
@@ -152,9 +152,9 @@ function VenturesTable({ ventures, isLoading, route }) {
                     </TableCell>
                     <TableCell className="text-sm">
                       <span
-                        className={`px-2 py-0.5 font-bold   text-[10px] rounded border ${venture.is_active
-                          ? "bg-[#D4AF37]/10 text-[#D4AF37] border-[#D4AF37]/20"
-                          : "bg-slate-50 text-black border-slate-200"
+                        className={`px-2 py-0.5 font-bold uppercase tracking-wider text-[10px] rounded border ${venture.is_active
+                            ? "bg-emerald-50 text-emerald-700 border-emerald-100/50"
+                            : "bg-slate-50 text-slate-700 border-slate-200"
                           }`}
                       >
                         {venture.is_active ? "Active" : "Inactive"}
@@ -163,7 +163,7 @@ function VenturesTable({ ventures, isLoading, route }) {
                     <TableCell className="text-sm text-gray-700">
                       <Link
                         href={`/${route}/ventures/${venture.identity}`}
-                        className="text-[#174271] hover:underline cursor-pointer"
+                        className="text-[#067a46] hover:underline cursor-pointer"
                       >
                         View
                       </Link>
@@ -185,7 +185,7 @@ function VenturesTable({ ventures, isLoading, route }) {
               <Button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="bg-[#174271] hover:bg-[#c71012] text-white text-sm disabled:opacity-50"
+                className="bg-[#067a46] hover:bg-[#c71012] text-white text-sm disabled:opacity-50"
                 aria-label="Previous page"
               >
                 Previous
@@ -197,8 +197,8 @@ function VenturesTable({ ventures, isLoading, route }) {
                     onClick={() => handlePageChange(page)}
                     variant={currentPage === page ? "default" : "outline"}
                     className={`${currentPage === page
-                      ? "bg-[#174271] text-white"
-                      : "border-[#174271] text-[#174271] hover:bg-[#174271] hover:text-white"
+                        ? "bg-[#067a46] text-white"
+                        : "border-[#067a46] text-[#067a46] hover:bg-[#067a46] hover:text-white"
                       } text-sm`}
                     aria-label={`Go to page ${page}`}
                   >
@@ -209,7 +209,7 @@ function VenturesTable({ ventures, isLoading, route }) {
               <Button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="bg-[#174271] hover:bg-[#c71012] text-white text-sm disabled:opacity-50"
+                className="bg-[#067a46] hover:bg-[#c71012] text-white text-sm disabled:opacity-50"
                 aria-label="Next page"
               >
                 Next

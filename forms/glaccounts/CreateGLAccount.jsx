@@ -36,21 +36,21 @@ const CreateGLAccountModal = ({ isOpen, onClose, refetchGLAccounts }) => {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-[2px] p-4 animate-in fade-in duration-200">
             <div
-                className="bg-white rounded-xl shadow w-full max-w-md overflow-hidden animate-in zoom-in-95 duration-200"
+                className="bg-white rounded shadow-2xl w-full max-w-md overflow-hidden animate-in zoom-in-95 duration-200"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b bg-white">
-                    <h2 className="text-xl font-bold text-black">
+                    <h2 className="text-xl font-bold text-slate-900">
                         Create New GL Account
                     </h2>
                     <Button
                         variant="ghost"
                         size="icon"
                         onClick={onClose}
-                        className="h-8 w-8 rounded-full hover:bg-slate-100 transition-colors"
+                        className="h-8 w-8 rounded hover:bg-slate-100 transition-colors"
                     >
-                        <X className="h-4 w-4 text-black" />
+                        <X className="h-4 w-4 text-slate-500" />
                     </Button>
                 </div>
 
@@ -86,7 +86,7 @@ const CreateGLAccountModal = ({ isOpen, onClose, refetchGLAccounts }) => {
                         {({ values, setFieldValue }) => (
                             <Form className="space-y-5">
                                 <div className="space-y-2">
-                                    <Label htmlFor="name" className="text-xs font-bold text-black  tracking-wider">
+                                    <Label htmlFor="name" className="text-xs font-bold text-slate-700 uppercase tracking-wider">
                                         Account Name
                                     </Label>
                                     <Field
@@ -99,13 +99,14 @@ const CreateGLAccountModal = ({ isOpen, onClose, refetchGLAccounts }) => {
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <Label htmlFor="category" className="text-xs font-bold text-black  tracking-wider">
+                                    <Label htmlFor="category" className="text-xs font-bold text-slate-700 uppercase tracking-wider">
                                         Category
                                     </Label>
                                     <Select
                                         value={values.category}
                                         onValueChange={(value) => setFieldValue("category", value)}
                                         required
+                                        className="w-full"
                                     >
                                         <SelectTrigger className="border-slate-200 w-full h-10">
                                             <SelectValue placeholder="Select a category" />
@@ -120,7 +121,7 @@ const CreateGLAccountModal = ({ isOpen, onClose, refetchGLAccounts }) => {
                                     </Select>
                                 </div>
                                 <div className="space-y-2">
-                                    <Label htmlFor="code" className="text-xs font-bold text-black  tracking-wider">
+                                    <Label htmlFor="code" className="text-xs font-bold text-slate-700 uppercase tracking-wider">
                                         Account Code
                                     </Label>
                                     <Field
@@ -132,25 +133,25 @@ const CreateGLAccountModal = ({ isOpen, onClose, refetchGLAccounts }) => {
                                         required
                                     />
                                 </div>
-                                <div className="flex items-center space-x-3 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                <div className="flex items-center space-x-3 bg-slate-50 p-3 rounded border border-slate-100">
                                     <Checkbox
                                         id="is_active"
                                         checked={values.is_active}
                                         onCheckedChange={(checked) => setFieldValue("is_active", checked)}
                                         className="border-slate-300 data-[state=checked]:bg-[#ea1315] data-[state=checked]:border-[#ea1315]"
                                     />
-                                    <Label htmlFor="is_active" className="text-sm font-medium text-black cursor-pointer">
+                                    <Label htmlFor="is_active" className="text-sm font-medium text-slate-700 cursor-pointer">
                                         Is this account active?
                                     </Label>
                                 </div>
-                                <div className="flex items-center space-x-3 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                                <div className="flex items-center space-x-3 bg-slate-50 p-3 rounded border border-slate-100">
                                     <Checkbox
                                         id="is_current_account"
                                         checked={values.is_current_account}
                                         onCheckedChange={(checked) => setFieldValue("is_current_account", checked)}
                                         className="border-slate-300 data-[state=checked]:bg-[#ea1315] data-[state=checked]:border-[#ea1315]"
                                     />
-                                    <Label htmlFor="is_current_account" className="text-sm font-medium text-black cursor-pointer">
+                                    <Label htmlFor="is_current_account" className="text-sm font-medium text-slate-700 cursor-pointer">
                                         Is this a current account?
                                     </Label>
                                 </div>
@@ -160,13 +161,13 @@ const CreateGLAccountModal = ({ isOpen, onClose, refetchGLAccounts }) => {
                                         type="button"
                                         variant="ghost"
                                         onClick={onClose}
-                                        className="text-black hover:text-black font-bold text-xs"
+                                        className="text-slate-500 hover:text-slate-700 font-bold text-xs"
                                     >
                                         Cancel
                                     </Button>
                                     <Button
                                         type="submit"
-                                        className="bg-[#ea1315] hover:bg-[#c71012] text-white font-bold h-10 px-8 rounded-lg shadow shadow-[#ea1315]/20 animate-in fade-in slide-in-from-bottom-2 duration-300"
+                                        className="bg-[#ea1315] hover:bg-[#c71012] text-white font-bold h-10 px-8 rounded shadow-lg shadow-[#ea1315]/20 animate-in fade-in slide-in-from-bottom-2 duration-300"
                                         disabled={loading}
                                     >
                                         {loading ? "Creating..." : "Create Account"}

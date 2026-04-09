@@ -43,7 +43,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { apiActions } from "@/tools/axios";
-import CreateDepositAdmin from "@/forms/savingsdepostis/CreateDepositAdmin";
 import CreateLoanAccountAdmin from "@/forms/loans/CreateLoanAdmin";
 import CreateVentureDeposits from "@/forms/venturedeposits/CreateVentureDeposits";
 import CreateVenturePayment from "@/forms/venturepayments/CreateVenturePayment";
@@ -54,6 +53,7 @@ import MemberFinancialSummary from "@/components/members/dashboard/MemberFinanci
 import { downloadMemberSummary } from "@/services/membersummary";
 import { Download, Loader2 } from "lucide-react";
 import EmptyState from "@/components/general/EmptyState";
+import CreateDepositAdmin from "@/forms/savingsdeposits/CreateDepositAdmin";
 
 function MemberDetail() {
   const { member_no } = useParams();

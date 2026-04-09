@@ -47,17 +47,17 @@ export function AdminFinalizeAmendment({
     >
       {({ isSubmitting, errors, touched }) => (
         <Form className="space-y-6">
-          <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-3">
-            <h3 className="text-sm font-bold text-black flex items-center gap-2">
+          <div className="bg-slate-50 p-4 rounded border border-slate-200 space-y-3">
+            <h3 className="text-sm font-bold text-slate-700 flex items-center gap-2">
               <CheckCircle2 className="h-4 w-4 text-[#045e32]" /> Finalizing Terms
             </h3>
             <div className="flex justify-between items-center text-sm">
-              <span className="text-black">Requested Amount:</span>
-              <span className="font-bold text-black">
+              <span className="text-slate-500">Requested Amount:</span>
+              <span className="font-bold text-slate-900">
                 {formatCurrency(loanApplication?.requested_amount)}
               </span>
             </div>
-            <p className="text-[10px] text-black italic">
+            <p className="text-[10px] text-slate-500 italic">
               The amount above is what will be committed upon finalization. If you need to change it, use the update draft action first.
             </p>
           </div>
@@ -71,7 +71,7 @@ export function AdminFinalizeAmendment({
               id="amendment_note"
               name="amendment_note"
               placeholder="Provide a reason for the final terms or any relevant notes..."
-              className={`flex min-h-[100px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#045e32] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.amendment_note && touched.amendment_note
+              className={`flex min-h-[100px] w-full rounded border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#045e32] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.amendment_note && touched.amendment_note
                 ? "border-red-500"
                 : "border-slate-300"
                 }`}

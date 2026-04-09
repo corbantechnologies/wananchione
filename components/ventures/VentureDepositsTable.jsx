@@ -272,11 +272,10 @@ function VentureDepositsTable({ deposits }) {
                 key={page}
                 onClick={() => handlePageChange(page)}
                 variant={currentPage === page ? "default" : "outline"}
-                className={`${
-                  currentPage === page
+                className={`${currentPage === page
                     ? "bg-primary text-white"
                     : "border-primary text-primary hover:bg-primary hover:text-white"
-                } text-sm`}
+                  } text-sm`}
               >
                 {page}
               </Button>

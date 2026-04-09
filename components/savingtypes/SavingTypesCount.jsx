@@ -3,7 +3,7 @@ import { Card, Flex, Text } from "@radix-ui/themes";
 import { Wallet } from "lucide-react";
 
 const SavingTypesCountCard = ({ count }) => (
-  <Card className="shadow-md hover:shadow transition-shadow">
+  <Card className="shadow-md hover:shadow-lg transition-shadow">
     <Flex direction="column" gap="2">
       <Flex align="center" gap="2">
         <Wallet className="h-6 w-6 " />
