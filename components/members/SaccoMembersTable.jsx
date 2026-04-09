@@ -54,7 +54,7 @@ function SaccoMembersTable({ members }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg ">Members List</CardTitle>
+        <CardTitle className="text-xl ">Members List</CardTitle>
       </CardHeader>
       <CardContent>
         {/* Search and Filter Controls */}

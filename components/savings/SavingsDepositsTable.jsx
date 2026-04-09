@@ -317,9 +317,9 @@ function SavingsDepositsTable({ deposits }) {
                   </TableCell>
                   <TableCell className="text-sm">
                     <span
-                      className={`px-2 py-1 rounded-full text-xs ${deposit.transaction_status === "Completed"
-                          ? "bg-[#D4AF37] text-[#D4AF37]"
-                          : "bg-[#D4AF37]/10/10 text-[#D4AF37]"
+                      className={`px-2 py-1 rounded text-xs ${deposit.transaction_status === "Completed"
+                        ? "bg-green-100 text-green-700"
+                        : "bg-yellow-100 text-yellow-700"
                         }`}
                     >
                       {deposit.transaction_status}
@@ -354,8 +354,8 @@ function SavingsDepositsTable({ deposits }) {
                 onClick={() => handlePageChange(page)}
                 variant={currentPage === page ? "default" : "outline"}
                 className={`${currentPage === page
-                    ? "bg-primary text-white"
-                    : "border-primary text-primary hover:bg-primary hover:text-white"
+                  ? "bg-primary text-white"
+                  : "border-primary text-primary hover:bg-primary hover:text-white"
                   } text-sm`}
               >
                 {page}

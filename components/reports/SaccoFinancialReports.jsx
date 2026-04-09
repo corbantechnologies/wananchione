@@ -40,7 +40,7 @@ export default function SaccoFinancialReports() {
         <div className="space-y-6 mt-8">
             <div className="flex items-center space-x-2">
                 <FileText className="h-6 w-6 text-primary" />
-                <h2 className="text-lg font-bold ">Detailed Financial Statements</h2>
+                <h2 className="text-2xl font-bold tracking-tight">Detailed Financial Statements</h2>
             </div>
 
             <Tabs defaultValue="balance_sheet" className="w-full">

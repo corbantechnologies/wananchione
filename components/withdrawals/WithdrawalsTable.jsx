@@ -258,7 +258,7 @@ function WithdrawalsTable({ withdrawals, refetchWithdrawals }) {
 
       {/* Table */}
       {filteredWithdrawals && filteredWithdrawals.length > 0 && (
-        <div className="overflow-x-auto rounded border">
+        <div className="overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow className="bg-[#174271] hover:bg-[#12355a]">
@@ -300,16 +300,16 @@ function WithdrawalsTable({ withdrawals, refetchWithdrawals }) {
 
                   <TableCell className="text-sm">
                     <span
-                      className={`px-2 py-0.5 font-bold  text-[10px] rounded border ${withdrawal.transaction_status === "Completed"
-                        ? "bg-slate-50 text-black border-slate-200"
-                        : withdrawal.transaction_status === "Processing" ||
-                          withdrawal.transaction_status === "Pending"
-                          ? "bg-[#D4AF37]/10/10 text-[#D4AF37] border-[#D4AF37]/50"
-                          : withdrawal.transaction_status === "Approved"
-                            ? "bg-[#D4AF37]/10 text-[#D4AF37] border-[#D4AF37]/20"
-                            : withdrawal.transaction_status === "Rejected"
-                              ? "bg-slate-50 text-black border-slate-200"
-                              : "bg-slate-50 text-black border-slate-100"
+                      className={`px-2 py-0.5 font-bold uppercase tracking-wider text-[10px] rounded border ${withdrawal.transaction_status === "Completed"
+                          ? "bg-emerald-50 text-emerald-700 border-emerald-100/50"
+                          : withdrawal.transaction_status === "Processing" ||
+                            withdrawal.transaction_status === "Pending"
+                            ? "bg-amber-50 text-amber-700 border-amber-100/50"
+                            : withdrawal.transaction_status === "Approved"
+                              ? "bg-emerald-100 text-emerald-800 border-emerald-200"
+                              : withdrawal.transaction_status === "Rejected"
+                                ? "bg-slate-50 text-slate-700 border-slate-200"
+                                : "bg-slate-50 text-slate-600 border-slate-100"
                         }`}
                     >
                       {withdrawal.transaction_status}
@@ -336,7 +336,7 @@ function WithdrawalsTable({ withdrawals, refetchWithdrawals }) {
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
           <DialogContent className="sm:max-w-[500px]">
             <DialogHeader>
-              <DialogTitle className="text-lg font-bold">
+              <DialogTitle className="text-xl font-semibold ">
                 Withdrawal Request Details
               </DialogTitle>
             </DialogHeader>
@@ -404,18 +404,18 @@ function WithdrawalsTable({ withdrawals, refetchWithdrawals }) {
                 </Label>
                 <p className="text-sm">
                   <span
-                    className={`px-2 py-0.5 font-bold  text-[10px] rounded border ${selectedWithdrawal.transaction_status === "Completed"
-                      ? "bg-[#D4AF37]/10 text-[#D4AF37] border-[#D4AF37]/20"
-                      : selectedWithdrawal.transaction_status ===
-                        "Processing" ||
-                        selectedWithdrawal.transaction_status === "Pending"
-                        ? "bg-[#D4AF37]/10/10 text-[#D4AF37] border-[#D4AF37]/50"
-                        : selectedWithdrawal.transaction_status === "Approved"
-                          ? "bg-[#D4AF37]/10 text-[#D4AF37] border-[#D4AF37]/20"
-                          : selectedWithdrawal.transaction_status ===
-                            "Rejected"
-                            ? "bg-slate-50 text-black border-slate-200"
-                            : "bg-slate-50 text-black border-slate-100"
+                    className={`px-2 py-0.5 font-bold uppercase tracking-wider text-[10px] rounded border ${selectedWithdrawal.transaction_status === "Completed"
+                        ? "bg-emerald-50 text-emerald-700 border-emerald-100/50"
+                        : selectedWithdrawal.transaction_status ===
+                          "Processing" ||
+                          selectedWithdrawal.transaction_status === "Pending"
+                          ? "bg-amber-50 text-amber-700 border-amber-100/50"
+                          : selectedWithdrawal.transaction_status === "Approved"
+                            ? "bg-emerald-100 text-emerald-800 border-emerald-200"
+                            : selectedWithdrawal.transaction_status ===
+                              "Rejected"
+                              ? "bg-slate-50 text-slate-700 border-slate-200"
+                              : "bg-slate-50 text-slate-600 border-slate-100"
                       }`}
                   >
                     {selectedWithdrawal.transaction_status}
@@ -449,7 +449,7 @@ function WithdrawalsTable({ withdrawals, refetchWithdrawals }) {
                     Reject
                   </Button>
                   <Button
-                    className="bg-[#174271] hover:bg-[#0f2c4d] text-white"
+                    className="bg-green-600 hover:bg-green-700 text-white"
                     onClick={() => handleApprove(selectedWithdrawal.identity)}
                   >
                     Approve
@@ -472,7 +472,7 @@ function WithdrawalsTable({ withdrawals, refetchWithdrawals }) {
             <Button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              className="bg-[#174271] hover:bg-[#0f2c4d] text-white text-sm disabled:opacity-50"
+              className="bg-[#ea1315] hover:bg-[#c71012] text-white text-sm disabled:opacity-50"
             >
               Previous
             </Button>
@@ -482,8 +482,8 @@ function WithdrawalsTable({ withdrawals, refetchWithdrawals }) {
                 onClick={() => handlePageChange(page)}
                 variant={currentPage === page ? "default" : "outline"}
                 className={`${currentPage === page
-                  ? "bg-[#174271] text-white"
-                  : "border-[#174271]  hover:bg-[#174271] hover:text-white"
+                    ? "bg-[#ea1315] text-white"
+                    : "border-[#ea1315]  hover:bg-[#ea1315] hover:text-white"
                   } text-sm`}
               >
                 {page}
@@ -492,7 +492,7 @@ function WithdrawalsTable({ withdrawals, refetchWithdrawals }) {
             <Button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="bg-[#174271] hover:bg-[#0f2c4d] text-white text-sm disabled:opacity-50"
+              className="bg-[#ea1315] hover:bg-[#c71012] text-white text-sm disabled:opacity-50"
             >
               Next
             </Button>

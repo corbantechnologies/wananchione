@@ -56,7 +56,7 @@ function SavingTypesTable({ savingTypes }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg ">Savings Types</CardTitle>
+        <CardTitle className="text-xl ">Savings Types</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Search Filter */}
@@ -83,13 +83,16 @@ function SavingTypesTable({ savingTypes }) {
         <div className=" rounded shadow-md overflow-hidden">
           <Table>
             <TableHeader>
-              <TableRow className="bg-[#174271] hover:bg-[#174271]">
+              <TableRow className="bg-[#ea1315] hover:bg-[#ea1315]">
                 <TableHead className="text-white font-semibold text-base">
                   Name
                 </TableHead>
                 <TableHead className="text-white font-semibold text-base">
                   Interest Rate
                 </TableHead>
+                {/* <TableHead className="text-white font-semibold text-base">
+                  Description
+                </TableHead> */}
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -101,9 +104,12 @@ function SavingTypesTable({ savingTypes }) {
                   <TableCell className="font-medium text-gray-900">
                     {type.name}
                   </TableCell>
-                  <TableCell className="font-semibold text-[#174271]">
+                  <TableCell className="font-semibold text-green-600">
                     {type.interest_rate}%
                   </TableCell>
+                  {/* <TableCell className="text-gray-600">
+                    {type.description}
+                  </TableCell> */}
                 </TableRow>
               ))}
             </TableBody>
@@ -122,7 +128,7 @@ function SavingTypesTable({ savingTypes }) {
               <Button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="bg-[#174271] hover:bg-[#0f2c4d] text-white text-sm disabled:opacity-50"
+                className="bg-[#ea1315] hover:bg-[#c71012] text-white text-sm disabled:opacity-50"
                 aria-label="Previous page"
               >
                 Previous
@@ -134,8 +140,8 @@ function SavingTypesTable({ savingTypes }) {
                     onClick={() => handlePageChange(page)}
                     variant={currentPage === page ? "default" : "outline"}
                     className={`${currentPage === page
-                        ? "bg-[#174271] text-white"
-                        : "border-[#174271]  hover:bg-[#174271] hover:text-white"
+                      ? "bg-[#ea1315] text-white"
+                      : "border-[#ea1315]  hover:bg-[#ea1315] hover:text-white"
                       } text-sm`}
                     aria-label={`Go to page ${page}`}
                   >
@@ -146,7 +152,7 @@ function SavingTypesTable({ savingTypes }) {
               <Button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="bg-[#174271] hover:bg-[#0f2c4d] text-white text-sm disabled:opacity-50"
+                className="bg-[#ea1315] hover:bg-[#c71012] text-white text-sm disabled:opacity-50"
                 aria-label="Next page"
               >
                 Next

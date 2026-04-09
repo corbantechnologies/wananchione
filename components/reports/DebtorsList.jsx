@@ -34,7 +34,7 @@ export default function DebtorsList({ data }) {
                     </div>
                     <div className="text-left sm:text-right">
                         <p className="text-sm text-muted-foreground">Total Outstanding</p>
-                        <p className="text-lg font-bold text-red-600">
+                        <p className="text-xl font-bold text-red-600">
                             {formatCurrency(total_outstanding)}
                         </p>
                     </div>

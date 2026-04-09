@@ -7,7 +7,7 @@ function LoadingSpinner() {
         <Loader2 className="h-12 w-12 animate-spin text-[#174271] opacity-20" />
         <Loader2 className="h-12 w-12 animate-spin text-[#174271] absolute border-t-transparent" />
       </div>
-      <p className="text-sm font-medium text-black animate-pulse  tracking-[2px]">
+      <p className="text-sm font-medium text-slate-500 animate-pulse uppercase tracking-[2px]">
         Initializing Admin Secure Space...
       </p>
     </div>

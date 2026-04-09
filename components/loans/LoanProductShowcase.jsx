@@ -37,8 +37,8 @@ export function LoanProductShowcase({ showTitle = true }) {
     <div className="space-y-4">
       {showTitle && (
         <div className="flex items-center gap-2">
-          <HandCoins className="w-5 h-5 text-[#174271]" />
-          <h2 className="text-lg font-bold text-black ">Available Loan Products</h2>
+          <HandCoins className="w-5 h-5 text-[#236c2e]" />
+          <h2 className="text-lg font-bold text-slate-900 tracking-tight">Available Loan Products</h2>
         </div>
       )}
 
@@ -46,19 +46,19 @@ export function LoanProductShowcase({ showTitle = true }) {
         {loanProducts.map((product) => (
           <Card
             key={product.reference}
-            className="border-slate-200 hover:border-[#174271]/30 hover:shadow-md transition-all duration-300 flex flex-col"
+            className="border-slate-200 hover:border-[#236c2e]/30 hover:shadow-md transition-all duration-300 flex flex-col"
           >
             <CardHeader className="p-4 pb-2">
               <div className="flex justify-between items-start">
-                <div className="p-2 rounded bg-[#D4AF37]/10 text-[#174271]">
+                <div className="p-2 rounded bg-emerald-50 text-[#236c2e]">
                   <Wallet className="w-5 h-5" />
                 </div>
-                <Badge variant="outline" className="text-[10px] font-bold text-[#174271] border-[#D4AF37]/20 bg-[#D4AF37]/10/30">
+                <Badge variant="outline" className="text-[10px] font-bold text-[#236c2e] border-emerald-100 bg-emerald-50/30">
                   {product.interest_method}
                 </Badge>
               </div>
               <CardTitle className="text-base font-bold mt-3">{product.name}</CardTitle>
-              <CardDescription className="text-xs font-medium text-black">
+              <CardDescription className="text-xs font-medium text-slate-600">
                 {product.interest_method} Repayment Basis
               </CardDescription>
             </CardHeader>
@@ -66,25 +66,25 @@ export function LoanProductShowcase({ showTitle = true }) {
               <div>
                 <div className="grid grid-cols-2 gap-3 mt-2">
                   <div className="space-y-1">
-                    <p className="text-[10px]   font-bold text-black">Interest Rate</p>
+                    <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Interest Rate</p>
                     <div className="flex items-center gap-1">
-                      <span className="text-sm font-bold text-black">{product.interest_rate}%</span>
-                      <span className="text-[10px] text-black font-medium">/ year</span>
+                      <span className="text-sm font-bold text-slate-900">{product.interest_rate}%</span>
+                      <span className="text-[10px] text-slate-500 font-medium">/ year</span>
                     </div>
                   </div>
                   <div className="space-y-1">
-                    <p className="text-[10px]   font-bold text-black">Processing Fee</p>
+                    <p className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Processing Fee</p>
                     <div className="flex items-center gap-1">
-                      <span className="text-sm font-bold text-black">{product.processing_fee}%</span>
-                      <span className="text-[10px] text-black font-medium">flat</span>
+                      <span className="text-sm font-bold text-slate-900">{product.processing_fee}%</span>
+                      <span className="text-[10px] text-slate-500 font-medium">flat</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-4 p-2.5 rounded bg-slate-50 border border-slate-100">
                   <div className="flex items-start gap-2">
-                    <Info className="w-3.5 h-3.5 text-[#174271] mt-0.5 shrink-0" />
-                    <p className="text-base leading-relaxed text-black font-medium">
+                    <Info className="w-3.5 h-3.5 text-[#236c2e] mt-0.5 shrink-0" />
+                    <p className="text-base leading-relaxed text-slate-500 font-medium">
                       {getMethodDescription(product.interest_method)}
                     </p>
                   </div>

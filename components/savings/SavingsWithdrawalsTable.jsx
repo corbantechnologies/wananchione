@@ -314,13 +314,13 @@ function SavingsWithdrawalsTable({ withdrawals }) {
                   </TableCell>
                   <TableCell className="text-sm">
                     <span
-                      className={`px-2 py-1 rounded-full text-xs ${withdrawal.transaction_status === "Completed"
-                          ? "bg-[#D4AF37] text-[#D4AF37]"
-                          : withdrawal.transaction_status === "Processing"
-                            ? "bg-[#D4AF37]/10/10 text-[#D4AF37]"
-                            : withdrawal.transaction_status === "Pending"
-                              ? "bg-blue-100 text-blue-700"
-                              : "bg-red-100 text-red-700"
+                      className={`px-2 py-1 rounded text-xs ${withdrawal.transaction_status === "Completed"
+                        ? "bg-green-100 text-green-700"
+                        : withdrawal.transaction_status === "Processing"
+                          ? "bg-yellow-100 text-yellow-700"
+                          : withdrawal.transaction_status === "Pending"
+                            ? "bg-blue-100 text-blue-700"
+                            : "bg-red-100 text-red-700"
                         }`}
                     >
                       {withdrawal.transaction_status}
@@ -355,8 +355,8 @@ function SavingsWithdrawalsTable({ withdrawals }) {
                 onClick={() => handlePageChange(page)}
                 variant={currentPage === page ? "default" : "outline"}
                 className={`${currentPage === page
-                    ? "bg-primary text-white"
-                    : "border-primary text-primary hover:bg-primary hover:text-white"
+                  ? "bg-primary text-white"
+                  : "border-primary text-primary hover:bg-primary hover:text-white"
                   } text-sm`}
               >
                 {page}

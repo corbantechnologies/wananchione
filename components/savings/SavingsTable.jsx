@@ -62,7 +62,7 @@ function SavingsTable({ savings, isLoading, route }) {
     return (
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg text-primary">My Savings</CardTitle>
+          <CardTitle className="text-xl text-primary">My Savings</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="text-center text-gray-700">No savings found.</div>
@@ -74,7 +74,7 @@ function SavingsTable({ savings, isLoading, route }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg text-primary">My Savings</CardTitle>
+        <CardTitle className="text-xl text-primary">My Savings</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
@@ -114,7 +114,7 @@ function SavingsTable({ savings, isLoading, route }) {
           <div className="bg-white shadow-sm border border-slate-100 rounded overflow-hidden">
             <Table>
               <TableHeader>
-                <TableRow className="bg-[#174271] hover:bg-[#123556]">
+                <TableRow className="bg-[#236c2e] hover:bg-[#1a5222]">
                   <TableHead className="text-white font-bold text-sm h-12">
                     Account Type
                   </TableHead>
@@ -149,9 +149,9 @@ function SavingsTable({ savings, isLoading, route }) {
                     </TableCell>
                     <TableCell className="text-sm">
                       <span
-                        className={`px-2 py-0.5 font-bold   text-[10px] rounded border ${saving.is_active
-                          ? "bg-[#D4AF37]/10 text-[#D4AF37] border-[#D4AF37]/20"
-                          : "bg-slate-50 text-black border-slate-200"
+                        className={`px-2 py-0.5 font-bold uppercase tracking-wider text-[10px] rounded border ${saving.is_active
+                            ? "bg-emerald-50 text-emerald-700 border-emerald-100/50"
+                            : "bg-slate-50 text-slate-700 border-slate-200"
                           }`}
                       >
                         {saving.is_active ? "Active" : "Inactive"}
@@ -182,7 +182,7 @@ function SavingsTable({ savings, isLoading, route }) {
               <Button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="bg-primary hover:bg-[#174271] text-white text-sm disabled:opacity-50"
+                className="bg-primary hover:bg-[#067a46] text-white text-sm disabled:opacity-50"
                 aria-label="Previous page"
               >
                 Previous
@@ -194,8 +194,8 @@ function SavingsTable({ savings, isLoading, route }) {
                     onClick={() => handlePageChange(page)}
                     variant={currentPage === page ? "default" : "outline"}
                     className={`${currentPage === page
-                      ? "bg-primary text-white"
-                      : "border-primary text-primary hover:bg-primary hover:text-white"
+                        ? "bg-primary text-white"
+                        : "border-primary text-primary hover:bg-primary hover:text-white"
                       } text-sm`}
                     aria-label={`Go to page ${page}`}
                   >
@@ -206,7 +206,7 @@ function SavingsTable({ savings, isLoading, route }) {
               <Button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="bg-primary hover:bg-[#174271] text-white text-sm disabled:opacity-50"
+                className="bg-primary hover:bg-[#067a46] text-white text-sm disabled:opacity-50"
                 aria-label="Next page"
               >
                 Next

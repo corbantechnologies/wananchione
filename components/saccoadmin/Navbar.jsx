@@ -5,7 +5,6 @@ import { Menu as MenuIcon, X as XIcon } from "lucide-react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import React, { useState } from "react";
-import Image from "next/image";
 
 function SaccoAdminNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,28 +16,19 @@ function SaccoAdminNavbar() {
         <div className="mx-auto px-6 py-4 flex justify-between items-center">
           <Link
             href="/sacco-admin/dashboard"
-            className="flex items-center gap-3"
+            className="flex items-center gap-2"
           >
-            <div className="h-8 w-8 relative">
-              <Image
-                src="/wananchiLogoGold.png"
-                alt="Wananchi One"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <span className="text-lg font-bold text-[#174271]  flex items-center gap-2">
-              Wananchi One
-              <span className="text-[10px] font-bold  bg-[#174271]/5 text-[#174271] px-2 py-0.5 rounded border border-[#174271]/10">
-                Governance
+            <span className="text-xl md:text-2xl font-bold tracking-tight">
+              Wananchi One Sacco{" "}
+              <span className="text-[10px] font-normal uppercase tracking-[2px] opacity-70 ml-1">
+                Admin
               </span>
             </span>
           </Link>
 
           <Button
             variant="ghost"
-            size="icon"
-            className="text-black hover:text-[#174271] hover:bg-slate-50 rounded"
+            className="text-white hover:bg-white/10"
             onClick={() => setIsMenuOpen(true)}
           >
             <MenuIcon className="h-6 w-6" />
@@ -48,8 +38,8 @@ function SaccoAdminNavbar() {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 right-0 z-50 w-[300px] bg-white text-black transform ${isMenuOpen ? "translate-x-0" : "translate-x-full"
-          } transition-transform duration-500 ease-out border-l border-slate-100 shadow`}
+        className={`fixed inset-y-0 right-0 z-50 w-[280px] bg-white text-slate-900 transform ${isMenuOpen ? "translate-x-0" : "translate-x-full"
+          } transition-transform duration-300 ease-in-out border-l shadow-2xl`}
       >
         <div className="flex flex-col h-full">
           <div className="p-6 flex justify-between items-center border-b border-slate-100">

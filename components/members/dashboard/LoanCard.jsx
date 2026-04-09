@@ -14,7 +14,7 @@ const LoanCard = ({ loan, memberPath }) => {
           <span className="font-medium text-sm text-gray-900">
             {loan.product} Loan
           </span>
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-[#D4AF37]/10 text-[#D4AF37]  border border-[#D4AF37]/20">
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 uppercase tracking-wide border border-emerald-100/50">
             {loan.status}
           </span>
         </div>
