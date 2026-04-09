@@ -65,12 +65,12 @@ function LoginForm() {
             htmlFor="member_no"
             className="text-[14px] font-bold text-black ml-1"
           >
-            Email or Member Number
+            Member Number
           </Label>
           <Input
             type="text"
             id="member_no"
-            placeholder="developerowino@gmail.com"
+            placeholder="123456"
             className="h-12 px-4 rounded border-transparent bg-slate-50 focus:bg-white focus:ring-2 focus:ring-[#D4AF37]/20 focus:border-[#D4AF37] transition-all text-black font-medium"
             value={member_no}
             onChange={(e) => setMemberNo(e.target.value)}
