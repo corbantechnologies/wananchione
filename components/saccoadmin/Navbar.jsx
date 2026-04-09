@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Menu as MenuIcon, X as XIcon, Shield, LogOut } from "lucide-react";
+import { Menu as MenuIcon, X as XIcon } from "lucide-react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import React, { useState } from "react";
@@ -13,7 +13,7 @@ function SaccoAdminNavbar() {
   return (
     <>
       {/* Navbar */}
-      <header className="bg-white border-b border-slate-100 text-black sticky top-0 z-50 shadow-sm backdrop-blur-md">
+      <header className="bg-[#174271] text-white sticky top-0 z-50 shadow-sm">
         <div className="mx-auto px-6 py-4 flex justify-between items-center">
           <Link
             href="/sacco-admin/dashboard"
@@ -52,72 +52,94 @@ function SaccoAdminNavbar() {
           } transition-transform duration-500 ease-out border-l border-slate-100 shadow`}
       >
         <div className="flex flex-col h-full">
-          <div className="p-8 flex justify-between items-center border-b border-slate-50">
-            <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4 text-[#174271]" />
-              <span className="text-[12px] font-bold text-[#174271] ">
-                Admin Console
-              </span>
-            </div>
+          <div className="p-6 flex justify-between items-center border-b border-slate-100">
+            <h2 className="text-lg font-bold text-[#174271]">Admin Menu</h2>
             <Button
               variant="ghost"
               size="icon"
-              className="hover:bg-slate-50 rounded-full"
+              className="hover:bg-slate-100 rounded"
               onClick={() => setIsMenuOpen(false)}
             >
               <XIcon className="h-5 w-5" />
             </Button>
           </div>
-          <nav className="flex flex-col p-6 gap-1 overflow-y-auto">
+          <nav className="flex flex-col p-4 overflow-y-auto h-full">
             {[
               { label: "Dashboard", href: "/sacco-admin/dashboard" },
-              { label: "Setup", href: "/sacco-admin/setup" },
+              { label: "Members", href: "/sacco-admin/members" },
+              { label: "Loans", href: "/sacco-admin/loans" },
+              { label: "Savings", href: "/sacco-admin/savings" },
+              { label: "Fee Payments", href: "/sacco-admin/fee-payments" },
+              {
+                label: "Setup",
+                href: "/sacco-admin/setup",
+                children: [
+                  { label: "GL Accounts", href: "/sacco-admin/setup/gl-accounts" },
+                  { label: "Payment Accounts", href: "/sacco-admin/setup/payment-accounts" },
+                  { label: "Fee Types", href: "/sacco-admin/setup/feetypes" },
+                  { label: "Savings Types", href: "/sacco-admin/setup/saving-types" },
+                  { label: "Loan Products", href: "/sacco-admin/setup/loan-products" },
+                ]
+              },
               { label: "Accounting", href: "/sacco-admin/accounting" },
               { label: "Reports", href: "/sacco-admin/reports" },
-              { label: "Loan Applications", href: "/sacco-admin/loan-applications" },
-              { label: "Members", href: "/sacco-admin/members" },
-              { label: "Personal Portfolio", href: "/sacco-admin/personal" },
-              { label: "Guarantor Profile", href: "/sacco-admin/personal/guarantorprofile" },
+              {
+                label: "Loan Applications",
+                href: "/sacco-admin/loan-applications",
+              },
+              { label: "Personal Profile", href: "/sacco-admin/personal" },
+              {
+                label: "Guarantor Profile",
+                href: "/sacco-admin/personal/guarantorprofile",
+              },
               { label: "Withdrawals", href: "/sacco-admin/withdrawals" },
               { label: "Settings", href: "/sacco-admin/settings" },
             ].map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="px-4 py-3 text-[13px] font-bold transition-all hover:bg-slate-50 hover:text-[#174271] rounded  border-l-2 border-transparent hover:border-[#174271]"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
+              <React.Fragment key={link.href}>
+                <Link
+                  href={link.href}
+                  className="px-4 py-2.5 text-[14px] font-medium transition-colors hover:bg-slate-50 hover:text-[#174271] rounded"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+                {link.children && (
+                  <div className="ml-6 flex flex-col border-l border-slate-100 pl-2">
+                    {link.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className="px-4 py-1.5 text-[12px] font-medium text-slate-500 transition-colors hover:text-[#174271] rounded"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </React.Fragment>
             ))}
 
-            <div className="mt-8 pt-8 border-t border-slate-50">
+            <div className="mt-auto pt-4 border-t border-slate-100">
               <Button
                 variant="outline"
                 onClick={() => {
                   setIsMenuOpen(false);
                   signOut({ callbackUrl: "/login" });
                 }}
-                className="w-full h-12 border-slate-200 text-black hover:border-red-100 hover:text-red-500 hover:bg-red-50 font-bold  text-[12px] rounded transition-all group"
+                className="w-full border-[#174271] text-[#174271] hover:bg-[#174271] hover:text-white"
               >
-                <LogOut className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" />
-                Logout Terminal
+                Logout
               </Button>
             </div>
           </nav>
-
-          <div className="mt-auto p-8 text-center border-t border-slate-50">
-            <p className="text-[10px] font-bold text-black ">
-              Governance Layer v4.0
-            </p>
-          </div>
         </div>
       </div>
 
       {/* Overlay for Sidebar */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 bg-slate-900/10 backdrop-blur-xs z-40 transition-opacity duration-500"
+          className="fixed inset-0 bg-black/50 z-40"
           onClick={() => setIsMenuOpen(false)}
         ></div>
       )}
