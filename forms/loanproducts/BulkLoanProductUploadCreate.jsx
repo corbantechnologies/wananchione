@@ -82,7 +82,6 @@ function BulkLoanProductUpload({ onBatchSuccess }) {
                     </div>
                     <div>
                         <p className="text-base font-semibold text-slate-800 tracking-tight">Loan Scheme Template</p>
-                        <p className="text-[12px] text-slate-500 font-bold uppercase tracking-widest italic opacity-60">Structure v1.0 • Required for Batch</p>
                     </div>
                 </div>
                 <Button
