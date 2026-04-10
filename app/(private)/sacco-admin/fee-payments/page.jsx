@@ -18,12 +18,15 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
     Search,
+    CreditCard,
+    Eye,
     Receipt,
     FileUp,
     Plus,
+    Users,
+    BadgePercent,
     ArrowLeft,
-    ListFilter,
-    Users2
+    ListFilter
 } from "lucide-react";
 import Link from "next/link";
 
@@ -192,7 +195,7 @@ export default function FeePaymentsManagementPage() {
                                                     <TableCell className="pr-8 text-right">
                                                         <Link href={`/sacco-admin/members/${acc.member?.id}`}>
                                                             <Button size="icon" variant="ghost" className="rounded-lg hover:bg-white border-transparent hover:border-slate-200 border shadow-none h-9 w-9 transition-all text-slate-400 hover:text-amber-700 font-bold">
-                                                                <Users2 className="w-4 h-4" />
+                                                                <Users className="w-4 h-4" />
                                                             </Button>
                                                         </Link>
                                                     </TableCell>

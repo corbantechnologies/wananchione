@@ -57,7 +57,7 @@ function SaccoAdminNavbar() {
             {[
               { label: "Dashboard", href: "/sacco-admin/dashboard" },
               {
-                label: "Setup",
+                label: "Platform Setup",
                 href: "/sacco-admin/setup",
                 children: [
                   { label: "GL Accounts", href: "/sacco-admin/setup/gl-accounts" },
@@ -65,6 +65,13 @@ function SaccoAdminNavbar() {
                   { label: "Fee Types", href: "/sacco-admin/setup/feetypes" },
                   { label: "Savings Types", href: "/sacco-admin/setup/saving-types" },
                   { label: "Loan Products", href: "/sacco-admin/setup/loan-products" },
+                ]
+              },
+              {
+                label: "Onboarding",
+                href: "/sacco-admin/onboarding/existing-loans",
+                children: [
+                  { label: "Existing Loan Payments", href: "/sacco-admin/onboarding/existing-loan-payments" },
                 ]
               },
               { label: "Members", href: "/sacco-admin/members" },
