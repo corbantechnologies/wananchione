@@ -124,7 +124,7 @@ function SaccoAdminNavbar() {
             className="flex items-center gap-2"
           >
             <span className="text-xl md:text-2xl font-bold tracking-tight">
-              Sprout Capital SACCO{" "}
+              Wananchi One Sacco{" "}
               <span className="text-[10px] font-normal uppercase tracking-[2px] opacity-70 ml-1">
                 Admin
               </span>

@@ -108,16 +108,16 @@ export const adminCreateLoanApplication = async (values, token) => {
 
 // Bulk Functions
 export const bulkCreateLoanApplications = async (values, token) => {
-    await apiActions?.post("/api/v1/loanapplications/bulk/create/", values, token);
+    await apiActions?.post("/api/v1/loanapplications/admin/bulk/create/", values, token);
 };
 
 export const bulkUploadLoanApplications = async (values, token) => {
-    await apiMultipartActions?.post("/api/v1/loanapplications/bulk/upload/", values, token);
+    await apiMultipartActions?.post("/api/v1/loanapplications/admin/bulk/upload/", values, token);
 };
 
 export const downloadLoanApplicationsTemplate = async (token) => {
     const config = { ...token, responseType: "blob" };
-    const response = await apiActions?.get("/api/v1/loanapplications/bulk/template/", config);
+    const response = await apiActions?.get("/api/v1/loanapplications/admin/bulk/template/", config);
 
     // Create blob link to download
     const url = window.URL.createObjectURL(new Blob([response.data]));

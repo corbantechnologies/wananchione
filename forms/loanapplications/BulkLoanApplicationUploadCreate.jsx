@@ -67,7 +67,7 @@ function BulkLoanApplicationUpload({ onBatchSuccess }) {
     };
 
     return (
-        <div className="max-w-4xl mx-auto space-y-10 py-4">
+        <div className="max-w-xl mx-auto space-y-6 py-4">
             <div className="text-center space-y-3">
                 <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Bulk Upload Loan Applications</h2>
                 <p className="text-slate-500 text-base max-w-2xl mx-auto">
@@ -75,28 +75,28 @@ function BulkLoanApplicationUpload({ onBatchSuccess }) {
                 </p>
             </div>
 
-            <div className="bg-slate-50 rounded-xl p-8 border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+            <div className="bg-slate-50 rounded p-2 border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
                 <div className="flex items-center gap-6">
-                    <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                    <div className="bg-white p-2 rounded shadow-sm border border-slate-100">
                         <Download className="w-8 h-8 text-[#045e32]" />
                     </div>
                     <div>
-                        <p className="text-lg font-bold text-slate-800 tracking-tight">Application Template</p>
+                        <p className="text-base text-slate-800 tracking-tight">Application Template</p>
                         <p className="text-sm text-slate-500 font-medium">Download the standard CSV template with required columns.</p>
                     </div>
                 </div>
                 <Button
                     variant="outline"
                     onClick={handleDownloadTemplate}
-                    className="border-black text-black hover:bg-slate-100 font-bold px-8 h-12 transition-all rounded"
+                    className="border-black bg-[#045e32] text-black hover:bg-slate-100 px-6 h-10 transition-all rounded"
                 >
                     Get Template
                 </Button>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
                 <div
-                    className={`border-4 border-dashed rounded-[2rem] p-20 flex flex-col items-center justify-center text-center transition-all cursor-pointer ${file
+                    className={`border-4 border-dashed rounded p-6 flex flex-col items-center justify-center text-center transition-all cursor-pointer ${file
                         ? "border-green-500 bg-green-50/30"
                         : "border-slate-200 bg-white hover:border-[#045e32] hover:bg-slate-50/50"
                         }`}
@@ -112,11 +112,11 @@ function BulkLoanApplicationUpload({ onBatchSuccess }) {
 
                     {file ? (
                         <div className="flex flex-col items-center space-y-6 animate-in fade-in zoom-in-95">
-                            <div className="p-6 bg-green-600 rounded-full text-white shadow-xl ring-8 ring-green-50">
-                                <FileCheck className="w-12 h-12" />
+                            <div className="p-6 bg-green-600 rounded text-white shadow-xl ring-8 ring-green-50">
+                                <FileCheck className="w-8 h-8" />
                             </div>
                             <div className="space-y-2">
-                                <p className="font-bold text-2xl text-slate-900 tracking-tight">{file.name}</p>
+                                <p className="font-bold text-lg text-slate-900 tracking-tight">{file.name}</p>
                                 <p className="text-sm text-green-600 font-bold uppercase tracking-widest">
                                     {(file.size / 1024).toFixed(2)} KB • DATA READY FOR UPLOAD
                                 </p>
@@ -135,11 +135,11 @@ function BulkLoanApplicationUpload({ onBatchSuccess }) {
                         </div>
                     ) : (
                         <div className="flex flex-col items-center space-y-6">
-                            <div className="p-8 bg-slate-50 rounded-full text-[#045e32]/20 border-4 border-white shadow-inner">
-                                <FileUp className="w-16 h-16" />
+                            <div className="p-4 bg-slate-50 rounded text-[#045e32]/20 border-4 border-white shadow-inner">
+                                <FileUp className="w-8 h-8" />
                             </div>
                             <div className="space-y-3">
-                                <p className="font-bold text-2xl text-slate-800 tracking-tight">
+                                <p className="font-bold text-lg text-slate-800 tracking-tight">
                                     Upload Completed CSV
                                 </p>
                                 <p className="text-base text-slate-400 font-medium">
@@ -149,10 +149,10 @@ function BulkLoanApplicationUpload({ onBatchSuccess }) {
                         </div>
                     )}
                 </div>
-                <div className="flex justify-center pt-4">
+                <div className="flex justify-center pt-2">
                     <Button
                         type="submit"
-                        className="bg-[#045e32] hover:bg-[#034625] text-white px-24 h-16 rounded font-bold text-xl shadow-2xl shadow-[#045e32]/20 transition-all active:scale-95 disabled:opacity-30 tracking-tight"
+                        className="bg-[#045e32] hover:bg-[#034625] text-white px-12 h-10 rounded font-bold text-base shadow shadow-[#045e32]/20 transition-all active:scale-95 disabled:opacity-30"
                         disabled={loading || !file}
                     >
                         {loading ? "Processing Upload..." : "Start Batch Upload"}
