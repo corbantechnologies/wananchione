@@ -53,7 +53,7 @@ function BulkMemberUploadCreate({ closeModal, openModal }) {
         try {
             setLoading(true);
             const formData = new FormData();
-            formData.append("file", file);
+            formData.append("csv_file", file);
 
             await createBulkMembersUpload(formData, token);
             toast.success("Members uploaded successfully!");
@@ -61,6 +61,7 @@ function BulkMemberUploadCreate({ closeModal, openModal }) {
             router.refresh();
             clearFile();
         } catch (error) {
+            console.log(error)
             toast.error(error?.response?.data?.message || "Failed to upload members.");
         } finally {
             setLoading(false);

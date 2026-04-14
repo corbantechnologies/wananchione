@@ -48,6 +48,7 @@ import CreateLoanAccountAdmin from "@/forms/loans/CreateLoanAdmin";
 import CreateVentureDeposits from "@/forms/venturedeposits/CreateVentureDeposits";
 import CreateVenturePayment from "@/forms/venturepayments/CreateVenturePayment";
 import CreateFeePayment from "@/forms/feepayments/CreateFeePayment";
+import UpdateMemberRole from "@/forms/members/UpdateMemberRole";
 import { useFetchLoanProducts } from "@/hooks/loanproducts/actions";
 // import { useFetchMemberSummary } from "@/hooks/summary/actions";
 // import MemberFinancialSummary from "@/components/members/dashboard/MemberFinancialSummary";
@@ -80,6 +81,7 @@ function MemberDetail() {
   const [ventureDepositModal, setVentureDepositModal] = useState(false);
   const [venturePaymentModal, setVenturePaymentModal] = useState(false);
   const [feePaymentModal, setFeePaymentModal] = useState(false);
+  const [roleModal, setRoleModal] = useState(false);
 
   // Pagination states
   const ITEMS_PER_PAGE = 3;
@@ -215,6 +217,9 @@ function MemberDetail() {
   if (member?.is_member) activeRoles.push("Member");
   if (member?.is_superuser) activeRoles.push("Superuser");
   if (member?.is_sacco_admin) activeRoles.push("SACCO Admin");
+  if (member?.is_sacco_staff) activeRoles.push("SACCO Staff");
+  if (member?.is_treasurer) activeRoles.push("Treasurer");
+  if (member?.is_bookkeeper) activeRoles.push("Bookkeeper");
 
   if (isLoadingMember) return <LoadingSpinner />;
 
@@ -248,8 +253,8 @@ function MemberDetail() {
         <Card className="overflow-hidden border-0 shadow-lg bg-gradient-to-br from-primary/5 to-primary/10">
           <CardContent className="p-4 md:p-8">
             <div className="flex flex-col lg:flex-row items-center lg:items-center gap-6 text-center lg:text-left">
-              <Avatar className="h-20 w-20 md:h-24 md:w-24 border-4 border-primary/20">
-                <AvatarFallback className="bg-primary text-white text-xl md:text-2xl font-bold">
+              <Avatar className="h-10 w-10 md:h-12 md:w-12 border-4 border-primary/20">
+                <AvatarFallback className="bg-primary text-white text-base md:text-lg">
                   {getInitials(member?.first_name, member?.last_name)}
                 </AvatarFallback>
               </Avatar>
@@ -743,10 +748,20 @@ function MemberDetail() {
 
             <Card className="shadow-md">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-xl">
-                  <Settings className="h-5 w-5 text-primary" />
-                  Roles & Permissions
-                </CardTitle>
+                <div className="flex justify-between items-center">
+                  <CardTitle className="flex items-center gap-2 text-xl">
+                    <Settings className="h-5 w-5 text-primary" />
+                    Roles & Permissions
+                  </CardTitle>
+                  <Button
+                    onClick={() => setRoleModal(true)}
+                    size="sm"
+                    variant="outline"
+                    className="h-8 border-primary text-primary hover:bg-primary/5"
+                  >
+                    Edit Roles
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent>
                 {activeRoles.length > 0 ? (
@@ -845,6 +860,13 @@ function MemberDetail() {
           onClose={() => setFeePaymentModal(false)}
           refetchMember={refetchMember}
           accounts={member?.fee_accounts}
+        />
+
+        <UpdateMemberRole 
+          isOpen={roleModal}
+          onClose={() => setRoleModal(false)}
+          refetchMember={refetchMember}
+          member={member}
         />
       </div>
     </div>
