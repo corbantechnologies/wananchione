@@ -139,7 +139,7 @@ function BulkUploadCreateExistingLoan({ isOpen, onClose, onBatchSuccess, isInlin
                                     Upload Loans Spreadsheet
                                 </p>
                                 <p className="text-sm text-slate-400 font-medium">
-                                    Click or drag your CSV file to begin the migration
+                                    Click your CSV file to begin the migration
                                 </p>
                             </div>
                         </div>

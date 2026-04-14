@@ -143,7 +143,7 @@ function BulkGLAccountUpload({ onBatchSuccess }) {
                             </div>
                             <div className="space-y-1">
                                 <p className="font-bold text-lg text-slate-800">
-                                    Click to browse or drag and drop
+                                    Click to browse 
                                 </p>
                                 <p className="text-sm text-slate-500">Only CSV files are supported for bulk processing</p>
                             </div>

@@ -125,7 +125,7 @@ function BulkMemberUploadCreate({ closeModal, openModal }) {
                                         <FileUp className="w-8 h-8" />
                                     </div>
                                     <p className="font-semibold text-gray-700">
-                                        Click to browse or drag and drop
+                                        Click to browse 
                                     </p>
                                     <p className="text-sm text-gray-500">Only CSV files are supported</p>
                                 </div>

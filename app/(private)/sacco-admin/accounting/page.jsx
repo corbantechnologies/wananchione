@@ -100,10 +100,10 @@ export default function AccountingPage() {
                             New GL Account
                         </Button>
                     )}
-                    <Button variant="outline" className="flex items-center gap-2 border-slate-300">
+                    {/* <Button variant="outline" className="flex items-center gap-2 border-slate-300">
                         <Download className="w-4 h-4" />
                         Export
-                    </Button>
+                    </Button> */}
                 </div>
             </div>
 
