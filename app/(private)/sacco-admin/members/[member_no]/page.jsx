@@ -28,6 +28,7 @@ import {
   MoreVertical,
   ChevronLeft,
   ChevronRight,
+  XCircle,
 } from "lucide-react";
 import {
   Breadcrumb,
@@ -76,6 +77,7 @@ function MemberDetail() {
 
   const [isApproving, setIsApproving] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isTogglingStatus, setIsTogglingStatus] = useState(false);
   const [depositModal, setDepositModal] = useState(false);
   const [loanModal, setLoanModal] = useState(false);
   const [ventureDepositModal, setVentureDepositModal] = useState(false);
@@ -127,6 +129,25 @@ function MemberDetail() {
         </div>
       </div>
     );
+  };
+
+  const handleToggleActiveStatus = async () => {
+    try {
+      setIsTogglingStatus(true);
+      await apiActions?.patch(
+        `/api/v1/auth/member/${member_no}/`,
+        { is_active: !member?.is_active },
+        token
+      );
+      toast.success(
+        member?.is_active ? "User deactivated successfully" : "User activated successfully"
+      );
+      refetchMember();
+    } catch (error) {
+      toast.error("Failed to update user status");
+    } finally {
+      setIsTogglingStatus(false);
+    }
   };
 
   const handleDownloadSummary = async () => {
@@ -303,21 +324,7 @@ function MemberDetail() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row w-full lg:w-auto gap-3">
-                <Button
-                  variant="outline"
-                  onClick={handleDownloadSummary}
-                  disabled={isDownloading}
-                  className="flex items-center gap-2 border-primary/20 text-primary hover:bg-primary/5"
-                >
-                  {isDownloading ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <Download className="h-4 w-4" />
-                  )}
-                  Download Summary
-                </Button>
-
+              <div className="flex flex-col sm:flex-row items-center w-full lg:w-auto gap-3">
                 {!member?.is_approved && (
                   <Button
                     onClick={handleApprove}
@@ -327,6 +334,50 @@ function MemberDetail() {
                     {isApproving ? "Approving..." : "Approve Member"}
                   </Button>
                 )}
+
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button variant="outline" className="flex items-center gap-2 border-primary/20 text-primary hover:bg-primary/5 w-full sm:w-auto">
+                      Actions
+                      <MoreVertical className="h-4 w-4" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-48 p-2" align="end">
+                    <div className="flex flex-col gap-1">
+                      <Button
+                        variant="ghost"
+                        onClick={handleDownloadSummary}
+                        disabled={isDownloading}
+                        className="justify-start font-normal h-9 w-full flex items-center gap-2"
+                      >
+                        {isDownloading ? (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : (
+                          <Download className="h-4 w-4" />
+                        )}
+                        Download Summary
+                      </Button>
+
+                      <Button
+                        variant="ghost"
+                        onClick={handleToggleActiveStatus}
+                        disabled={isTogglingStatus}
+                        className={`justify-start font-normal h-9 w-full flex items-center gap-2 ${
+                          member?.is_active 
+                            ? "text-destructive hover:text-destructive hover:bg-destructive/10" 
+                            : "text-green-600 hover:text-green-700 hover:bg-green-50"
+                        }`}
+                      >
+                        {isTogglingStatus ? (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : (
+                          member?.is_active ? <XCircle className="h-4 w-4" /> : <CheckCircle className="h-4 w-4" />
+                        )}
+                        {member?.is_active ? "Deactivate User" : "Activate User"}
+                      </Button>
+                    </div>
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
           </CardContent>
