@@ -158,7 +158,7 @@ export default function FeePaymentsManagementPage() {
                                     <TableHeader>
                                         <TableRow className="bg-slate-50/50 border-b">
                                             <TableHead className="pl-8 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Payer Details</TableHead>
-                                            <TableHead className="py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Requirement</TableHead>
+                                            <TableHead className="py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Fee Type</TableHead>
                                             <TableHead className="py-4 text-xs font-bold uppercase tracking-wider text-slate-500 text-center">Outstanding Balance</TableHead>
                                             <TableHead className="py-4 text-xs font-bold uppercase tracking-wider text-slate-500 text-center">Status</TableHead>
                                             <TableHead className="pr-8 py-4 text-right text-xs font-bold uppercase tracking-wider text-slate-500">Profile</TableHead>
@@ -177,7 +177,7 @@ export default function FeePaymentsManagementPage() {
                                                     <TableCell>
                                                         <div className="flex items-center gap-2">
                                                             <div className="p-1 px-2 bg-slate-100 rounded shadow-none border-transparent border">
-                                                                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tight">{acc.fee_type?.name}</span>
+                                                                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tight">{acc.fee_type}</span>
                                                             </div>
                                                         </div>
                                                     </TableCell>
