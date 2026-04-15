@@ -8,7 +8,7 @@ import { useFetchMember } from "@/hooks/members/actions";
 import { Banknote, Info } from "lucide-react";
 import MemberLoadingSpinner from "@/components/general/MemberLoadingSpinner";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import {
     Table,
     TableBody,
