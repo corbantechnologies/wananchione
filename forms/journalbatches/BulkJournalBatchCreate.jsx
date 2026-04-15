@@ -111,10 +111,10 @@ function BulkJournalBatchCreate({ onBatchSuccess }) {
   };
 
   return (
-    <div className="space-y-8 max-w-5xl mx-auto">
+    <div className="space-y-4 w-full px-4 mx-auto">
       <div className="flex items-center justify-between border-b pb-4">
         <div>
-          <h2 className="text-2xl font-bold text-[#174271]">Multi-Batch Journal Entry</h2>
+          <h2 className="text-lg font-semibold text-[#174271]">Multi-Batch Journal Entry</h2>
           <p className="text-sm text-slate-500 font-medium">Manually compose multiple balanced journal batches.</p>
         </div>
         <Button 
@@ -130,15 +130,15 @@ function BulkJournalBatchCreate({ onBatchSuccess }) {
         {batches.map((batch, bIndex) => {
           const balance = calculateBalance(batch.entries);
           return (
-            <div key={bIndex} className="relative bg-white rounded-2xl border shadow-sm hover:shadow-md transition-all overflow-hidden">
+            <div key={bIndex} className="relative bg-white rounded border shadow-sm hover:shadow-md transition-all overflow-hidden">
               {/* Batch Header */}
               <div className={`p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b ${balance.isBalanced ? 'bg-emerald-50/50' : 'bg-slate-50/50'}`}>
                 <div className="flex items-center gap-3">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${balance.isBalanced ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-white'}`}>
+                  <div className={`w-6 h-6 rounded flex items-center justify-center text-xs font-bold ${balance.isBalanced ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-white'}`}>
                     {bIndex + 1}
                   </div>
                   <div className="space-y-0.5">
-                    <p className="text-sm font-bold text-slate-900 uppercase tracking-tight">Batch Configuration</p>
+                    <p className="text-sm font-bold text-slate-900">Batch Configuration</p>
                     <div className="flex items-center gap-2">
                         {balance.isBalanced ? (
                             <span className="flex items-center gap-1 text-[10px] font-bold text-emerald-600 uppercase tracking-widest bg-white px-2 py-0.5 rounded shadow-sm">
@@ -165,7 +165,6 @@ function BulkJournalBatchCreate({ onBatchSuccess }) {
               </div>
 
               <div className="p-6 space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-1.5">
                     <Label className="text-[10px] font-bold uppercase text-slate-400 tracking-wider">Batch Description</Label>
                     <Input 
@@ -175,17 +174,7 @@ function BulkJournalBatchCreate({ onBatchSuccess }) {
                       className="h-10 text-sm font-medium border-slate-200"
                     />
                   </div>
-                  <div className="space-y-1.5">
-                    <Label className="text-[10px] font-bold uppercase text-slate-400 tracking-wider">Reference (Optional)</Label>
-                    <Input 
-                      placeholder="e.g. PAY-APR-001"
-                      value={batch.reference}
-                      onChange={(e) => handleBatchChange(bIndex, "reference", e.target.value)}
-                      className="h-10 text-sm font-mono border-slate-200"
-                    />
-                  </div>
-                </div>
-
+                  
                 <div className="space-y-3">
                   <Label className="text-[10px] font-bold uppercase text-slate-400 tracking-wider">Ledger Entries</Label>
                   <div className="border rounded divide-y overflow-hidden">
@@ -279,7 +268,7 @@ function BulkJournalBatchCreate({ onBatchSuccess }) {
             <Button 
                 type="submit"
                 disabled={loading}
-                className="w-full md:w-auto bg-[#ea1315] hover:bg-[#c71012] text-white px-16 h-14 rounded-xl font-bold shadow-xl shadow-rose-100 transition-all uppercase tracking-tight"
+                className="w-full md:w-auto bg-[#ea1315] hover:bg-[#c71012] text-white px-16 h-14 rounded font-bold shadow-xl shadow-rose-100 transition-all"
             >
                 {loading ? "Processing..." : "Commit All Batches"}
             </Button>

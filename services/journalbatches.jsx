@@ -17,6 +17,17 @@ export const updateJournalBatch = async (reference, values, token) => {
     return response?.data;
 };
 
+// post journal
+export const postJournalBatch = async (reference, token) => {
+    const response = await apiActions?.patch(
+
+        `/api/v1/journalbatches/${reference}/`,
+        { posted: true },
+        token
+    );
+    return response?.data;
+};
+
 export const getJournalBatches = async (token) => {
     const response = await apiActions?.get("/api/v1/journalbatches/", token);
     return response?.data?.results;

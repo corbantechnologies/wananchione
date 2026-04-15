@@ -1,6 +1,9 @@
-"use client";
+"use client"
 
-import React from "react";
+import { useState } from "react";
+import { postJournalBatch } from "@/services/journalbatches";
+import useAxiosAuth from "@/hooks/authentication/useAxiosAuth";
+import toast from "react-hot-toast";
 import {
     Table,
     TableBody,
@@ -14,8 +17,25 @@ import { format } from "date-fns";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export default function JournalBatchDetails({ isOpen, onClose, batch }) {
+export default function JournalBatchDetails({ isOpen, onClose, batch, refetch }) {
+    const [loading, setLoading] = useState(false);
+    const token = useAxiosAuth();
     if (!isOpen || !batch) return null;
+
+    const handlePost = async () => {
+        try {
+            setLoading(true);
+            await postJournalBatch(batch.reference, token);
+            toast.success("Journal batch posted successfully!");
+            if (refetch) refetch();
+            onClose();
+        } catch (error) {
+            console.error("Posting error:", error);
+            toast.error(error?.response?.data?.message || "Failed to post journal batch.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-[2px] p-4 animate-in fade-in duration-200">
@@ -97,10 +117,22 @@ export default function JournalBatchDetails({ isOpen, onClose, batch }) {
                 </div>
 
                 {/* Footer */}
-                <div className="bg-slate-50/80 p-4 border-t flex justify-end">
+
+                
+                <div className="bg-slate-50/80 p-4 border-t flex justify-end gap-3">
+                    {!batch.posted && (
+                        <Button
+                            onClick={handlePost}
+                            disabled={loading}
+                            className="bg-[#ea1315] hover:bg-[#c71012] text-white font-bold h-9 px-8 rounded text-xs transition-all active:scale-95"
+                        >
+                            {loading ? "Posting..." : "Post Batch"}
+                        </Button>
+                    )}
                     <Button
                         onClick={onClose}
-                        className="bg-slate-900 hover:bg-slate-800 text-white font-bold h-9 px-6 rounded text-xs"
+                        variant="outline"
+                        className="border-slate-200 text-slate-600 font-bold h-9 px-6 rounded text-xs"
                     >
                         Close
                     </Button>

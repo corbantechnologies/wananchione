@@ -29,6 +29,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+
 import {
     Search,
     Filter,
@@ -413,6 +414,7 @@ export default function AccountingPage() {
                 isOpen={batchDetailsOpen}
                 onClose={() => setBatchDetailsOpen(false)}
                 batch={selectedBatch}
+                refetch={refetchBatches}
             />
         </div>
     );
