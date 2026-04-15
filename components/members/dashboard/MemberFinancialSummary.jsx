@@ -101,9 +101,9 @@ export default function MemberFinancialSummary({ summary, memberNo }) {
             <TabsTrigger value="loans" className="flex items-center gap-2">
               <CreditCard className="h-4 w-4" /> Loans
             </TabsTrigger>
-            <TabsTrigger value="ventures" className="flex items-center gap-2">
+            {/* <TabsTrigger value="ventures" className="flex items-center gap-2">
               <TrendingUp className="h-4 w-4" /> Ventures
-            </TabsTrigger>
+            </TabsTrigger> */}
           </TabsList>
 
           <TabsContent value="savings">

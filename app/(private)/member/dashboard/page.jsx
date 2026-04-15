@@ -14,7 +14,7 @@ import {
 import { formatCurrency } from "@/lib/utils";
 import SavingsCard from "@/components/members/dashboard/SavingsCard";
 import LoanCard from "@/components/members/dashboard/LoanCard";
-import VentureCard from "@/components/members/dashboard/VentureCard";
+// import VentureCard from "@/components/members/dashboard/VentureCard";
 import { useFetchMemberSummary } from "@/hooks/summary/actions";
 import MemberFinancialSummary from "@/components/members/dashboard/MemberFinancialSummary";
 
@@ -132,7 +132,7 @@ function MemberDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-purple-500 shadow-sm hover:shadow-md transition-shadow">
+        {/* <Card className="border-l-4 border-l-purple-500 shadow-sm hover:shadow-md transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
               Venture Accounts
@@ -147,7 +147,7 @@ function MemberDashboard() {
               Active Ventures
             </p>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
@@ -211,7 +211,7 @@ function MemberDashboard() {
         </Card>
 
         {/* Ventures Breakdown */}
-        <Card className="col-span-1 lg:col-span-2 shadow-sm h-full">
+        {/* <Card className="col-span-1 lg:col-span-2 shadow-sm h-full">
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-purple-600" />
@@ -240,7 +240,7 @@ function MemberDashboard() {
                 )}
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
 
       {/* Financial Summary */}
