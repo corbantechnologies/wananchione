@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import Link from "next/link";
 import { useFetchGLAccounts } from "@/hooks/glaccounts/actions";
 import { useFetchJournalBatches } from "@/hooks/journalbatches/actions";
 import { useFetchJournalEntries } from "@/hooks/journalentries/actions";
@@ -142,8 +143,8 @@ export default function AccountingPage() {
                                             <TableHead className="font-bold text-xs">ACCOUNT NAME</TableHead>
                                             <TableHead className="font-bold text-xs">CODE</TableHead>
                                             <TableHead className="font-bold text-xs">CATEGORY</TableHead>
-                                            <TableHead className="font-bold text-xs text-right">BALANCE</TableHead>
-                                            <TableHead className="font-bold text-xs text-right">ACTION</TableHead>
+                                            <TableHead className="font-bold text-xs">BALANCE</TableHead>
+                                            <TableHead className="font-bold text-xs">ACTION</TableHead>
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
@@ -156,11 +157,16 @@ export default function AccountingPage() {
                                                         {acc.category?.toLowerCase()}
                                                     </Badge>
                                                 </TableCell>
-                                                <TableCell className="text-sm text-right font-bold text-slate-900 font-mono">
+                                                <TableCell className="text-sm font-bold text-slate-900 font-mono">
                                                     KES {Number(acc.balance).toLocaleString(undefined, { minimumFractionDigits: 2 })}
                                                 </TableCell>
-                                                <TableCell className="text-right">
-                                                    <Button variant="ghost" size="sm" className="text-[#ea1315]">View</Button>
+                                                <TableCell>
+                                                    <Link href={`/sacco-admin/accounting/${acc.reference}`} target="_blank">
+                                                        <Button variant="ghost" size="sm" className="text-[#ea1315] hover:bg-[#ea1315]/10 flex items-center gap-1 font-bold group">
+                                                            <Eye className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                                                            View
+                                                        </Button>
+                                                    </Link>
                                                 </TableCell>
                                             </TableRow>
                                         ))}
