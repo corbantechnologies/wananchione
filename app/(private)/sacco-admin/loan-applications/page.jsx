@@ -104,8 +104,9 @@ export default function AdminLoanApplications() {
   const getStatusColor = (status) => {
     switch (status) {
       case "Approved":
-      case "Disbursed":
         return "bg-green-100 text-green-700 hover:bg-green-200 border-green-200";
+      case "Disbursed":
+        return "bg-blue-100 text-green-700 hover:bg-green-200 border-green-200";
       case "Rejected":
       case "Declined":
         return "bg-red-100 text-red-700 hover:bg-red-200 border-red-200";
