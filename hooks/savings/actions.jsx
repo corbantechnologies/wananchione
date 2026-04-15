@@ -3,12 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosAuth from "../authentication/useAxiosAuth";
 import { getSaving, getSavings } from "@/services/savings";
 
-export function useFetchSavings() {
+export function useFetchSavings(params) {
   const token = useAxiosAuth();
 
   return useQuery({
-    queryKey: ["savings"],
-    queryFn: () => getSavings(token),
+    queryKey: ["savings", params],
+    queryFn: () => getSavings(params, token),
   });
 }
 

@@ -31,6 +31,7 @@ const MENU_LINKS = [
     children: [
       { label: "Accounting", href: "/sacco-admin/accounting" },
       { label: "Fee Payments", href: "/sacco-admin/fee-payments" },
+      { label: "Saving Deposits", href: "/sacco-admin/saving-deposits" },
       { label: "Reports", href: "/sacco-admin/reports" },
     ],
   },
