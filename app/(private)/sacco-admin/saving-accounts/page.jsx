@@ -130,8 +130,8 @@ export default function SavingDepositsPage() {
                                                 <TableRow key={acc.reference} className="hover:bg-slate-50/80 transition-colors group border-b border-slate-50">
                                                     <TableCell className="pl-6 py-4">
                                                         <div className="flex flex-col">
-                                                            <span className="text-sm font-bold text-slate-900 uppercase">{acc.member}</span>
-                                                            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">Member Identity</span>
+                                                            <span className="text-sm font-bold text-slate-900 uppercase">{acc.member_name}</span>
+                                                            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">Member Name</span>
                                                         </div>
                                                     </TableCell>
                                                     <TableCell className="py-4">

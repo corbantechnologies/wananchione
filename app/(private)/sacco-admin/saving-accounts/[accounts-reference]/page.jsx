@@ -104,7 +104,7 @@ export default function SavingAccountReferencePage() {
                             <div>
                                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Member Owner</p>
                                 <p className="text-sm font-bold text-slate-900 uppercase tracking-tight truncate max-w-[150px]">
-                                    {account.member}
+                                    {account.member_name}
                                 </p>
                             </div>
                         </div>

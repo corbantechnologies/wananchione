@@ -103,8 +103,8 @@ function BulkSavingDepositCreate({ onBatchSuccess }) {
                                     >
                                         <option value="">-- Select Member Account --</option>
                                         {savingsAccounts?.results?.map(acc => (
-                                            <option key={acc.reference} value={acc.reference}>
-                                                {acc.member?.first_name} {acc.member?.last_name} ({acc.account_number}) - {acc.product?.name}
+                                            <option key={acc.reference} value={acc.account_number}>
+                                                {acc.member_name} ({acc.account_number}) - {acc.account_type}
                                             </option>
                                         ))}
                                     </select>

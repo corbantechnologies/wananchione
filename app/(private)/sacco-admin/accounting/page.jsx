@@ -6,6 +6,8 @@ import { useFetchJournalBatches } from "@/hooks/journalbatches/actions";
 import { useFetchJournalEntries } from "@/hooks/journalentries/actions";
 import CreateGLAccountModal from "@/forms/glaccounts/CreateGLAccount";
 import JournalBatchDetails from "@/components/saccoadmin/accounting/JournalBatchDetails";
+import BulkJournalBatchCreate from "@/forms/journalbatches/BulkJournalBatchCreate";
+import BulkJournalBatchUploadCreate from "@/forms/journalbatches/BulkJournalBatchUploadCreate";
 import LoadingSpinner from "@/components/general/LoadingSpinner";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -51,9 +53,10 @@ export default function AccountingPage() {
     const { data: glAccounts, isLoading: isLoadingGL, refetch: refetchGL } = useFetchGLAccounts();
 
     // States for Journal Batches
-    const { data: journalBatches, isLoading: isLoadingBatches } = useFetchJournalBatches();
+    const { data: journalBatches, isLoading: isLoadingBatches, refetch: refetchBatches } = useFetchJournalBatches();
     const [selectedBatch, setSelectedBatch] = useState(null);
     const [batchDetailsOpen, setBatchDetailsOpen] = useState(false);
+    const [batchViewMode, setBatchViewMode] = useState("list"); // "list", "form", "upload"
 
     // States for Journal Entries
     const [page, setPage] = useState(1);
@@ -175,55 +178,105 @@ export default function AccountingPage() {
                 <TabsContent value="journal-batches">
                     <Card className="shadow-sm border-none">
                         <CardHeader className="bg-white border-b rounded-t-lg p-4 md:p-6">
-                            <CardTitle className="text-lg font-bold">Journal Batches</CardTitle>
-                            <CardDescription>Overview of transaction batches</CardDescription>
+                            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                                <div>
+                                    <CardTitle className="text-lg font-bold">Journal Batches</CardTitle>
+                                    <CardDescription>Overview of transaction batches</CardDescription>
+                                </div>
+                                <div className="flex bg-slate-100 p-1 rounded-lg self-end md:self-auto">
+                                    <button
+                                        onClick={() => setBatchViewMode("list")}
+                                        className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all ${batchViewMode === "list" ? "bg-white text-[#ea1315] shadow-sm" : "text-slate-500 hover:text-slate-700"}`}
+                                    >
+                                        List View
+                                    </button>
+                                    <button
+                                        onClick={() => setBatchViewMode("form")}
+                                        className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all ${batchViewMode === "form" ? "bg-white text-[#ea1315] shadow-sm" : "text-slate-500 hover:text-slate-700"}`}
+                                    >
+                                        Bulk Form
+                                    </button>
+                                    <button
+                                        onClick={() => setBatchViewMode("upload")}
+                                        className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all ${batchViewMode === "upload" ? "bg-white text-[#ea1315] shadow-sm" : "text-slate-500 hover:text-slate-700"}`}
+                                    >
+                                        Bulk Upload
+                                    </button>
+                                </div>
+                            </div>
                         </CardHeader>
-                        <CardContent className="p-0 overflow-x-auto">
-                            {journalBatches?.length > 0 ? (
-                                <Table>
-                                    <TableHeader>
-                                        <TableRow className="bg-slate-50/50">
-                                            <TableHead className="font-bold text-xs">BATCH CODE</TableHead>
-                                            <TableHead className="font-bold text-xs">DESCRIPTION</TableHead>
-                                            <TableHead className="font-bold text-xs">DATE</TableHead>
-                                            <TableHead className="font-bold text-xs">STATUS</TableHead>
-                                            <TableHead className="font-bold text-xs text-right">ENTRIES</TableHead>
-                                            <TableHead className="font-bold text-xs text-right">ACTION</TableHead>
-                                        </TableRow>
-                                    </TableHeader>
-                                    <TableBody>
-                                        {journalBatches.map((batch) => (
-                                            <TableRow key={batch.id || batch.reference} className="hover:bg-slate-50/50 transition-colors">
-                                                <TableCell className="text-sm font-bold text-slate-700">{batch.code}</TableCell>
-                                                <TableCell className="text-sm text-slate-500 max-w-xs truncate">{batch.description}</TableCell>
-                                                <TableCell className="text-sm text-slate-500">
-                                                    {batch.created_at ? format(new Date(batch.created_at), "MMM d, yyyy") : "-"}
-                                                </TableCell>
-                                                <TableCell>
-                                                    <Badge variant={batch.posted ? "success" : "secondary"} className="text-[10px] font-bold">
-                                                        {batch.posted ? "Posted" : "Draft"}
-                                                    </Badge>
-                                                </TableCell>
-                                                <TableCell className="text-sm text-right font-medium">{batch.entries?.length || 0}</TableCell>
-                                                <TableCell className="text-right">
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="icon"
-                                                        className="h-8 w-8 text-[#ea1315]"
-                                                        onClick={() => {
-                                                            setSelectedBatch(batch);
-                                                            setBatchDetailsOpen(true);
-                                                        }}
-                                                    >
-                                                        <Eye className="w-4 h-4" />
-                                                    </Button>
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            ) : (
-                                <div className="p-12 text-center text-slate-500 italic">No journal batches available.</div>
+                        <CardContent className="p-0 overflow-x-auto min-h-[400px]">
+                            {batchViewMode === "list" && (
+                                <>
+                                    {journalBatches?.length > 0 ? (
+                                        <Table>
+                                            <TableHeader>
+                                                <TableRow className="bg-slate-50/50">
+                                                    <TableHead className="font-bold text-xs">BATCH CODE</TableHead>
+                                                    <TableHead className="font-bold text-xs">DESCRIPTION</TableHead>
+                                                    <TableHead className="font-bold text-xs">DATE</TableHead>
+                                                    <TableHead className="font-bold text-xs">STATUS</TableHead>
+                                                    <TableHead className="font-bold text-xs text-right">ENTRIES</TableHead>
+                                                    <TableHead className="font-bold text-xs text-right">ACTION</TableHead>
+                                                </TableRow>
+                                            </TableHeader>
+                                            <TableBody>
+                                                {journalBatches.map((batch) => (
+                                                    <TableRow key={batch.id || batch.reference} className="hover:bg-slate-50/50 transition-colors">
+                                                        <TableCell className="text-sm font-bold text-slate-700">{batch.code}</TableCell>
+                                                        <TableCell className="text-sm text-slate-500 max-w-xs truncate">{batch.description}</TableCell>
+                                                        <TableCell className="text-sm text-slate-500">
+                                                            {batch.created_at ? format(new Date(batch.created_at), "MMM d, yyyy") : "-"}
+                                                        </TableCell>
+                                                        <TableCell>
+                                                            <Badge variant={batch.posted ? "success" : "secondary"} className="text-[10px] font-bold">
+                                                                {batch.posted ? "Posted" : "Draft"}
+                                                            </Badge>
+                                                        </TableCell>
+                                                        <TableCell className="text-sm text-right font-medium">{batch.entries?.length || 0}</TableCell>
+                                                        <TableCell className="text-right">
+                                                            <Button
+                                                                variant="ghost"
+                                                                size="icon"
+                                                                className="h-8 w-8 text-[#ea1315]"
+                                                                onClick={() => {
+                                                                    setSelectedBatch(batch);
+                                                                    setBatchDetailsOpen(true);
+                                                                }}
+                                                            >
+                                                                <Eye className="w-4 h-4" />
+                                                            </Button>
+                                                        </TableCell>
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+                                        </Table>
+                                    ) : (
+                                        <div className="p-12 text-center text-slate-500 italic">No journal batches available.</div>
+                                    )}
+                                </>
+                            )}
+
+                            {batchViewMode === "form" && (
+                                <div className="p-6">
+                                    <BulkJournalBatchCreate
+                                        onBatchSuccess={() => {
+                                            setBatchViewMode("list");
+                                            refetchBatches();
+                                        }}
+                                    />
+                                </div>
+                            )}
+
+                            {batchViewMode === "upload" && (
+                                <div className="p-6">
+                                    <BulkJournalBatchUploadCreate
+                                        onBatchSuccess={() => {
+                                            setBatchViewMode("list");
+                                            refetchBatches();
+                                        }}
+                                    />
+                                </div>
                             )}
                         </CardContent>
                     </Card>
