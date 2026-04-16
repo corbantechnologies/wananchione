@@ -1,89 +1,68 @@
 import React from "react";
+import { useFetchPnL } from "@/hooks/financials/actions";
+import MemberLoadingSpinner from "@/components/general/MemberLoadingSpinner";
 import { formatCurrency } from "@/lib/utils";
-import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardTitle,
-    CardDescription,
-} from "@/components/ui/card";
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableRow,
-} from "@/components/ui/table";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
-export default function PnLReport({ data }) {
-    if (!data) return null;
+export default function PnLReport() {
+    const { data, isLoading, error } = useFetchPnL();
 
-    const { income, expenses, net_income, period } = data;
+    if (isLoading) return <MemberLoadingSpinner />;
+    if (error || !data) return <div className="p-12 text-center text-muted-foreground">Unable to load Profit & Loss</div>;
 
-    const EntryRow = ({ label, value, isTotal = false, indent = false }) => (
-        <TableRow className={isTotal ? "font-bold bg-muted/50" : ""}>
-            <TableCell className={indent ? "pl-8" : ""}>{label}</TableCell>
-            <TableCell className="text-right">{formatCurrency(value)}</TableCell>
-        </TableRow>
-    );
+    const { revenue, expenses, net_income, period } = data;
 
     return (
         <Card>
             <CardHeader>
                 <CardTitle>Profit & Loss Statement</CardTitle>
                 <CardDescription>
-                    From {new Date(period.start).toLocaleDateString()} to{" "}
-                    {new Date(period.end).toLocaleDateString()}
+                    {new Date(period.start).toLocaleDateString()} — {new Date(period.end).toLocaleDateString()}
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                <div className="overflow-x-auto">
-                    <Table>
-                        <TableBody>
-                        {/* Income Section */}
-                        <TableRow className="bg-muted/20">
-                            <TableCell colSpan={2} className="font-semibold text-primary">
-                                Income
-                            </TableCell>
+                <Table>
+                    <TableHeader>
+                        <TableRow><TableHead>Item</TableHead><TableHead className="text-right">Amount</TableHead></TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {/* Revenue */}
+                        <TableRow className="bg-muted/30"><TableCell colSpan={2} className="font-semibold text-green-700">Revenue</TableCell></TableRow>
+                        {revenue.accounts.map((acc) => (
+                            <TableRow key={acc.id}>
+                                <TableCell>{acc.name} ({acc.code})</TableCell>
+                                <TableCell className="text-right">{formatCurrency(acc.balance)}</TableCell>
+                            </TableRow>
+                        ))}
+                        <TableRow className="font-bold bg-muted/70">
+                            <TableCell>Total Revenue</TableCell>
+                            <TableCell className="text-right">{formatCurrency(revenue.total)}</TableCell>
                         </TableRow>
-                        <EntryRow
-                            label="Gross Loan Repayments (Interest)"
-                            value={income.loan_repayments_gross}
-                            indent
-                        />
-                        {/* Add other income sources here if available in future */}
-                        <EntryRow label="Total Income" value={income.total_income} isTotal />
 
-                        {/* Expenses Section */}
-                        <TableRow className="bg-muted/20">
-                            <TableCell colSpan={2} className="font-semibold text-primary pt-6">
-                                Expenses
-                            </TableCell>
+                        {/* Expenses */}
+                        <TableRow className="bg-muted/30"><TableCell colSpan={2} className="font-semibold text-red-700 pt-6">Expenses</TableCell></TableRow>
+                        {expenses.accounts.map((acc) => (
+                            <TableRow key={acc.id}>
+                                <TableCell>{acc.name} ({acc.code})</TableCell>
+                                <TableCell className="text-right">{formatCurrency(acc.balance)}</TableCell>
+                            </TableRow>
+                        ))}
+                        <TableRow className="font-bold bg-muted/70">
+                            <TableCell>Total Expenses</TableCell>
+                            <TableCell className="text-right">{formatCurrency(expenses.total)}</TableCell>
                         </TableRow>
-                        <EntryRow
-                            label="Venture Payouts"
-                            value={expenses.venture_payouts}
-                            indent
-                        />
-                        {/* Add other expenses here if available in future */}
-                        <EntryRow
-                            label="Total Expenses"
-                            value={expenses.total_expenses}
-                            isTotal
-                        />
 
                         {/* Net Income */}
                         <TableRow className="bg-primary/5 border-t-2 border-primary">
-                            <TableCell className="font-bold text-lg text-primary">
-                                Net Income
-                            </TableCell>
-                            <TableCell className="text-right font-bold text-lg text-primary">
+                            <TableCell className="font-bold text-lg">Net Income / (Loss)</TableCell>
+                            <TableCell className={`text-right font-bold text-lg ${net_income >= 0 ? "text-green-600" : "text-red-600"}`}>
                                 {formatCurrency(net_income)}
                             </TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>
-            </div>
-        </CardContent>
-    </Card>
+            </CardContent>
+        </Card>
     );
 }
