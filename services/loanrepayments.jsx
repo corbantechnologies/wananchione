@@ -36,16 +36,8 @@ export const createBulkLoanRepayment = async (values, token) => {
 // MPesa
 export const createLoanRepaymentMpesa = async (values, token) => {
   const response = await apiActions?.post(
-    "/api/v1/loanpayments/list/mpesa/",
+    "/api/v1/loanpayments/list/mpesa/payment/",
     values,
-    token
-  );
-  return response?.data;
-};
-
-export const getMpesaLoanPayment = async (reference, token) => {
-  const response = await apiActions?.get(
-    `/api/v1/loanpayments/list/mpesa/${reference}/`,
     token
   );
   return response?.data;
