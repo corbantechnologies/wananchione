@@ -125,7 +125,7 @@ function BulkFeeTypeCreate({ onBatchSuccess }) {
                                     <Label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Amount (KES)</Label>
                                     <Input
                                         type="number"
-                                        placeholder="1000"
+                                        placeholder=""
                                         value={fee.amount}
                                         onChange={(e) => handleInputChange(index, "amount", e.target.value)}
                                         className="h-10 text-sm border-slate-200 focus:border-[#174271] font-bold text-[#ea1315]"
@@ -158,7 +158,7 @@ function BulkFeeTypeCreate({ onBatchSuccess }) {
                                             onChange={(e) => handleInputChange(index, "is_everyone", e.target.checked)}
                                             className="w-3.5 h-3.5 accent-[#174271]"
                                         />
-                                        <Label htmlFor={`everyone-${index}`} className="text-[11px] cursor-pointer font-bold text-slate-600">Global Fee</Label>
+                                        <Label htmlFor={`everyone-${index}`} className="text-[11px] cursor-pointer text-slate-600">All Members</Label>
                                     </div>
                                     <div className="flex items-center gap-2 bg-slate-50 p-2 rounded border border-slate-100">
                                         <input
@@ -168,7 +168,7 @@ function BulkFeeTypeCreate({ onBatchSuccess }) {
                                             onChange={(e) => handleInputChange(index, "can_exceed_limit", e.target.checked)}
                                             className="w-3.5 h-3.5 accent-[#174271]"
                                         />
-                                        <Label htmlFor={`exceed-${index}`} className="text-[11px] cursor-pointer font-bold text-slate-600">Allow Overpay</Label>
+                                        <Label htmlFor={`exceed-${index}`} className="text-[11px] cursor-pointer text-slate-600">Allow Overpay</Label>
                                     </div>
                                 </div>
                             </div>

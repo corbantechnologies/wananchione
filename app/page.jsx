@@ -1,18 +1,15 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Users,
   Wallet,
-  Menu as MenuIcon,
-  X as XIcon,
   ArrowRight,
-  ShieldCheck,
-  Building2,
+  TrendingUp,
+  Award,
+  Menu,
   CheckCircle2,
-  Globe,
-  Lock,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,20 +19,12 @@ function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white text-black overflow-x-hidden font-sans">
-      {/* Subtle Background Pattern */}
-      <div
-        className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none"
-      // style={{
-      //   backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%23000' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-      // }}
-      ></div>
-
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/80 backdrop-blur-md">
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <div className="relative h-10 w-10">
+      <header className="sticky top-0 z-50 bg-white border-b">
+        <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <div className="relative h-11 w-11">
               <Image
                 src="/wananchiLogoGoldNoBg.png"
                 alt="Wananchi One Sacco"
@@ -43,29 +32,20 @@ function LandingPage() {
                 className="object-contain"
               />
             </div>
-            <span className="font-bold text-lg text-[#D4AF37] ">
-              Wananchi One
-            </span>
+            <div>
+              <span className="font-bold text-2xl tracking-tight text-[#174271]">
+                Wananchi One
+              </span>
+              <p className="text-[10px] text-[#D4AF37] font-medium -mt-1">Sacco</p>
+            </div>
           </div>
 
-          <nav className="hidden md:flex items-center gap-10">
-            <Link
-              href="#features"
-              className="text-[13px] font-bold  text-black hover:text-[#D4AF37] transition-colors"
-            >
-              Infrastructure
-            </Link>
-            <Link
-              href="#about"
-              className="text-[13px] font-bold  text-black hover:text-[#D4AF37] transition-colors"
-            >
-              Governance
-            </Link>
-            <Button
-              asChild
-              className="bg-[#D4AF37] hover:bg-[#b8962d] text-white px-8 rounded font-bold text-[13px] shadow-sm transition-all shadow-[#D4AF37]/10 "
-            >
-              <Link href="/login">Secure Access</Link>
+          <nav className="hidden md:flex items-center gap-10 text-sm font-medium">
+            <Link href="#about" className="hover:text-[#174271] transition-colors">About Us</Link>
+            <Link href="#products" className="hover:text-[#174271] transition-colors">Our Products</Link>
+            <Link href="#why-us" className="hover:text-[#174271] transition-colors">Why Wananchi</Link>
+            <Button asChild className="bg-[#174271] hover:bg-[#0f2a4d] text-white px-8 rounded-full">
+              <Link href="/login">Member Portal</Link>
             </Button>
           </nav>
 
@@ -75,180 +55,121 @@ function LandingPage() {
             className="md:hidden"
             onClick={() => setIsMenuOpen(true)}
           >
-            <MenuIcon className="h-6 w-6 text-[#D4AF37]" />
+            <Menu className="h-6 w-6" />
           </Button>
         </div>
       </header>
 
-      {/* Mobile Sidebar */}
-      <div
-        className={`fixed inset-y-0 right-0 z-50 w-[280px] bg-white shadow transform transition-transform duration-300 ease-out border-l border-slate-100 ${isMenuOpen ? "translate-x-0" : "translate-x-full"
-          } md:hidden`}
-      >
-        <div className="flex flex-col h-full">
-          <div className="p-6 flex justify-between items-center border-b border-slate-50">
-            <span className="font-bold text-lg text-[#D4AF37]">NAVIGATION</span>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <XIcon className="h-5 w-5" />
-            </Button>
-          </div>
-          <nav className="flex flex-col p-4 gap-2">
-            <Link
-              href="#features"
-              className="px-4 py-3 rounded hover:bg-slate-50 text-[14px] font-bold text-black transition-colors "
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Infrastructure
-            </Link>
-            <Link
-              href="#about"
-              className="px-4 py-3 rounded hover:bg-slate-50 text-[14px] font-bold text-black transition-colors "
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Governance
-            </Link>
-            <div className="pt-6 mt-4 border-t border-slate-50">
-              <Button
-                asChild
-                className="w-full bg-[#D4AF37] text-white rounded h-12 font-bold shadow-md "
-              >
-                <Link href="/login" onClick={() => setIsMenuOpen(false)}>
-                  Access Portal
-                </Link>
-              </Button>
-            </div>
-          </nav>
-        </div>
-      </div>
-
+      {/* Mobile Menu */}
       {isMenuOpen && (
-        <div
-          className="fixed inset-0 bg-slate-900/20 backdrop-blur-xs z-40 md:hidden"
-          onClick={() => setIsMenuOpen(false)}
-        ></div>
+        <div className="fixed inset-0 bg-black/70 z-50 md:hidden" onClick={() => setIsMenuOpen(false)}>
+          <div className="bg-white w-4/5 max-w-xs h-full ml-auto p-6" onClick={e => e.stopPropagation()}>
+            {/* Mobile menu content */}
+          </div>
+        </div>
       )}
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-32 border-b border-slate-50 overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded bg-[#D4AF37]/5 text-[#D4AF37] text-[11px] font-bold  mb-12 border border-[#D4AF37]/10">
-            <Lock className="w-3 h-3" />
-            <span>Institutional-Grade Financial Ecosystem</span>
+      <section className="pt-20 pb-24 bg-gradient-to-br from-[#174271] to-[#0f2a4d] text-white relative overflow-hidden">
+        <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-5 py-2 rounded-full text-sm mb-8 border border-white/20">
+            <Award className="w-4 h-4" /> Member-Owned • Community-Driven
           </div>
 
-          <h1 className="text-2xl md:text-3xl font-bold mb-10 text-black ">
-            Precision <br className="hidden lg:block" />
-            <span className="text-[#D4AF37]">Infrastructure</span>
+          <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-8">
+            Grow Together.<br />
+            Save Smarter.<br />
+            <span className="text-[#D4AF37]">Thrive as One.</span>
           </h1>
 
-          <p className="text-lg text-black mb-14 max-w-3xl mx-auto leading-relaxed font-medium">
-            Strategic liquidity, precise capital deployment, and institutional-grade
-            governance designed exclusively for elite professionals and high-level
-            decision makers.
+          <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-12">
+            Your trusted Savings and Credit Cooperative. Secure savings, affordable loans,
+            and real financial growth for every member.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <div className="flex flex-col sm:flex-row gap-5 justify-center">
             <Button
               asChild
-              className="h-16 px-12 rounded text-[16px] font-bold bg-[#D4AF37] hover:bg-[#b8962d] text-white shadow shadow-[#D4AF37] transition-all "
+              size="lg"
+              className="bg-[#D4AF37] hover:bg-[#c19a2f] text-[#174271] text-lg px-10 h-14 rounded-full font-semibold"
             >
               <Link href="/login">
-                Portal entry
-                <ArrowRight className="ml-3 w-5 h-5 opacity-70" />
+                Join Wananchi One <ArrowRight className="ml-2" />
               </Link>
             </Button>
-            <Link
-              href="#features"
-              className="text-[14px] font-bold text-black hover:text-[#D4AF37] transition-colors h-16 flex items-center px-8"
+
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-[#174271] text-lg h-14 rounded-full"
             >
-              System Overview
-            </Link>
+              <Link href="#products">Explore Products</Link>
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Infrastructure Section */}
-      <section id="features" className="py-32 bg-white overflow-hidden">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
-            <div className="max-w-xl">
-              <h2 className="text-lg font-bold text-black mb-8  leading-none">
-                Enterprise <br />
-                Components
-              </h2>
-              <p className="text-black font-medium text-lg leading-relaxed">
-                Our infrastructure is built on precision-engineered components
-                to facilitate collective prosperity through institutional-grade
-                transparency.
-              </p>
-            </div>
-            <div className="h-[2px] w-32 bg-[#D4AF37] mb-4"></div>
+      {/* Trust Bar */}
+      <div className="bg-white border-b py-8">
+        <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <p className="text-4xl font-bold text-[#174271]">2,500+</p>
+            <p className="text-sm text-slate-600">Active Members</p>
+          </div>
+          <div>
+            <p className="text-4xl font-bold text-[#174271]">KSh 180M+</p>
+            <p className="text-sm text-slate-600">Savings Mobilized</p>
+          </div>
+          <div>
+            <p className="text-4xl font-bold text-[#174271]">KSh 95M+</p>
+            <p className="text-sm text-slate-600">Loans Disbursed</p>
+          </div>
+          <div>
+            <p className="text-4xl font-bold text-[#174271]">98%</p>
+            <p className="text-sm text-slate-600">Member Satisfaction</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Products Section */}
+      <section id="products" className="py-24 bg-slate-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-[#174271] mb-4">Our Products</h2>
+            <p className="text-lg text-slate-600 max-w-md mx-auto">
+              Designed to help you save, borrow, and grow responsibly
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 icon: Wallet,
-                title: "Institutional Liquidity",
-                desc: "Sophisticated capital growth structures designed for high-yield wealth preservation.",
-                points: [
-                  "Strategic Reserves",
-                  "Tiered Growth Assets",
-                  "Optimized Yields",
-                ],
+                title: "Savings Accounts",
+                desc: "Flexible and high-interest savings options for individuals and groups.",
+                color: "text-green-600",
               },
               {
-                icon: ShieldCheck,
-                title: "Capital Infrastructure",
-                desc: "Low-interest credit lines matched to strategic professional and capital investment needs.",
-                points: [
-                  "Corporate Rate Match",
-                  "Real-time Settlement",
-                  "Transparent Governance",
-                ],
+                icon: TrendingUp,
+                title: "Affordable Loans",
+                desc: "Competitive interest rates with flexible repayment terms.",
+                color: "text-blue-600",
               },
               {
                 icon: Users,
-                title: "Executive Governance",
-                desc: "A governed network of peers committed to professional excellence and shared fiscal integrity.",
-                points: [
-                  "Professional Tiers",
-                  "Peer Transparency",
-                  "Shared Prosperity",
-                ],
+                title: "Wananchi Ventures",
+                desc: "Collective investment opportunities for members.",
+                color: "text-amber-600",
               },
-            ].map((feature, idx) => (
-              <Card
-                key={idx}
-                className="group border border-slate-100 bg-white hover:border-[#D4AF37]/20 hover:shadow transition-all duration-500 rounded p-4"
-              >
-                <CardHeader className="p-6">
-                  <div className="w-14 h-14 rounded bg-slate-50 flex items-center justify-center mb-8 group-hover:bg-[#D4AF37] group-hover:text-white transition-all duration-500 text-[#D4AF37]">
-                    <feature.icon className="h-7 w-7" />
+            ].map((product, i) => (
+              <Card key={i} className="border-0 shadow hover:shadow-xl transition-all duration-300">
+                <CardContent className="p-10 text-center">
+                  <div className={`w-16 h-16 mx-auto rounded-2xl flex items-center justify-center bg-white shadow mb-8 ${product.color}`}>
+                    <product.icon className="w-9 h-9" />
                   </div>
-                  <CardTitle className="text-lg font-bold text-black mb-5  leading-none">
-                    {feature.title}
-                  </CardTitle>
-                  <p className="text-black text-[16px] leading-relaxed mb-8 font-medium">
-                    {feature.desc}
-                  </p>
-                </CardHeader>
-                <CardContent className="px-6 pb-6 pt-0">
-                  <ul className="space-y-4 border-t border-slate-50 pt-8">
-                    {feature.points.map((pt, pidx) => (
-                      <li
-                        key={pidx}
-                        className="flex items-center gap-3 text-[14px] font-bold  text-black"
-                      >
-                        <CheckCircle2 className="w-4 h-4 text-[#D4AF37] opacity-60" />
-                        {pt}
-                      </li>
-                    ))}
-                  </ul>
+                  <h3 className="text-2xl font-semibold mb-4 text-[#174271]">{product.title}</h3>
+                  <p className="text-slate-600 leading-relaxed">{product.desc}</p>
                 </CardContent>
               </Card>
             ))}
@@ -256,146 +177,66 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* Governance Section */}
-      <section id="about" className="py-32 bg-slate-50/50 relative overflow-hidden">
-        <div className="container mx-auto px-6 max-w-6xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      {/* Why Us Section */}
+      <section id="why-us" className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="text-[11px] font-bold text-[#D4AF37]  mb-8 border-l-4 border-[#D4AF37] pl-6 leading-none">
-                Enterprise Standards
-              </div>
-              <h2 className="text-lg font-bold text-black mb-10 leading-tight ">
-                The Gold Standard <br />
-                in Governance
+              <h2 className="text-4xl font-bold leading-tight mb-8 text-[#174271]">
+                Built for Kenyans,<br />by Kenyans
               </h2>
-              <p className="text-lg text-black leading-relaxed font-medium mb-12">
-                Wananchi One operates at the intersection of technological
-                transparency and institutional-grade cooperative finance. Our mandate
-                is to build a resilient financial base for high-level decision
-                makers who demand precision in every facet of their wealth management.
-              </p>
-              <div className="flex items-center gap-6 py-4 px-8 bg-white border border-slate-100 rounded shadow w-fit">
-                <span className="text-[#D4AF37] font-bold text-lg italic ">
-                  Wananchi One
-                </span>
-                <span className="text-black">|</span>
-                <span className="text-black font-bold text-[13px]  whitespace-nowrap">
-                  Excellence • Transparency • Governance
-                </span>
+              <div className="space-y-8">
+                {[
+                  "Transparent operations with full member visibility",
+                  "Competitive returns on savings",
+                  "Fast and fair loan processing",
+                  "Community-focused decision making",
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="w-8 h-8 rounded-full bg-[#D4AF37]/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <CheckCircle2 className="w-5 h-5 text-[#D4AF37]" />
+                    </div>
+                    <p className="text-lg text-slate-700">{item}</p>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="relative aspect-square bg-white rounded flex items-center justify-center border border-slate-100 shadow overflow-hidden">
-              <div className="absolute inset-0 opacity-[0.05]">
-                <Globe className="w-full h-full text-[#D4AF37] p-20" />
-              </div>
-              <div className="text-center p-12 relative z-10">
-                <span className="text-lg font-bold text-[#D4AF37] block mb-4 ">
-                  99.8%
-                </span>
-                <span className="text-black font-bold  text-[13px] leading-relaxed block max-w-[200px] mx-auto">
-                  Institutional Satisfaction Index
-                </span>
-              </div>
+
+            <div className="relative">
+              <Image
+                src="/wananchiLogo.png" // Replace with actual image
+                alt="Wananchi One Members"
+                width={600}
+                height={500}
+                className="rounded-3xl shadow-2xl"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-32 bg-[#0B0E14] text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-          <Building2 className="absolute -right-1/4 -bottom-1/4 w-[800px] h-[800px]" />
-        </div>
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <h2 className="text-lg font-bold mb-10  leading-none">
-            Scale your <br />
-            <span className="text-[#D4AF37]">Capital Infrastructure</span>
-          </h2>
-          <p className="text-lg text-black mb-16 max-w-3xl mx-auto font-medium leading-relaxed">
-            Join a governed community of professionals securing their financial
-            future through precision-engineered liquidity and credit programs.
+      {/* Final CTA */}
+      <section className="bg-[#174271] py-24 text-white text-center">
+        <div className="max-w-2xl mx-auto px-6">
+          <h2 className="text-4xl font-bold mb-6">Ready to start your financial journey?</h2>
+          <p className="text-xl text-white/80 mb-10">
+            Join thousands of Kenyans building a secure and prosperous future together.
           </p>
           <Button
             asChild
-            className="h-20 px-16 rounded text-[18px] bg-[#D4AF37] text-white hover:bg-[#b8962d] shadow shadow-[#D4AF37]/20 transition-all font-bold  active:scale-95"
+            size="lg"
+            className="bg-[#D4AF37] text-[#174271] hover:bg-[#c19a2f] text-lg px-12 h-16 rounded-full"
           >
-            <Link href="/login">Execute Membership Entry</Link>
+            <Link href="/login">Become a Member Today</Link>
           </Button>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-white py-20 border-t border-slate-50">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-16 mb-20">
-            <div className="max-w-xs text-center md:text-left">
-              <div className="flex items-center gap-4 mb-8 justify-center md:justify-start">
-                <div className="h-10 w-10 relative">
-                  <Image
-                    src="/wananchiLogoGold.png"
-                    alt="Logo"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <h3 className="text-lg font-bold text-black ">
-                  Wananchi One
-                </h3>
-              </div>
-              <p className="text-[15px] text-black font-medium leading-relaxed">
-                Upholding institutional standards through technology-driven
-                transparency and professional governance.
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-16 sm:gap-32">
-              <div className="flex flex-col gap-6">
-                <span className="text-[12px] font-bold  text-black">
-                  Legal
-                </span>
-                <Link
-                  href="#"
-                  className="text-[14px] text-black hover:text-[#D4AF37] font-bold "
-                >
-                  Privacy
-                </Link>
-                <Link
-                  href="#"
-                  className="text-[14px] text-black hover:text-[#D4AF37] font-bold "
-                >
-                  Conduct
-                </Link>
-              </div>
-              <div className="flex flex-col gap-6">
-                <span className="text-[12px] font-bold  text-black">
-                  Terminal
-                </span>
-                <Link
-                  href="/login"
-                  className="text-[14px] text-black hover:text-[#D4AF37] font-bold "
-                >
-                  Member
-                </Link>
-                <Link
-                  href="/login"
-                  className="text-[14px] text-black hover:text-[#D4AF37] font-bold "
-                >
-                  Admin
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className="pt-12 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-8">
-            <p className="text-[11px] font-bold text-black ">
-              © {new Date().getFullYear()} Wananchi One Sacco. All Institutional
-              Protocols Applied.
-            </p>
-            <p className="text-[11px] font-bold text-black ">
-              Powered by{" "}
-              <span className="text-black">CORBAN TECHNOLOGIES LTD</span>
-            </p>
-          </div>
+      <footer className="bg-slate-900 text-white/80 py-16">
+        <div className="max-w-6xl mx-auto px-6 text-center md:text-left">
+          <p className="text-sm">© {new Date().getFullYear()} Wananchi One Sacco • All Rights Reserved</p>
+          {/* <p className="text-xs mt-2">Licensed by the SACCO Societies Regulatory Authority (SASRA)</p> */}
         </div>
       </footer>
     </div>

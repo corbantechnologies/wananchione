@@ -151,14 +151,14 @@ export default function SaccoAdminReports() {
           icon={TrendingUp}
           colorClass="text-indigo-600"
         />
-        <SummaryCard
+        {/* <SummaryCard
           title="Venture Activity"
           amount={summary?.totals?.venture_deposits} // Displaying deposits as main
           // Optionally combine or show net, but keeping simple for now
           count={summary?.totals?.counts?.venture_deposits}
           icon={Wallet}
           colorClass="text-purple-600"
-        />
+        /> */}
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -196,8 +196,8 @@ export default function SaccoAdminReports() {
                 <TableHead className="text-right">Savings</TableHead>
                 <TableHead className="text-right">Loans Disbursed</TableHead>
                 <TableHead className="text-right">Repayments</TableHead>
-                <TableHead className="text-right">Venture Deposits</TableHead>
-                <TableHead className="text-right">Venture Payments</TableHead>
+                {/* <TableHead className="text-right">Venture Deposits</TableHead>
+                <TableHead className="text-right">Venture Payments</TableHead> */}
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -216,12 +216,12 @@ export default function SaccoAdminReports() {
                   <TableCell className="text-right">
                     {formatCurrency(month.loans.repaid.total)}
                   </TableCell>
-                  <TableCell className="text-right">
+                  {/* <TableCell className="text-right">
                     {formatCurrency(month.ventures.deposits.total)}
                   </TableCell>
                   <TableCell className="text-right">
                     {formatCurrency(month.ventures.payments.total)}
-                  </TableCell>
+                  </TableCell> */}
                 </TableRow>
               ))}
               {(!summary?.monthly_summary ||

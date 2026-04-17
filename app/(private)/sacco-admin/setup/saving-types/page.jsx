@@ -97,7 +97,7 @@ export default function SavingTypesSetupPage() {
                 <TabsContent value="list" className="animate-in fade-in slide-in-from-bottom-2 duration-300">
                     <Card className="shadow-sm border-none overflow-hidden rounded">
                         <CardHeader className="bg-white border-b px-6 py-4">
-                            <CardTitle className="text-lg  text-black">Product Matrix</CardTitle>
+                            <CardTitle className="text-lg  text-black">Saving Type</CardTitle>
                             <CardDescription className="text-xs">Active Saving Schemes: {savingTypes?.length || 0}</CardDescription>
                         </CardHeader>
                         <CardContent className="p-0">

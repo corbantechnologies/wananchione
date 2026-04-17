@@ -143,7 +143,7 @@ function BulkLoanDisbursementUpload({ onBatchSuccess }) {
                                     Upload Completed CSV
                                 </p>
                                 <p className="text-base text-slate-400 font-medium">
-                                    Click to select or drag and drop your disbursement file
+                                    Click to select your disbursement file
                                 </p>
                             </div>
                         </div>

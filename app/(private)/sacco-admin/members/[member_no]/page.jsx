@@ -28,6 +28,7 @@ import {
   MoreVertical,
   ChevronLeft,
   ChevronRight,
+  XCircle,
 } from "lucide-react";
 import {
   Breadcrumb,
@@ -48,6 +49,7 @@ import CreateLoanAccountAdmin from "@/forms/loans/CreateLoanAdmin";
 import CreateVentureDeposits from "@/forms/venturedeposits/CreateVentureDeposits";
 import CreateVenturePayment from "@/forms/venturepayments/CreateVenturePayment";
 import CreateFeePayment from "@/forms/feepayments/CreateFeePayment";
+import UpdateMemberRole from "@/forms/members/UpdateMemberRole";
 import { useFetchLoanProducts } from "@/hooks/loanproducts/actions";
 // import { useFetchMemberSummary } from "@/hooks/summary/actions";
 // import MemberFinancialSummary from "@/components/members/dashboard/MemberFinancialSummary";
@@ -75,11 +77,13 @@ function MemberDetail() {
 
   const [isApproving, setIsApproving] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isTogglingStatus, setIsTogglingStatus] = useState(false);
   const [depositModal, setDepositModal] = useState(false);
   const [loanModal, setLoanModal] = useState(false);
   const [ventureDepositModal, setVentureDepositModal] = useState(false);
   const [venturePaymentModal, setVenturePaymentModal] = useState(false);
   const [feePaymentModal, setFeePaymentModal] = useState(false);
+  const [roleModal, setRoleModal] = useState(false);
 
   // Pagination states
   const ITEMS_PER_PAGE = 3;
@@ -125,6 +129,25 @@ function MemberDetail() {
         </div>
       </div>
     );
+  };
+
+  const handleToggleActiveStatus = async () => {
+    try {
+      setIsTogglingStatus(true);
+      await apiActions?.patch(
+        `/api/v1/auth/member/${member_no}/`,
+        { is_active: !member?.is_active },
+        token
+      );
+      toast.success(
+        member?.is_active ? "User deactivated successfully" : "User activated successfully"
+      );
+      refetchMember();
+    } catch (error) {
+      toast.error("Failed to update user status");
+    } finally {
+      setIsTogglingStatus(false);
+    }
   };
 
   const handleDownloadSummary = async () => {
@@ -215,6 +238,9 @@ function MemberDetail() {
   if (member?.is_member) activeRoles.push("Member");
   if (member?.is_superuser) activeRoles.push("Superuser");
   if (member?.is_sacco_admin) activeRoles.push("SACCO Admin");
+  if (member?.is_sacco_staff) activeRoles.push("SACCO Staff");
+  if (member?.is_treasurer) activeRoles.push("Treasurer");
+  if (member?.is_bookkeeper) activeRoles.push("Bookkeeper");
 
   if (isLoadingMember) return <LoadingSpinner />;
 
@@ -248,8 +274,8 @@ function MemberDetail() {
         <Card className="overflow-hidden border-0 shadow-lg bg-gradient-to-br from-primary/5 to-primary/10">
           <CardContent className="p-4 md:p-8">
             <div className="flex flex-col lg:flex-row items-center lg:items-center gap-6 text-center lg:text-left">
-              <Avatar className="h-20 w-20 md:h-24 md:w-24 border-4 border-primary/20">
-                <AvatarFallback className="bg-primary text-white text-xl md:text-2xl font-bold">
+              <Avatar className="h-10 w-10 md:h-12 md:w-12 border-4 border-primary/20">
+                <AvatarFallback className="bg-primary text-white text-base md:text-lg">
                   {getInitials(member?.first_name, member?.last_name)}
                 </AvatarFallback>
               </Avatar>
@@ -298,21 +324,7 @@ function MemberDetail() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row w-full lg:w-auto gap-3">
-                <Button
-                  variant="outline"
-                  onClick={handleDownloadSummary}
-                  disabled={isDownloading}
-                  className="flex items-center gap-2 border-primary/20 text-primary hover:bg-primary/5"
-                >
-                  {isDownloading ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <Download className="h-4 w-4" />
-                  )}
-                  Download Summary
-                </Button>
-
+              <div className="flex flex-col sm:flex-row items-center w-full lg:w-auto gap-3">
                 {!member?.is_approved && (
                   <Button
                     onClick={handleApprove}
@@ -322,6 +334,50 @@ function MemberDetail() {
                     {isApproving ? "Approving..." : "Approve Member"}
                   </Button>
                 )}
+
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button variant="outline" className="flex items-center gap-2 border-primary/20 text-primary hover:bg-primary/5 w-full sm:w-auto">
+                      Actions
+                      <MoreVertical className="h-4 w-4" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-48 p-2" align="end">
+                    <div className="flex flex-col gap-1">
+                      <Button
+                        variant="ghost"
+                        onClick={handleDownloadSummary}
+                        disabled={isDownloading}
+                        className="justify-start font-normal h-9 w-full flex items-center gap-2"
+                      >
+                        {isDownloading ? (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : (
+                          <Download className="h-4 w-4" />
+                        )}
+                        Download Summary
+                      </Button>
+
+                      <Button
+                        variant="ghost"
+                        onClick={handleToggleActiveStatus}
+                        disabled={isTogglingStatus}
+                        className={`justify-start font-normal h-9 w-full flex items-center gap-2 ${
+                          member?.is_active 
+                            ? "text-destructive hover:text-destructive hover:bg-destructive/10" 
+                            : "text-green-600 hover:text-green-700 hover:bg-green-50"
+                        }`}
+                      >
+                        {isTogglingStatus ? (
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                        ) : (
+                          member?.is_active ? <XCircle className="h-4 w-4" /> : <CheckCircle className="h-4 w-4" />
+                        )}
+                        {member?.is_active ? "Deactivate User" : "Activate User"}
+                      </Button>
+                    </div>
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
           </CardContent>
@@ -743,10 +799,20 @@ function MemberDetail() {
 
             <Card className="shadow-md">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-xl">
-                  <Settings className="h-5 w-5 text-primary" />
-                  Roles & Permissions
-                </CardTitle>
+                <div className="flex justify-between items-center">
+                  <CardTitle className="flex items-center gap-2 text-xl">
+                    <Settings className="h-5 w-5 text-primary" />
+                    Roles & Permissions
+                  </CardTitle>
+                  <Button
+                    onClick={() => setRoleModal(true)}
+                    size="sm"
+                    variant="outline"
+                    className="h-8 border-primary text-primary hover:bg-primary/5"
+                  >
+                    Edit Roles
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent>
                 {activeRoles.length > 0 ? (
@@ -845,6 +911,13 @@ function MemberDetail() {
           onClose={() => setFeePaymentModal(false)}
           refetchMember={refetchMember}
           accounts={member?.fee_accounts}
+        />
+
+        <UpdateMemberRole 
+          isOpen={roleModal}
+          onClose={() => setRoleModal(false)}
+          refetchMember={refetchMember}
+          member={member}
         />
       </div>
     </div>

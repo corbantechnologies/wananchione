@@ -53,7 +53,7 @@ function BulkMemberUploadCreate({ closeModal, openModal }) {
         try {
             setLoading(true);
             const formData = new FormData();
-            formData.append("file", file);
+            formData.append("csv_file", file);
 
             await createBulkMembersUpload(formData, token);
             toast.success("Members uploaded successfully!");
@@ -61,6 +61,7 @@ function BulkMemberUploadCreate({ closeModal, openModal }) {
             router.refresh();
             clearFile();
         } catch (error) {
+            console.log(error)
             toast.error(error?.response?.data?.message || "Failed to upload members.");
         } finally {
             setLoading(false);
@@ -124,7 +125,7 @@ function BulkMemberUploadCreate({ closeModal, openModal }) {
                                         <FileUp className="w-8 h-8" />
                                     </div>
                                     <p className="font-semibold text-gray-700">
-                                        Click to browse or drag and drop
+                                        Click to browse 
                                     </p>
                                     <p className="text-sm text-gray-500">Only CSV files are supported</p>
                                 </div>

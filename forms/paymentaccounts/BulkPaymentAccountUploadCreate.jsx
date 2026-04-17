@@ -141,7 +141,7 @@ function BulkPaymentAccountUpload({ onBatchSuccess }) {
                             </div>
                             <div className="space-y-1">
                                 <p className="font-bold text-lg text-slate-800">
-                                    Browse Files or Drag & Drop
+                                    Browse Files
                                 </p>
                                 <p className="text-sm text-slate-500">Ensure columns match the template exactly</p>
                             </div>

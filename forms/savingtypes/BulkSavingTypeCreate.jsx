@@ -81,7 +81,7 @@ function BulkSavingTypeCreate({ onBatchSuccess }) {
                     onClick={() => setTypes([{ ...emptyType }])}
                     className="text-xs h-8 border-slate-200"
                 >
-                    Clear Matrix
+                    Clear
                 </Button>
             </div>
 

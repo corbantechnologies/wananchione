@@ -46,6 +46,16 @@ export const getMemberDetail = async (member_no, token) => {
   return response?.data;
 };
 
+// Update member roles
+export const updateMemberRoles = async (member_no, values, token) => {
+  const response = await apiActions?.patch(
+    `/api/v1/auth/member/${member_no}/`,
+    values,
+    token
+  );
+  return response?.data;
+};
+
 // Approve members
 export const approveMember = async (member_no, token) => {
   await apiActions?.patch(`/api/v1/auth/approve-member/${member_no}/`, token);
