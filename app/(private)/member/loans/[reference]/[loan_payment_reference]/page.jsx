@@ -1,12 +1,6 @@
-// Processing Mpesa STK Push Request
-// A form to confirm the deposit and trigger STK Push Request
-// Make a callback
-// Navigate back to the savings account detail page
-
 "use client";
 
 import useAxiosAuth from "@/hooks/authentication/useAxiosAuth";
-import { useFetchSavingsDepositDetail } from "@/hooks/savingsdeposits/actions";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -16,39 +10,33 @@ import toast from "react-hot-toast";
 
 import { Button } from "@/components/ui/button";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-    CardFooter,
+    Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import MemberLoadingSpinner from "@/components/general/MemberLoadingSpinner";
 import { formatCurrency } from "@/lib/utils";
-import {  generateLoanSTKPush } from "@/services/mpesa";
+import { generateLoanSTKPush } from "@/services/mpesa";
 import { useFetchLoanRepaymentDetail } from "@/hooks/loanrepayments/actions";
 
 export default function LoanPaymentProcessing() {
     const [loading, setLoading] = useState(false);
-    const router = useRouter();
-    const { reference, loan_payment_reference } = useParams();
-    const token = useAxiosAuth();
     const [paymentMessage, setPaymentMessage] = useState("");
     const [isPolling, setIsPolling] = useState(false);
 
-    // Poll-specific query for status updates would be better, but re-using Detail fetch is okay if we refetch manually.
-    // Actually, standard useQuery might cache. Let's use refetch from the hook.
+    const router = useRouter();
+    const { reference, loan_payment_reference } = useParams(); // reference = loan reference
+    const token = useAxiosAuth();
+
     const {
         data: loan_payment,
         isLoading: isLoadingLoanPayment,
         refetch: refetchLoanPayment,
     } = useFetchLoanRepaymentDetail(loan_payment_reference, token);
 
-    const pollPaymentStatus = async (currentRef) => {
+    const pollPaymentStatus = async () => {
         setIsPolling(true);
-        const maxRetries = 24; // 2 minutes (assuming 5s interval)
+        const maxRetries = 24; // ~2 minutes
         let tries = 0;
 
         const interval = setInterval(async () => {
@@ -56,32 +44,27 @@ export default function LoanPaymentProcessing() {
             try {
                 const result = await refetchLoanPayment();
                 const currentStatus = result?.data?.payment_status;
-                const currentTxnStatus = result?.data?.transaction_status; // Fallback or additional check
+                const txnStatus = result?.data?.transaction_status;
 
-                if (currentStatus === "COMPLETED" || currentTxnStatus === "Completed") {
+                if (currentStatus === "COMPLETED" || txnStatus === "Completed") {
                     clearInterval(interval);
                     setPaymentMessage("Payment Successful! Redirecting...");
-                    toast.success("Payment Received!");
+                    toast.success("Payment completed successfully!");
+
                     setTimeout(() => {
-                        router.push(`/member/loans/${reference}`);
-                    }, 2000);
+                        router.push(`/member/loans/${reference}`); // ← Correct: use loan reference
+                    }, 1800);
+
                     setIsPolling(false);
-                } else if (
-                    ["FAILED", "CANCELLED", "REVERSED"].includes(currentStatus)
-                ) {
+                } else if (["FAILED", "CANCELLED", "REVERSED"].includes(currentStatus)) {
                     clearInterval(interval);
-                    setPaymentMessage(
-                        `Payment ${currentStatus ? currentStatus.toLowerCase() : "failed"
-                        }. Please try again.`
-                    );
-                    toast.error(`Payment ${currentStatus || "failed"}`);
+                    setPaymentMessage(`Payment ${currentStatus.toLowerCase()}. Please try again.`);
+                    toast.error(`Payment ${currentStatus.toLowerCase()}`);
                     setIsPolling(false);
-                    setLoading(false); // Enable button again
+                    setLoading(false);
                 } else if (tries >= maxRetries) {
                     clearInterval(interval);
-                    setPaymentMessage(
-                        "Payment verification timed out. Please check your messages. \n\nIf you received the confirmation message, please ignore this message."
-                    );
+                    setPaymentMessage("Payment verification timed out. Please check your M-Pesa messages.");
                     toast("Taking longer than expected...", { icon: "⏳" });
                     setIsPolling(false);
                     setLoading(false);
@@ -93,16 +76,12 @@ export default function LoanPaymentProcessing() {
     };
 
     if (isLoadingLoanPayment && !isPolling) return <MemberLoadingSpinner />;
-
-    if (!loan_payment) return <div className="p-8 text-center">Loan payment not found</div>;
+    if (!loan_payment) return <div className="p-8 text-center">Loan payment record not found</div>;
 
     const validationSchema = Yup.object().shape({
         phone_number: Yup.string()
             .required("Phone number is required")
-            .matches(
-                /^(2547|2541)\d{8}$/,
-                "Phone number must start with 2547 or 2541 and be 12 digits"
-            ),
+            .matches(/^(2547|2541)\d{8}$/, "Phone number must start with 2547 or 2541 and be 12 digits"),
     });
 
     return (
@@ -115,7 +94,7 @@ export default function LoanPaymentProcessing() {
                             size="icon"
                             onClick={() => router.back()}
                             className="h-8 w-8"
-                            disabled={loading} // Disable back while processing? Maybe safer
+                            disabled={loading || isPolling}
                         >
                             <ArrowLeft className="h-4 w-4" />
                         </Button>
@@ -123,88 +102,68 @@ export default function LoanPaymentProcessing() {
                             Complete Loan Payment
                         </CardTitle>
                     </div>
-                    <CardDescription>
-                        Confirm your details to initiate M-Pesa payment
-                    </CardDescription>
+                    <CardDescription>Confirm details to initiate M-Pesa STK Push</CardDescription>
                 </CardHeader>
+
                 <CardContent className="space-y-6">
-                    {/* Deposit Details Summary */}
-                    <div className="bg-gray-50 p-4 rounded space-y-3 border">
-                        <div className="flex justify-between items-center text-sm">
+                    {/* Payment Summary */}
+                    <div className="bg-gray-50 p-4 rounded border space-y-3">
+                        <div className="flex justify-between text-sm">
                             <span className="text-muted-foreground">Amount</span>
-                            <span className="font-bold text-lg">
-                                {formatCurrency(loan_payment.amount)}
-                            </span>
+                            <span className="font-bold text-lg">{formatCurrency(loan_payment.amount)}</span>
                         </div>
-                        <div className="flex justify-between items-center text-sm">
-                            <span className="text-muted-foreground">Account</span>
-                            <span className="font-mono">{loan_payment.savings_account}</span>
+                        <div className="flex justify-between text-sm">
+                            <span className="text-muted-foreground">Loan Account</span>
+                            <span className="font-mono">{loan_payment.loan_account}</span>
                         </div>
-                        <div className="flex justify-between items-center text-sm">
+                        <div className="flex justify-between text-sm">
                             <span className="text-muted-foreground">Reference</span>
                             <span className="font-mono">{loan_payment.reference}</span>
                         </div>
-                        <div className="flex justify-between items-center text-sm">
-                            <span className="text-muted-foreground">Payment Status</span>
-                            <span
-                                className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium 
-                ${loan_payment.payment_status === "COMPLETED"
-                                        ? "bg-green-100 text-green-800"
-                                        : loan_payment.payment_status === "FAILED"
-                                            ? "bg-red-100 text-red-800"
-                                            : "bg-yellow-100 text-yellow-800"
-                                    }`}
-                            >
+                        <div className="flex justify-between text-sm">
+                            <span className="text-muted-foreground">Status</span>
+                            <span className={`px-3 py-1 rounded text-xs font-medium ${loan_payment.payment_status === "COMPLETED" ? "bg-green-100 text-green-800" :
+                                    loan_payment.payment_status === "FAILED" ? "bg-red-100 text-red-800" :
+                                        "bg-yellow-100 text-yellow-800"
+                                }`}>
                                 {loan_payment.payment_status || "PENDING"}
                             </span>
                         </div>
                     </div>
 
                     {paymentMessage && (
-                        <div
-                            className={`p-3 rounded text-sm text-center ${paymentMessage.includes("Successful")
-                                ? "bg-green-50 text-green-700"
-                                : paymentMessage.includes("failed") ||
-                                    paymentMessage.includes("timed out")
-                                    ? "bg-red-50 text-red-700"
-                                    : "bg-blue-50 text-blue-700 animate-pulse"
-                                }`}
-                        >
+                        <div className={`p-4 rounded text-center text-sm ${paymentMessage.includes("Successful") ? "bg-green-50 text-green-700" :
+                                paymentMessage.includes("failed") ? "bg-red-50 text-red-700" :
+                                    "bg-blue-50 text-blue-700"
+                            }`}>
                             {paymentMessage}
                         </div>
                     )}
 
-                    {/* Confirmation Form */}
                     {!isPolling && loan_payment.payment_status !== "COMPLETED" && (
                         <Formik
                             initialValues={{
-                                phone_number: loan_payment.phone_number || "",
-                                loan_payment_reference: loan_payment.reference || "",
+                                phone_number: loan_payment.mpesa_phone_number || "",
+                                loan_payment_reference: loan_payment.reference,
                             }}
                             validationSchema={validationSchema}
                             onSubmit={async (values) => {
                                 setLoading(true);
                                 setPaymentMessage("Sending STK Push to your phone...");
+
                                 try {
-                                    const payload = {
+                                    await generateLoanSTKPush({
                                         phone_number: values.phone_number,
                                         loan_payment_reference: values.loan_payment_reference,
-                                    };
+                                    });
 
-                                    await generateLoanSTKPush(payload);
-                                    setPaymentMessage(
-                                        "STK Push sent! Please check your phone to complete the payment."
-                                    );
-                                    toast.success("Push sent! Waiting for payment...");
-
-                                    // Start Polling
-                                    pollPaymentStatus(values.loan_payment_reference);
+                                    setPaymentMessage("STK Push sent! Check your phone.");
+                                    toast.success("STK Push sent successfully!");
+                                    pollPaymentStatus();
                                 } catch (error) {
                                     console.error(error);
-                                    toast.error("Failed to initiate payment");
-                                    setPaymentMessage(
-                                        "Failed to initiate payment. Please try again."
-                                    );
+                                    toast.error(error?.response?.data?.error || "Failed to send STK Push");
+                                    setPaymentMessage("Failed to initiate payment. Try again.");
                                     setLoading(false);
                                 }
                             }}
@@ -214,23 +173,16 @@ export default function LoanPaymentProcessing() {
                                     <div className="space-y-2">
                                         <Label htmlFor="phone_number">M-Pesa Phone Number</Label>
                                         <div className="relative">
-                                            <Phone className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+                                            <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                                             <Field
                                                 as={Input}
                                                 id="phone_number"
                                                 name="phone_number"
-                                                className={`pl-9 ${errors.phone_number && touched.phone_number
-                                                    ? "border-red-500"
-                                                    : ""
-                                                    }`}
-                                                placeholder="2547..."
+                                                className={`pl-10 ${errors.phone_number && touched.phone_number ? "border-red-500" : ""}`}
+                                                placeholder="254712345678"
                                             />
                                         </div>
-                                        <ErrorMessage
-                                            name="phone_number"
-                                            component="div"
-                                            className="text-red-500 text-sm"
-                                        />
+                                        <ErrorMessage name="phone_number" component="div" className="text-red-500 text-sm" />
                                     </div>
 
                                     <Button
@@ -241,10 +193,10 @@ export default function LoanPaymentProcessing() {
                                         {loading ? (
                                             <>
                                                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                                                Initating...
+                                                Sending STK Push...
                                             </>
                                         ) : (
-                                            "Pay Now"
+                                            "Pay Now with M-Pesa"
                                         )}
                                     </Button>
                                 </Form>
@@ -253,19 +205,19 @@ export default function LoanPaymentProcessing() {
                     )}
 
                     {isPolling && (
-                        <div className="flex flex-col items-center justify-center py-6 space-y-4">
+                        <div className="flex flex-col items-center justify-center py-8 space-y-4">
                             <Loader2 className="h-12 w-12 text-[#045e32] animate-spin" />
-                            <p className="text-sm text-gray-500 text-center px-4">
-                                Waiting for M-Pesa confirmation. This usually takes 10-20
-                                seconds after you enter your PIN.
+                            <p className="text-sm text-gray-600 text-center">
+                                Waiting for M-Pesa confirmation...<br />
+                                This usually takes 10–30 seconds after entering your PIN.
                             </p>
                         </div>
                     )}
                 </CardContent>
-                <CardFooter className="flex justify-center border-t p-4 bg-gray-50 rounded-b-xl">
-                    <p className="text-xs text-muted-foreground text-center">
-                        A prompt will be sent to your phone. Enter your M-Pesa PIN to
-                        authorize the transaction.
+
+                <CardFooter className="text-center border-t bg-gray-50 rounded-b-xl p-4">
+                    <p className="text-xs text-muted-foreground">
+                        You will receive a prompt on your phone. Enter your M-Pesa PIN to confirm.
                     </p>
                 </CardFooter>
             </Card>
