@@ -14,8 +14,6 @@ const MENU_LINKS = [
     href: "/sacco-admin/members",
     children: [
       { label: "All Members", href: "/sacco-admin/members" },
-      { label: "Personal Profiles", href: "/sacco-admin/personal" },
-      { label: "Guarantor Profiles", href: "/sacco-admin/personal/guarantorprofile" },
     ],
   },
 
@@ -42,6 +40,7 @@ const MENU_LINKS = [
     label: "Accounting & Financials",
     href: "/sacco-admin/accounting",
     children: [
+      { label: "Accounting Dashboard", href: "/sacco-admin/accounting" },
       { label: "GL Accounts", href: "/sacco-admin/setup/gl-accounts" },
       { label: "Fee Payments", href: "/sacco-admin/fee-payments" },
       { label: "Payment Accounts", href: "/sacco-admin/setup/payment-accounts" },
@@ -59,7 +58,7 @@ const MENU_LINKS = [
     href: "/sacco-admin/setup",
     children: [
       { label: "Platform Setup", href: "/sacco-admin/setup" },
-      { label: "General Settings", href: "/sacco-admin/settings" },
+
     ],
   },
 
@@ -71,6 +70,16 @@ const MENU_LINKS = [
       { label: "Legacy Payments", href: "/sacco-admin/onboarding/existing-loan-payments" },
     ],
   },
+
+  {
+    label: "Personal",
+    href: "/sacco-admin/personal",
+    children: [
+      { label: "Personal Profile", href: "/sacco-admin/personal" },
+      { label: "General Settings", href: "/sacco-admin/settings" },
+      { label: "Guarantor Profile", href: "/sacco-admin/personal/guarantorprofile" },
+    ],
+  }
 ];
 
 const NavItem = ({ link, setIsMenuOpen }) => {

@@ -63,7 +63,7 @@ export default function LoanPaymentProcessing() {
                     setPaymentMessage("Payment Successful! Redirecting...");
                     toast.success("Payment Received!");
                     setTimeout(() => {
-                        router.push(`/member/loans/${reference}`);
+                        router.push(`/sacco-admin/personal/loans/${reference}`);
                     }, 2000);
                     setIsPolling(false);
                 } else if (

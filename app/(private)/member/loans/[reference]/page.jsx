@@ -141,8 +141,8 @@ function LoanDetail() {
                             key={tab}
                             onClick={() => setActiveTab(tab)}
                             className={`px-6 py-2.5 text-sm font-medium rounded transition-all ${activeTab === tab
-                                    ? 'bg-white text-[#045e32] shadow'
-                                    : 'text-gray-600 hover:bg-white/70'
+                                ? 'bg-white text-[#045e32] shadow'
+                                : 'text-gray-600 hover:bg-white/70'
                                 }`}
                         >
                             {tab.charAt(0).toUpperCase() + tab.slice(1)}
