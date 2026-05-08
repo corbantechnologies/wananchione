@@ -47,7 +47,6 @@ function UpdateAccount({ member, isOpen, onClose, refetchMember }) {
             phone: member?.phone || "",
             county: member?.county || "",
             employment_type: member?.employment_type || "",
-            employer: member?.employer || "",
             job_title: member?.job_title || "",
           }}
           onSubmit={async (values) => {
@@ -72,7 +71,6 @@ function UpdateAccount({ member, isOpen, onClose, refetchMember }) {
               formData.append("phone", values.phone);
               formData.append("county", values.county);
               formData.append("employment_type", values.employment_type);
-              formData.append("employer", values.employer);
               formData.append("job_title", values.job_title);
 
               await updateMember(userId, formData, token);
@@ -346,25 +344,7 @@ function UpdateAccount({ member, isOpen, onClose, refetchMember }) {
                   </Field>
                 </div>
 
-                {values?.employment_type !== "Self-Employed" &&
-                  values?.employment_type !== "Not Employed" && (
-                    <div className="space-y-3">
-                      <Label
-                        htmlFor="employer"
-                        className="text-base text-black font-medium"
-                      >
-                        Employer Name
-                      </Label>
-                      <Field
-                        as={Input}
-                        type="text"
-                        name="employer"
-                        id="employer"
-                        value={values.employer}
-                        className="w-full border border-black rounded px-3 py-2 text-base focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                      />
-                    </div>
-                  )}
+
 
                 <div className="space-y-3">
                   <Label
