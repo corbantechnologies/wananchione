@@ -282,7 +282,7 @@ function LandingPage() {
             </div>
             <span className="font-bold text-slate-900">Wananchi One</span>
           </div>
-          <p className="text-sm text-slate-400">© {new Date().getFullYear()} Wananchi One Sacco • Designed for SACCO Excellence Powered By <Link href="https://wananchimali.com" target="_blank" className="text-[#174271] hover:text-[#D4AF37]"> Wananchi Mali</Link></p>
+          <p className="text-sm text-slate-400">© {new Date().getFullYear()} Wananchi One Sacco • Designed for SACCO Excellence Powered By <Link href="https://www.wananchimali.com" target="_blank" className="text-[#174271] hover:text-[#D4AF37]"> Wananchi Mali</Link></p>
         </div>
       </footer>
     </div>
