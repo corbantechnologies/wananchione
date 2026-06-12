@@ -16,12 +16,14 @@ function BulkMemberCreate({ closeModal, openModal }) {
     const router = useRouter();
 
     const emptyMember = {
+        member_no: "",
         first_name: "",
-        middle_name: "",
         last_name: "",
         email: "",
+        employer: "",
+        payroll_no: "",
+        phone: "",
         gender: "",
-        member_no: "",
     };
 
     const [members, setMembers] = useState([{ ...emptyMember }]);
@@ -140,23 +142,6 @@ function BulkMemberCreate({ closeModal, openModal }) {
 
                                         <div className="space-y-2">
                                             <Label
-                                                htmlFor={`members-${index}-middle_name`}
-                                                className="text-base text-black font-medium"
-                                            >
-                                                Middle Name (Optional)
-                                            </Label>
-                                            <Input
-                                                type="text"
-                                                id={`members-${index}-middle_name`}
-                                                placeholder="e.g. Doe"
-                                                value={member.middle_name}
-                                                onChange={(e) => handleInputChange(index, "middle_name", e.target.value)}
-                                                className="border-black   rounded text-base py-2"
-                                            />
-                                        </div>
-
-                                        <div className="space-y-2">
-                                            <Label
                                                 htmlFor={`members-${index}-last_name`}
                                                 className="text-base text-black font-medium"
                                             >
@@ -189,6 +174,63 @@ function BulkMemberCreate({ closeModal, openModal }) {
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
                                             </select>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <Label
+                                                htmlFor={`members-${index}-employer`}
+                                                className="text-base text-black font-medium"
+                                            >
+                                                Employer
+                                            </Label>
+                                            <select
+                                                id={`members-${index}-employer`}
+                                                value={member.employer}
+                                                onChange={(e) => handleInputChange(index, "employer", e.target.value)}
+                                                className="w-full border border-black rounded px-3 py-2 text-base focus:ring-2 transition-colors bg-white h-10"
+                                            >
+                                                <option value="">Select Employer</option>
+                                                <option value="Tamarind Management Limited">
+                                                    Tamarind Management Limited
+                                                </option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+
+                                        {member.employer === "Tamarind Management Limited" && (
+                                            <div className="space-y-2">
+                                                <Label
+                                                    htmlFor={`members-${index}-payroll_no`}
+                                                    className="text-base text-black font-medium"
+                                                >
+                                                    Payroll Number
+                                                </Label>
+                                                <Input
+                                                    type="text"
+                                                    id={`members-${index}-payroll_no`}
+                                                    placeholder="e.g. 12345"
+                                                    value={member.payroll_no}
+                                                    onChange={(e) => handleInputChange(index, "payroll_no", e.target.value)}
+                                                    className="border-black rounded text-base py-2"
+                                                />
+                                            </div>
+                                        )}
+
+                                        <div className="space-y-2">
+                                            <Label
+                                                htmlFor={`members-${index}-phone`}
+                                                className="text-base text-black font-medium"
+                                            >
+                                                Phone
+                                            </Label>
+                                            <Input
+                                                type="text"
+                                                id={`members-${index}-phone`}
+                                                placeholder="254700000000"
+                                                value={member.phone}
+                                                onChange={(e) => handleInputChange(index, "phone", e.target.value)}
+                                                className="border-black rounded text-base py-2"
+                                            />
                                         </div>
 
                                         <div className="space-y-2">
@@ -234,7 +276,7 @@ function BulkMemberCreate({ closeModal, openModal }) {
                             </Button>
                             <Button
                                 type="submit"
-                                className="bg-primary hover:bg-primary/90 text-white text-base py-2 px-4 w-full sm:w-auto"
+                                className="bg-[#ea1315] hover:bg-[#c71012] text-white text-base py-2 px-4 w-full sm:w-auto"
                                 disabled={loading || members.length === 0}
                             >
                                 {loading ? "Creating..." : "Create Members"}
