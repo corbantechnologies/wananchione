@@ -69,7 +69,7 @@ export default function BalanceSheet() {
                     <h3 className="text-lg font-semibold mb-3 text-primary">Liabilities</h3>
                     <Table>
                         <TableHeader>
-                            <TableRow><TableHead>Account</TableHead><TableHead className="text-right">Balance</TableHead></TableHeader>
+                            <TableRow><TableHead>Account</TableHead><TableHead className="text-right">Balance</TableHead></TableRow>
                         </TableHeader>
                         <TableBody>
                             {liabilities.accounts.map((acc) => (

@@ -20,7 +20,7 @@ function MemberNavbar() {
         <div className="mx-auto px-6 py-4 flex justify-between items-center">
           <Link href="/member/dashboard" className="flex items-center gap-2">
             <span className="text-xl md:text-2xl font-bold tracking-tight">
-              Wananchi One Sacco
+              Sprout Capital Sacco
             </span>
           </Link>
           <div className="flex items-center gap-4">
@@ -58,8 +58,10 @@ function MemberNavbar() {
               { label: "Dashboard", href: "/member/dashboard" },
               { label: "Loan Applications", href: "/member/loan-applications" },
               { label: "Guarantor Profile", href: "/member/guarantorprofile" },
-              { label: "Reports", href: "/member/reports" },
+              // { label: "Reports", href: "/member/reports" },
               { label: "Profile Settings", href: "/member/settings" },
+              { label: "Help Center", href: "/member/help" },
+
             ].map((link) => (
               <Link
                 key={link.href}
