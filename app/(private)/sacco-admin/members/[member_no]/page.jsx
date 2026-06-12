@@ -226,7 +226,7 @@ function MemberDetail() {
 
   // Conditional employment section
   const hasEmploymentData =
-    member?.employment_type || member?.job_title;
+    member?.employment_type || member?.employer || member?.job_title;
 
   // Active roles
   const activeRoles = [];
@@ -583,7 +583,11 @@ function MemberDetail() {
                     label="Employment Type"
                     value={member?.employment_type}
                   />
-
+                  <InfoField
+                    icon={Building}
+                    label="Employer"
+                    value={member?.employer}
+                  />
                   <InfoField
                     icon={User}
                     label="Job Title"
