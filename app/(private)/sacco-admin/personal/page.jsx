@@ -64,7 +64,7 @@ function MemberDashboard() {
           </h1>
           <p className="text-slate-500 mt-1 text-base sm:text-lg">
             Welcome back,{" "}
-            <span className="font-semibold text-[#D4AF37]">
+            <span className="font-semibold text-[#236c2e]">
               {member?.first_name} {member?.last_name}
             </span>
             .
@@ -77,15 +77,15 @@ function MemberDashboard() {
           </span>
         </div>
       </div>
- 
+
       {/* Summary Cards Grid */}
       <div className="grid gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="border-l-4 border-l-[#D4AF37] hover:shadow-sm transition-shadow">
+        <Card className="border-l-4 border-l-[#236c2e] hover:shadow-sm transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-xs font-bold uppercase tracking-wider text-slate-500">
               Total Savings
             </CardTitle>
-            <PiggyBank className="h-4 w-4 text-[#D4AF37]" />
+            <PiggyBank className="h-4 w-4 text-[#236c2e]" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-slate-900">
